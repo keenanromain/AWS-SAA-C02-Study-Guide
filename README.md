@@ -175,7 +175,7 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 - S3 presigned URLs provide temporary access (upload or download) to an object. They are commonly used to provide access to private objects.
 - When you upload new files, they will not inherit the properties of the previous version. 
 
-## S3 Storage Classes:
+### S3 Storage Classes:
 **S3 Standard** - 99.99% availability and 11 x 9s durability. Stored redundantly across multiple devices in multiple facilities and is designed to withstand the failure of 2 concurrent data centers.
 
 **S3 Infrequently Accessed (IA)** - For data that is needed less often, but when it is needed the data should be available quickly. Storage fee is cheaper, but charged for retrieval.
@@ -190,7 +190,7 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 
 <img width="1246" alt="storage_types" src="https://user-images.githubusercontent.com/13093517/83919060-e1247180-a747-11ea-9336-e92ee163ac7a.png">
 
-## S3 Encryption:
+### S3 Encryption:
 S3 data can be encrypted both in transit and at rest.
 
 **Encryption In Transit**: When the traffic passing between one endpoint to another is indecipherable. Anyone eavesdropping between server A and server B won’t be able to make sense of the information passing by. Encryption in transit for S3 is always achieved by SSL/TLS.
@@ -202,7 +202,7 @@ You can encrypted on the AWS supported server-side in the following ways:
 - **AWS Key Management Service / SSE - KMS** - when Amazon and you both manage the encryption and decryption keys together.
 - **Server Side Encryption w/ customer provided keys / SSE - C** - when I give Amazon my own keys that I manage. In this scenario, you concede ease of use in exchange for more control.
 
-## S3 Versioning:
+### S3 Versioning:
 - When versioning is enabled, S3 stores all versions of an object including all writes and even deletes.
 - It is a great feature for implictly backuping content and easy rollbacks in case of human error.
 - It can be thought of as analogous to Git
@@ -210,12 +210,12 @@ You can encrypted on the AWS supported server-side in the following ways:
 - Versioning integrates w/ lifecycle rules so you can set rules to expire or migrate data based on their version
 - Versioning also has MFA delete capability to provide an additional layer of security
 
-## S3 Lifecycle Management:
-- Automates moving objects between the different storage tiers
+### S3 Lifecycle Management:
+- Automates the moving of objects between the different storage tiers
 - Can be used in conjunction with versioning
 - Lifecycle rules can be applied to both current and previous versions of an object
 
-## S3 Cross Region Replication:
+### S3 Cross Region Replication:
 - Cross region replication only work if versioning is enabled
 - When cross region replication is enabled, no pre-existing data is transferred. Only new uploads into the original bucket are replicated. All subsequent updates are replicated.
 - When you replicate the contents of one bucket to another, you can actually change the ownership of the content if you want. You can also change the storage tier of the new bucket with the replicated content.
@@ -223,18 +223,48 @@ You can encrypted on the AWS supported server-side in the following ways:
 - <a href="https://aws.amazon.com/solutions/cross-region-replication-monitor/">Cross Region Replication Overview</a>
 - <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#replication-what-is-not-replicated ">What is and isn’t replicated such as encrypted objects, deletes, items in glacier, etc.</a>
 
-## S3 Transfer Acceleration:
+### S3 Transfer Acceleration:
 - Transfer acceleration makes use of the CloudFront network by sending or receiving data at CDN points of presence (called edge locations) rather than slower uploads or downloads at the origin
 - This is accomplished by uploading to a distinct URL for the edge location instead of the bucket itself. This is then transferred over the AWS network backbone at a much faster speed.
 - <a href="https://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html">You can test transfer acceleration speed directly in comparison to regular uploads</a>
 
-## S3 Event Notications:
+### S3 Event Notications:
 The Amazon S3 notification feature enables you to receive and send notifications when certain events happen in your bucket. To enable notifications, you must first configure the events you want Amazon S3 to publish (new object added, old object deleted, etc.) and the destinations where you want Amazon S3 to send the event notifications. Amazon S3 supports the following destinations where it can publish events:
 - **Amazon Simple Notification Service (Amazon SNS)** - A web service that coordinates and manages the delivery or sending of messages to subscribing endpoints or clients.
 - **Amazon Simple Queue Service (Amazon SQS)** - SQS offers reliable and scalable hosted queues for storing messages as they travel between computers.
 - **AWS Lambda** - AWS Lambda is a compute service where you can upload your code and the service can run the code on your behalf using the AWS infrastructure. You package up and upload your custom code to AWS Lambda when you create a Lambda function. The S3 event triggering the Lambda function also can serve as the code's input.
 
-## Maximizing S3 read/write performance:
+### Maximizing S3 read/write performance:
 - If the request rate for reading and writing objects to S3 is extremely high, then you can use hash keys or random strings to prefix the object's name. In such cases, the partitions used to store the objects will be better distributed and therefore will allow better read/write performance on your objects. 
 - <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html "> More information on how to ensure high performance in S3</a>
+
+
+## CloudFront
+
+### CloudFront's Key Features
+The AWS CDN service is called CloudFront. It serves up cached content and assets for the increased global performance of your application. The main components of CloudFront are the edge locations (cache endpoints), the origin (original source of truth to be cached such as an EC2 instance, an S3 bucket, an Elastic Load Balancer or a Route 53 config), and the distribution (the arrangement of edge locations from the origin or basically the network itself).
+
+### CloudFront Key Details
+- When content is cached, it is done for a certain time limit called the Time To Live, or TTL, which is always in seconds
+- If needed, CloudFront can serve up entire websites including dynamic, static, streaming and interactive content. 
+- Requests are always routed and cached in the nearest edge location for the user, thus propagating the CDN nodes and guaranteeing best performance for future requests.
+- There are two different types of distributions: 
+  - **Web Distribution**: web sites, normal cached items, etc
+  - **RTMP**: streaming content, adobe, etc
+- Edge locations are *NOT* just read only. They can be written to which will then return the write value back to the origin.
+- Cached content can be manually invalidated or cleared beyond the TTL, but this does incur a cost.
+- You can invalidate the distribution of certain objects or entire directories so that content is loaded directly from the origin everytime. Invalidating content is also helpful when debugging if content pulled from the origin seems correct, but pulling that same content from an edge location seems incorrect.
+- You can set up a failover for the origin by creating an origin group with two origins inside. One origin will act as the primary and the other as the secondary. CloudFront will automatically switch between the two when the primary origin fails.
+- Amazon CloudFront delivers your content from each edge location and offers a Dedicated IP Custom SSL feature. SNI Custom SSL works with most modern browsers.
+- <a href="https://aws.amazon.com/cloudfront/features/">Key Features according to the docs</a>
+
+### CloudFront Signed URLs
+- CloudFront signed URLs and signed cookies provide the same basic functionality: they allow you to control who can access your content. If you want to serve private content through CloudFront and you're trying to decide whether to use signed URLs or signed cookies, consider the following:
+  - Use signed URLs for the following cases:
+    - You want to use an RTMP distribution. Signed cookies aren't supported for RTMP distributions.
+    - You want to restrict access to individual files, for example, an installation download for your application.
+    - Your users are using a client (for example, a custom HTTP client) that doesn't support cookies.
+  - Use signed cookies for the following cases:
+    - You want to provide access to multiple restricted files. For example, all of the files for a video in HLS format or all of the files in the paid users' area of a website.
+    - You don't want to change your current URLs.
 
