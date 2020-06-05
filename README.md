@@ -168,3 +168,4 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 
 **S3 Deep Glacier** - The lowest cost S3 storage where retrieval can take 12 hours.
 
+<img width="1246" alt="storage_types" src="https://user-images.githubusercontent.com/13093517/83919060-e1247180-a747-11ea-9336-e92ee163ac7a.png">
