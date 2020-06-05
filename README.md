@@ -1,6 +1,6 @@
 # AWS-SAA-C02-Study-Guide
 
-**The official Solutions Architect - Associate (SAA-C02) exam guide as offered by AWS**:
+**The official AWS Solutions Architect - Associate (SAA-C02) exam guide**:
 
 https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate-Exam-Guide_v1.1_2019_08_27_FINAL.pdf
 
@@ -53,6 +53,22 @@ https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-
 1. <a href="https://d1.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf">AWS Well-Architected Framework</a>
 
 2. <a href="https://aws.amazon.com/vpc/faqs/">Amazon VPC FAQs</a>
+
+3. <a href="https://aws.amazon.com/autoscaling/faqs/"> AWS Autoscaling FAQs</a>
+
+4. <a href="https://aws.amazon.com/ec2/faqs/">Amazon EC2 FAQs</a>
+
+5. <a href="https://aws.amazon.com/ebs/faqs/">Amazon EBS FAQs</a>
+
+6. <a href="https://aws.amazon.com/s3/faqs/">Amazon S3 FAQs</a>
+
+7. <a href="https://aws.amazon.com/route53/faqs/"> Amazon Route 53 FAQs</a>
+
+8. <a href="https://aws.amazon.com/elasticloadbalancing/faqs/"> Elastic Load Balancing FAQs</a>
+
+9. <a href="https://aws.amazon.com/api-gateway/faqs/"> AWS API Gateway FAQs</a>
+
+10. <a href="https://aws.amazon.com/storagegateway/faqs/"> AWS Storage Gateway FAQs</a>
 
 
 ## Identity Access Management (IAM)
