@@ -154,6 +154,8 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 2.) For programmatic access only, use ACLs & Bucket Policies to share objects
 3.) For access via the console & the terminal, use cross-account IAM roles
 - S3 is a great candidate for static website hosting. When you enable static website hosting for S3 you need both an index.html file and an error.html file. Static website hosting creates a website endpoint that can be accessed via the internet.
+- S3 presigned URLs provide temporary access (upload or download) to an object. They are commonly used to provide access to private objects.
+- When you upload new files, they will not inherit the properties of the previous version. 
 
 ## S3 Storage Classes:
 **S3 Standard** - 99.99% availability and 11 x 9s durability. Stored redundantly across multiple devices in multiple facilities and is designed to withstand the failure of 2 concurrent data centers.
@@ -169,3 +171,52 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 **S3 Deep Glacier** - The lowest cost S3 storage where retrieval can take 12 hours.
 
 <img width="1246" alt="storage_types" src="https://user-images.githubusercontent.com/13093517/83919060-e1247180-a747-11ea-9336-e92ee163ac7a.png">
+
+## S3 Encryption:
+S3 data can be encrypted both in transit and at rest.
+
+**Encryption In Transit**: When the traffic passing between one endpoint to another is indecipherable. Anyone eavesdropping between server A and server B won’t be able to make sense of the information passing by. Encryption in transit for S3 is always achieved by SSL/TLS.
+
+**Encryption At Rest**: When the immobile data sitting inside S3 is encrypted. If someone breaks into a server, they still won’t be able to access encrypted info within that server. Encryption at rest can be done either on the server-side or the client-side. The server-side is when S3 encrypts your data as it is being written to disk and decrypts it when you access it. The client-side is when you personally encrypt the object on your own and then upload it into S3 afterwards.
+
+You can encrypted on the AWS supported server-side in the following ways:
+- **S3 Managed Keys / SSE - S3 (server side encryption S3 )** - when Amazon manages the encryption and decryption keys for you automatically. In this scenario, you concede a little control to Amazon in exchange for ease of use.
+- **AWS Key Management Service / SSE - KMS** - when Amazon and you both manage the encryption and decryption keys together.
+- **Server Side Encryption w/ customer provided keys / SSE - C** - when I give Amazon my own keys that I manage. In this scenario, you concede ease of use in exchange for more control.
+
+## S3 Versioning:
+- When versioning is enabled, S3 stores all versions of an object including all writes and even deletes.
+- It is a great feature for implictly backuping content and easy rollbacks in case of human error.
+- It can be thought of as analogous to Git
+- Once versioning is enabled on a bucket, it cannot be disabled - only suspended
+- Versioning integrates w/ lifecycle rules so you can set rules to expire or migrate data based on their version
+- Versioning also has MFA delete capability to provide an additional layer of security
+
+## S3 Lifecycle Management:
+- Automates moving objects between the different storage tiers
+- Can be used in conjunction with versioning
+- Lifecycle rules can be applied to both current and previous versions of an object
+
+## S3 Cross Region Replication:
+- Cross region replication only work if versioning is enabled
+- When cross region replication is enabled, no pre-existing data is transferred. Only new uploads into the original bucket are replicated. All subsequent updates are replicated.
+- When you replicate the contents of one bucket to another, you can actually change the ownership of the content if you want. You can also change the storage tier of the new bucket with the replicated content.
+- When files are deleted in the original bucket (via a delete marker as versioning prevents true deletions), those deletes are not replicated
+- <a href="https://aws.amazon.com/solutions/cross-region-replication-monitor/">Cross Region Replication Overview</a>
+- <a href=" https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#replication-what-is-not-replicated ">What is and isn’t replicated (encrypted objects, deletes, items in glacier, etc.)</a>
+
+## S3 Transfer Acceleration:
+- Transfer acceleration makes use of the CloudFront network by sending or receiving data at CDN points of presence (called edge locations) rather than slower uploads or downloads at the origin
+- This is accomplished by uploading to a distinct URL for the edge location instead of the bucket itself. This is then transferred over the AWS network backbone at a much faster speed.
+- <a href="https://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html">You can test transfer acceleration speed directly in comparison to regular uploads</a>
+
+## S3 Event Notications:
+The Amazon S3 notification feature enables you to receive and send notifications when certain events happen in your bucket. To enable notifications, you must first configure the events you want Amazon S3 to publish (new object added, old object deleted, etc.) and the destinations where you want Amazon S3 to send the event notifications. Amazon S3 supports the following destinations where it can publish events:
+- **Amazon Simple Notification Service (Amazon SNS)** - A web service that coordinates and manages the delivery or sending of messages to subscribing endpoints or clients.
+- **Amazon Simple Queue Service (Amazon SQS)** - SQS offers reliable and scalable hosted queues for storing messages as they travel between computers.
+- **AWS Lambda** - AWS Lambda is a compute service where you can upload your code and the service can run the code on your behalf using the AWS infrastructure. You package up and upload your custom code to AWS Lambda when you create a Lambda function. The S3 event triggering the Lambda function also can serve as the code's input.
+
+## Maximizing S3 read/write performance:
+- If the request rate for reading and writing objects to S3 is extremely high, then you can use hash keys or random strings to prefix the object's name. In such cases, the partitions used to store the objects will be better distributed and therefore will allow better read/write performance on your objects. 
+- <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html "> More information on how to ensure high performance in S3</a>
+
