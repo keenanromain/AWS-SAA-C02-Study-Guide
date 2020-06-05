@@ -73,7 +73,7 @@
 
 ### IAM's Key Features:
 
-Offers a centralized hub of control within AWS & is a focal point that integrates with all other AWS Services.
+IAM offers a centralized hub of control within AWS & is a focal point that integrates with all other AWS Services.
 IAM comes with the ability to share access at granular levels of permission and it supports the ability to use identity federation (the process of delegating authentication responsibility to a trusted external party like Facebook or Google) for temporary or limited access. IAM comes with MFA support and allows you to set up custom password rotation policy across your entire organiation. It is also PCI DSS compliant (passes government mandated credit card security regulations).
 
 ### Entities within IAM:
@@ -108,4 +108,55 @@ IAM comes with the ability to share access at granular levels of permission and 
 **Explicit Allow**: Allows access to a particular resource so long as there is not an associated explicit deny.
 
 **Default Deny (or Implicit Deny)**: IAM identities start off with no resource access.
+
+
+## Simple Storage Service (S3)
+
+### S3's Key Features:
+S3 provides developers and IT teams with secure, durable, and highly-scalable object storage. Object storage, as opposed to block storage, is a general term that refers to data composed of three things: the data itself that you want to store, an expandable amount of metadata, and a unique identifier so that the data can be retrieved. This makes it a perfect candidate to host files or directories and a poor candidate to host databases or operating systems. The following table highlights key differences between object and block storage:
+
+![Screen Shot 2020-06-05 at 3 34 57 PM](https://user-images.githubusercontent.com/13093517/83915925-352c5780-a742-11ea-975b-53d4e5d07e7c.png)
+
+
+Data uploaded into S3 is spread across multiple files and facilities. The files uploaded into S3 have an upper-bound of 5TB per file and the number of files that can be uploaded is virtually limitless. S3 buckets, which contain all files, are named in a universal namespace so uniqueness is required. All successful uploads will return an HTTP 200 response.
+
+### S3 Key Details:
+- Objects (regular files or directories) are stored in S3 with a key, value, version ID, and metadata. They can also contain subresources for access control lists which are basically permissions for the object itself or they can contain torrents.
+- The data consistency model for S3 ensures immediate read access for new objects after the initial PUT requests. These new objects are introduced into AWS for the first time and thus do not need to be updated anywhere so they are available immediately.
+- The data consistency model for S3 ensures eventual read consistency for PUTS and DELETES of already existing objects. This is because the change takes a little time to propagate across the entire Amazon network.
+- Amazon guarantees 99.999999999% (or 11 9s) durability for S3 data and comes with the following main features: 
+1.) tiered storage and pricing variability
+2.) lifecycle management to expire older content
+3.) versioning for version control
+4.) encryption for privacy
+5.) MFA deletes to prevent accidental or malicious removal of content
+6.) access control lists & bucket policies to secure the data
+- S3 charges by:
+1.) storage size
+2.) number of requests
+3.) storage management pricing (known as tiers)
+4.) data transfer pricing (objects leaving/entering AWS via the internet)
+5.) transfer acceleration (an optional speed increase for moving objects via Cloudfront)
+6.) cross region replication (more HA than offered by default
+- Bucket policies secure data at the bucket level while access control lists secure data at the more granular object level.
+- By default, all newly created buckets are private.
+- S3 can be configured to create access logs which can be shipped into another bucket in the current account or even a separate account all together. This makes it easy to monitor who accesses what inside S3.
+- There are 3 different ways to share S3 buckets across accounts:
+1.) For programmatic access only, use IAM & Bucket Policies to share entire buckets
+2.) For programmatic access only, use ACLs & Bucket Policies to share objects
+3.) For access via the console & the terminal, use cross-account IAM roles
+- S3 is a great candidate for static website hosting. When you enable static website hosting for S3 you need both an index.html file and an error.html file. Static website hosting creates a website endpoint that can be accessed via the internet.
+
+## S3 Storage Classes:
+**S3 Standard** - 99.99% availability and 11 x 9s durability. Stored redundantly across multiple devices in multiple facilities and is designed to withstand the failure of 2 concurrent data centers.
+
+**S3 Infrequently Accessed (IA)** - For data that is needed less often, but when it is needed the data should be available quickly. Storage fee is cheaper, but charged for retrieval.
+
+**S3 One Zone Infrequently Accessed (or RRS / Reduced Redundancy Storage)** -  For when you want the lower costs of IA, but do not require high availability. This is even cheaper because of it.
+
+**S3 Intelligent Tiering** - Uses built-in ML/AI to determine the most cost-effective storage class and then automatically moves your data to the appropriate tier. It does this without operational overhead or performance impact.
+
+**S3 Glacier** - low-cost storage class for data archiving. This class is for pure storage purposes where retrieval isn’t needed often at all. Retrieval times range from minutes to hours. There is an expedited feature however, if the feature's extra cost is worth the time-performance improvement.
+
+**S3 Deep Glacier** - The lowest cost S3 storage where retrieval can take 12 hours.
 
