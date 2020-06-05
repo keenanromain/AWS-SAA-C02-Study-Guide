@@ -113,7 +113,15 @@ IAM comes with the ability to share access at granular levels of permission and 
 ## Simple Storage Service (S3)
 
 ### S3's Key Features:
-S3 provides developers and IT teams with secure, durable, and highly-scalable object storage. Object storage, as opposed to block storage, is a general term that refers to data composed of three things: the data itself that you want to store, an expandable amount of metadata, and a unique identifier so that the data can be retrieved. This makes it a perfect candidate to host files or directories and a poor candidate to host databases or operating systems. The following table highlights key differences between object and block storage:
+S3 provides developers and IT teams with secure, durable, and highly-scalable object storage. Object storage, as opposed to block storage, is a general term that refers to data composed of three things:
+
+1.) the data itself that you want to store
+
+2.) an expandable amount of metadata
+
+3.) a unique identifier so that the data can be retrieved 
+
+This makes it a perfect candidate to host files or directories and a poor candidate to host databases or operating systems. The following table highlights key differences between object and block storage:
 
 ![Screen Shot 2020-06-05 at 3 34 57 PM](https://user-images.githubusercontent.com/13093517/83915925-352c5780-a742-11ea-975b-53d4e5d07e7c.png)
 
