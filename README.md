@@ -172,7 +172,7 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
   3.) For access via the console & the terminal, use cross-account IAM roles
 
 - S3 is a great candidate for static website hosting. When you enable static website hosting for S3 you need both an index.html file and an error.html file. Static website hosting creates a website endpoint that can be accessed via the internet.
-- S3 presigned URLs provide temporary access (upload or download) to an object. They are commonly used to provide access to private objects.
+- S3 presigned URLs provide temporary access (upload or download) to an object. They are commonly used to provide access to private objects. You can specify the duration of the URL's existence.
 - When you upload new files, they will not inherit the properties of the previous version. 
 
 ### S3 Storage Classes:
