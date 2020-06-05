@@ -7,66 +7,66 @@
 
 *Domain 1: Design Resilient Architectures*
 
-1.1 - Design a multi-tier architecture solution
+  1.1 - Design a multi-tier architecture solution
 
-1.2 - Design highly available and/or fault-tolerant architectures
+  1.2 - Design highly available and/or fault-tolerant architectures
 
-1.3 - Design decoupling mechanisms using AWS services
+  1.3 - Design decoupling mechanisms using AWS services
 
-1.4 - Choose appropriate resilient storage
+  1.4 - Choose appropriate resilient storage
 
 
 *Domain 2: Design High-Performing Architectures*
 
-2.1 - Identify elastic and scalable computesolutions for a workload
+  2.1 - Identify elastic and scalable computesolutions for a workload
 
-2.2 - Select high-performingand scalable storage solutions for a workload
+  2.2 - Select high-performingand scalable storage solutions for a workload
 
-2.3 - Select high-performingnetworking solutions for a workload
+  2.3 - Select high-performingnetworking solutions for a workload
 
-2.4 - Choose high-performingdatabase solutions for a workload
+  2.4 - Choose high-performingdatabase solutions for a workload
 
 
 *Domain 3: Design Secure Applications and Architectures*
 
-3.1 - Design secure access to AWS resources
+  3.1 - Design secure access to AWS resources
 
-3.2 - Design secure application tiers
+  3.2 - Design secure application tiers
 
-3.3 - Select appropriate data security options
+  3.3 - Select appropriate data security options
 
 
 *Domain 4: Design Cost-Optimized Architectures*
 
-4.1 - Identify cost-effective storage solutions
+  4.1 - Identify cost-effective storage solutions
 
-4.2 - Identify cost-effective compute and database services
+  4.2 - Identify cost-effective compute and database services
 
-4.3 - Design cost-optimized network architectures
+  4.3 - Design cost-optimized network architectures
 
 
 
 ## Required Reading:
 
-1. <a href="https://d1.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf">AWS Well-Architected Framework</a>
+  1. <a href="https://d1.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf">AWS Well-Architected Framework</a>
 
-2. <a href="https://aws.amazon.com/vpc/faqs/">Amazon VPC FAQs</a>
+  2. <a href="https://aws.amazon.com/vpc/faqs/">Amazon VPC FAQs</a>
 
-3. <a href="https://aws.amazon.com/autoscaling/faqs/"> AWS Autoscaling FAQs</a>
+  3. <a href="https://aws.amazon.com/autoscaling/faqs/"> AWS Autoscaling FAQs</a>
 
-4. <a href="https://aws.amazon.com/ec2/faqs/">Amazon EC2 FAQs</a>
+  4. <a href="https://aws.amazon.com/ec2/faqs/">Amazon EC2 FAQs</a>
 
-5. <a href="https://aws.amazon.com/ebs/faqs/">Amazon EBS FAQs</a>
+  5. <a href="https://aws.amazon.com/ebs/faqs/">Amazon EBS FAQs</a>
 
-6. <a href="https://aws.amazon.com/s3/faqs/">Amazon S3 FAQs</a>
+  6. <a href="https://aws.amazon.com/s3/faqs/">Amazon S3 FAQs</a>
 
-7. <a href="https://aws.amazon.com/route53/faqs/"> Amazon Route 53 FAQs</a>
+  7. <a href="https://aws.amazon.com/route53/faqs/"> Amazon Route 53 FAQs</a>
 
-8. <a href="https://aws.amazon.com/elasticloadbalancing/faqs/"> Elastic Load Balancing FAQs</a>
+  8. <a href="https://aws.amazon.com/elasticloadbalancing/faqs/"> Elastic Load Balancing FAQs</a>
 
-9. <a href="https://aws.amazon.com/api-gateway/faqs/"> AWS API Gateway FAQs</a>
+  9. <a href="https://aws.amazon.com/api-gateway/faqs/"> AWS API Gateway FAQs</a>
 
-10. <a href="https://aws.amazon.com/storagegateway/faqs/"> AWS Storage Gateway FAQs</a>
+  10. <a href="https://aws.amazon.com/storagegateway/faqs/"> AWS Storage Gateway FAQs</a>
 
 
 ## Identity Access Management (IAM)
@@ -115,11 +115,11 @@ IAM comes with the ability to share access at granular levels of permission and 
 ### S3's Key Features:
 S3 provides developers and IT teams with secure, durable, and highly-scalable object storage. Object storage, as opposed to block storage, is a general term that refers to data composed of three things:
 
-1.) the data itself that you want to store
+  1.) the data itself that you want to store
 
-2.) an expandable amount of metadata
+  2.) an expandable amount of metadata
 
-3.) a unique identifier so that the data can be retrieved 
+  3.) a unique identifier so that the data can be retrieved 
 
 This makes it a perfect candidate to host files or directories and a poor candidate to host databases or operating systems. The following table highlights key differences between object and block storage:
 
@@ -134,42 +134,42 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 - The data consistency model for S3 ensures eventual read consistency for PUTS and DELETES of already existing objects. This is because the change takes a little time to propagate across the entire Amazon network.
 - Amazon guarantees 99.999999999% (or 11 9s) durability for S3 data and comes with the following main features:
 
-1.) tiered storage and pricing variability
+  1.) tiered storage and pricing variability
 
-2.) lifecycle management to expire older content
+  2.) lifecycle management to expire older content
 
-3.) versioning for version control
+  3.) versioning for version control
 
-4.) encryption for privacy
+  4.) encryption for privacy
 
-5.) MFA deletes to prevent accidental or malicious removal of content
+  5.) MFA deletes to prevent accidental or malicious removal of content
 
-6.) access control lists & bucket policies to secure the data
+  6.) access control lists & bucket policies to secure the data
 
 - S3 charges by:
 
-1.) storage size
+  1.) storage size
 
-2.) number of requests
+  2.) number of requests
 
-3.) storage management pricing (known as tiers)
+  3.) storage management pricing (known as tiers)
 
-4.) data transfer pricing (objects leaving/entering AWS via the internet)
+  4.) data transfer pricing (objects leaving/entering AWS via the internet)
 
-5.) transfer acceleration (an optional speed increase for moving objects via Cloudfront)
+  5.) transfer acceleration (an optional speed increase for moving objects via Cloudfront)
 
-6.) cross region replication (more HA than offered by default
+  6.) cross region replication (more HA than offered by default
 
 - Bucket policies secure data at the bucket level while access control lists secure data at the more granular object level.
 - By default, all newly created buckets are private.
 - S3 can be configured to create access logs which can be shipped into another bucket in the current account or even a separate account all together. This makes it easy to monitor who accesses what inside S3.
 - There are 3 different ways to share S3 buckets across accounts:
 
-1.) For programmatic access only, use IAM & Bucket Policies to share entire buckets
+  1.) For programmatic access only, use IAM & Bucket Policies to share entire buckets
 
-2.) For programmatic access only, use ACLs & Bucket Policies to share objects
+  2.) For programmatic access only, use ACLs & Bucket Policies to share objects
 
-3.) For access via the console & the terminal, use cross-account IAM roles
+  3.) For access via the console & the terminal, use cross-account IAM roles
 
 - S3 is a great candidate for static website hosting. When you enable static website hosting for S3 you need both an index.html file and an error.html file. Static website hosting creates a website endpoint that can be accessed via the internet.
 - S3 presigned URLs provide temporary access (upload or download) to an object. They are commonly used to provide access to private objects.
