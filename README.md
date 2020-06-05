@@ -35,6 +35,8 @@ IAM comes with the ability to share access at granular levels of permission and 
 
 ### Priority Levels in IAM:
 **Explicit Deny**: Denies access to a particular resource and this ruling cannot be overruled.
+
 **Explicit Allow**: Allows access to a particular resource so long as there is not an associated explicit deny.
+
 **Default Deny (or Implicit Deny)**: IAM identities start off with no resource access.
 
