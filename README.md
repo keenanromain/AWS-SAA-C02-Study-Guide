@@ -132,27 +132,45 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 - Objects (regular files or directories) are stored in S3 with a key, value, version ID, and metadata. They can also contain subresources for access control lists which are basically permissions for the object itself or they can contain torrents.
 - The data consistency model for S3 ensures immediate read access for new objects after the initial PUT requests. These new objects are introduced into AWS for the first time and thus do not need to be updated anywhere so they are available immediately.
 - The data consistency model for S3 ensures eventual read consistency for PUTS and DELETES of already existing objects. This is because the change takes a little time to propagate across the entire Amazon network.
-- Amazon guarantees 99.999999999% (or 11 9s) durability for S3 data and comes with the following main features: 
+- Amazon guarantees 99.999999999% (or 11 9s) durability for S3 data and comes with the following main features:
+
 1.) tiered storage and pricing variability
+
 2.) lifecycle management to expire older content
+
 3.) versioning for version control
+
 4.) encryption for privacy
+
 5.) MFA deletes to prevent accidental or malicious removal of content
+
 6.) access control lists & bucket policies to secure the data
+
 - S3 charges by:
+
 1.) storage size
+
 2.) number of requests
+
 3.) storage management pricing (known as tiers)
+
 4.) data transfer pricing (objects leaving/entering AWS via the internet)
+
 5.) transfer acceleration (an optional speed increase for moving objects via Cloudfront)
+
 6.) cross region replication (more HA than offered by default
+
 - Bucket policies secure data at the bucket level while access control lists secure data at the more granular object level.
 - By default, all newly created buckets are private.
 - S3 can be configured to create access logs which can be shipped into another bucket in the current account or even a separate account all together. This makes it easy to monitor who accesses what inside S3.
 - There are 3 different ways to share S3 buckets across accounts:
+
 1.) For programmatic access only, use IAM & Bucket Policies to share entire buckets
+
 2.) For programmatic access only, use ACLs & Bucket Policies to share objects
+
 3.) For access via the console & the terminal, use cross-account IAM roles
+
 - S3 is a great candidate for static website hosting. When you enable static website hosting for S3 you need both an index.html file and an error.html file. Static website hosting creates a website endpoint that can be accessed via the internet.
 - S3 presigned URLs provide temporary access (upload or download) to an object. They are commonly used to provide access to private objects.
 - When you upload new files, they will not inherit the properties of the previous version. 
@@ -203,7 +221,7 @@ You can encrypted on the AWS supported server-side in the following ways:
 - When you replicate the contents of one bucket to another, you can actually change the ownership of the content if you want. You can also change the storage tier of the new bucket with the replicated content.
 - When files are deleted in the original bucket (via a delete marker as versioning prevents true deletions), those deletes are not replicated
 - <a href="https://aws.amazon.com/solutions/cross-region-replication-monitor/">Cross Region Replication Overview</a>
-- <a href=" https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#replication-what-is-not-replicated ">What is and isn’t replicated (encrypted objects, deletes, items in glacier, etc.)</a>
+- <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#replication-what-is-not-replicated ">What is and isn’t replicated such as encrypted objects, deletes, items in glacier, etc.</a>
 
 ## S3 Transfer Acceleration:
 - Transfer acceleration makes use of the CloudFront network by sending or receiving data at CDN points of presence (called edge locations) rather than slower uploads or downloads at the origin
