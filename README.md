@@ -256,6 +256,9 @@ The AWS CDN service is called CloudFront. It serves up cached content and assets
 - You can invalidate the distribution of certain objects or entire directories so that content is loaded directly from the origin everytime. Invalidating content is also helpful when debugging if content pulled from the origin seems correct, but pulling that same content from an edge location seems incorrect.
 - You can set up a failover for the origin by creating an origin group with two origins inside. One origin will act as the primary and the other as the secondary. CloudFront will automatically switch between the two when the primary origin fails.
 - Amazon CloudFront delivers your content from each edge location and offers a Dedicated IP Custom SSL feature. SNI Custom SSL works with most modern browsers.
+- If you run PCI or HIPAA-compliant workloads and need to log usage data, you can do the following:
+    - Enable CloudFront access logs. 
+    -Capture requests that are sent to the CloudFront API.
 - <a href="https://aws.amazon.com/cloudfront/features/">Key Features according to the docs</a>
 
 ### CloudFront Signed URLs
