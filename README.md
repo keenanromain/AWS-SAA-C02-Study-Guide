@@ -56,18 +56,25 @@
 
   4. <a href="https://aws.amazon.com/ec2/faqs/">Amazon EC2 FAQs</a>
 
-  5. <a href="https://aws.amazon.com/ebs/faqs/">Amazon EBS FAQs</a>
+  5. <a href="https://aws.amazon.com/ec2/autoscaling/faqs/"> Amazon EC2 Auto Scaling FAQs </a>
 
-  6. <a href="https://aws.amazon.com/s3/faqs/">Amazon S3 FAQs</a>
+  6. <a href="https://aws.amazon.com/ebs/faqs/">Amazon EBS FAQs</a>
 
-  7. <a href="https://aws.amazon.com/route53/faqs/"> Amazon Route 53 FAQs</a>
+  7. <a href="https://aws.amazon.com/s3/faqs/">Amazon S3 FAQs</a>
 
-  8. <a href="https://aws.amazon.com/elasticloadbalancing/faqs/"> Elastic Load Balancing FAQs</a>
+  8. <a href="https://aws.amazon.com/route53/faqs/"> Amazon Route 53 FAQs</a>
 
-  9. <a href="https://aws.amazon.com/api-gateway/faqs/"> AWS API Gateway FAQs</a>
+  9. <a href="https://aws.amazon.com/elasticloadbalancing/faqs/"> Elastic Load Balancing FAQs</a>
 
-  10. <a href="https://aws.amazon.com/storagegateway/faqs/"> AWS Storage Gateway FAQs</a>
+  10. <a href="https://aws.amazon.com/api-gateway/faqs/"> AWS API Gateway FAQs</a>
 
+  11. <a href="https://aws.amazon.com/storagegateway/faqs/"> AWS Storage Gateway FAQs</a>
+
+  12. <a href="https://aws.amazon.com/efs/faq/"> Amazon EFS FAQs</a>
+
+  13. <a href="https://aws.amazon.com/fsx/windows/faqs/">Amazon FSx for Windows File Server FAQs</a>
+
+  14. <a href="https://aws.amazon.com/fsx/lustre/faqs/">Amazon FSx for Lustre FAQs</a>
 
 ## Identity Access Management (IAM)
 
