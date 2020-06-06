@@ -242,7 +242,7 @@ The Amazon S3 notification feature enables you to receive and send notifications
 ## CloudFront
 
 ### CloudFront's Key Features
-The AWS CDN service is called CloudFront. It serves up cached content and assets for the increased global performance of your application. The main components of CloudFront are the edge locations (cache endpoints), the origin (original source of truth to be cached such as an EC2 instance, an S3 bucket, an Elastic Load Balancer or a Route 53 config), and the distribution (the arrangement of edge locations from the origin or basically the network itself).
+The AWS CDN service is called CloudFront. It serves up cached content and assets for the increased global performance of your application. The main components of CloudFront are the edge locations (cache endpoints), the origin (original source of truth to be cached such as an EC2 instance, an S3 bucket, an Elastic Load Balancer or a Route 53 config), and the distribution (the arrangement of edge locations from the origin or basically the network itself). <a href="https://aws.amazon.com/cloudfront/features/">More info on CloudFront's features</a>
 
 ### CloudFront Key Details
 - When content is cached, it is done for a certain time limit called the Time To Live, or TTL, which is always in seconds
@@ -259,7 +259,6 @@ The AWS CDN service is called CloudFront. It serves up cached content and assets
 - If you run PCI or HIPAA-compliant workloads and need to log usage data, you can do the following:
     - Enable CloudFront access logs. 
     - Capture requests that are sent to the CloudFront API.
-- <a href="https://aws.amazon.com/cloudfront/features/">More info on CloudFront's features</a>
 
 ### CloudFront Signed URLs
 - CloudFront signed URLs and signed cookies provide the same basic functionality: they allow you to control who can access your content. If you want to serve private content through CloudFront and you're trying to decide whether to use signed URLs or signed cookies, consider the following:
