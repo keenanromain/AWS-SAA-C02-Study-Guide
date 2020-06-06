@@ -258,7 +258,7 @@ The AWS CDN service is called CloudFront. It serves up cached content and assets
 - Amazon CloudFront delivers your content from each edge location and offers a Dedicated IP Custom SSL feature. SNI Custom SSL works with most modern browsers.
 - If you run PCI or HIPAA-compliant workloads and need to log usage data, you can do the following:
     - Enable CloudFront access logs. 
-    -Capture requests that are sent to the CloudFront API.
+    - Capture requests that are sent to the CloudFront API.
 - <a href="https://aws.amazon.com/cloudfront/features/">Key Features according to the docs</a>
 
 ### CloudFront Signed URLs
