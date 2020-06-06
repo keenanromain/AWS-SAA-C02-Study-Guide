@@ -259,7 +259,7 @@ The AWS CDN service is called CloudFront. It serves up cached content and assets
 - If you run PCI or HIPAA-compliant workloads and need to log usage data, you can do the following:
     - Enable CloudFront access logs. 
     - Capture requests that are sent to the CloudFront API.
-- <a href="https://aws.amazon.com/cloudfront/features/">Key Features according to the docs</a>
+- <a href="https://aws.amazon.com/cloudfront/features/">More info on CloudFront's features</a>
 
 ### CloudFront Signed URLs
 - CloudFront signed URLs and signed cookies provide the same basic functionality: they allow you to control who can access your content. If you want to serve private content through CloudFront and you're trying to decide whether to use signed URLs or signed cookies, consider the following:
