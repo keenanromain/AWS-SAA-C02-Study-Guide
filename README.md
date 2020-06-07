@@ -2,6 +2,7 @@
 
 ## Table of Contents
 <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#introduction">Introduction</a>
+<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#identity-access-management-iam"> Identity Access Management (IAM)</a>
 
 ## Introduction
 
