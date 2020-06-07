@@ -1,7 +1,7 @@
 # AWS-SAA-C02-Study-Guide
 
 ## Table of Contents
-<a href="Introduction">https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#introduction</a>
+<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#introduction">Introduction</a>
 
 ## Introduction
 
