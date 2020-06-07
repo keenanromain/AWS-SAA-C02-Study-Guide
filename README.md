@@ -114,11 +114,11 @@ IAM Policies are separated from the other entities above because they are not an
 - You cannot nest IAM Groups. Individual IAM users can belong to multiple groups, but creating subgroups so that one IAM Group is embedded inside of another IAM Group is not possible.
 
 ### Priority Levels in IAM:
-**Explicit Deny**: Denies access to a particular resource and this ruling cannot be overruled.
+- **Explicit Deny**: Denies access to a particular resource and this ruling cannot be overruled.
 
-**Explicit Allow**: Allows access to a particular resource so long as there is not an associated explicit deny.
+- **Explicit Allow**: Allows access to a particular resource so long as there is not an associated explicit deny.
 
-**Default Deny (or Implicit Deny)**: IAM identities start off with no resource access.
+- **Default Deny (or Implicit Deny)**: IAM identities start off with no resource access. Access instead must be granted.
 
 
 ## Simple Storage Service (S3)
