@@ -154,10 +154,8 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 - Objects (regular files or directories) are stored in S3 with a key, value, version ID, and metadata. They can also contain subresources for access control lists which are basically permissions for the object itself or they can contain torrents.
 - The data consistency model for S3 ensures immediate read access for new objects after the initial PUT requests. These new objects are introduced into AWS for the first time and thus do not need to be updated anywhere so they are available immediately.
 - The data consistency model for S3 ensures eventual read consistency for PUTS and DELETES of already existing objects. This is because the change takes a little time to propagate across the entire Amazon network.
-
 - Because of the eventual consistency model when updating existing objects in S3, those updates might not be immediately reflected. As object updates are made to the same key, an older version of the object might be provided back to the user when the next read request is made. 
-
-- Amazon guarantees 99.999999999% (or 11 9s) durability for S3 data and comes with the following main features:
+- S3 comes with the following main features:
 
   1.) tiered storage and pricing variability
 
@@ -205,7 +203,7 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 
 **S3 Infrequently Accessed (IA)** - For data that is needed less often, but when it is needed the data should be available quickly. Storage fee is cheaper, but charged for retrieval.
 
-**S3 One Zone Infrequently Accessed (or RRS / Reduced Redundancy Storage)** -  For when you want the lower costs of IA, but do not require high availability. This is even cheaper because of it.
+**S3 One Zone Infrequently Accessed (an improvement of the legacy RRS / Reduced Redundancy Storage)** -  For when you want the lower costs of IA, but do not require high availability. This is even cheaper because of it.
 
 **S3 Intelligent Tiering** - Uses built-in ML/AI to determine the most cost-effective storage class and then automatically moves your data to the appropriate tier. It does this without operational overhead or performance impact.
 
@@ -219,6 +217,8 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 **S3 Deep Glacier** - The lowest cost S3 storage where retrieval can take 12 hours.
 
 <img width="1246" alt="storage_types" src="https://user-images.githubusercontent.com/13093517/83919060-e1247180-a747-11ea-9336-e92ee163ac7a.png">
+
+Amazon guarantees 99.999999999% (or 11 9s) durability for all S3 storage classes except Reduced Redundancy Storage
 
 ### S3 Encryption:
 S3 data can be encrypted both in transit and at rest.
