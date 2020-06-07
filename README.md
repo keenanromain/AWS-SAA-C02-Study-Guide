@@ -200,7 +200,12 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 
 **S3 Intelligent Tiering** - Uses built-in ML/AI to determine the most cost-effective storage class and then automatically moves your data to the appropriate tier. It does this without operational overhead or performance impact.
 
-**S3 Glacier** - low-cost storage class for data archiving. This class is for pure storage purposes where retrieval isn’t needed often at all. Retrieval times range from minutes to hours. There is an expedited feature however, if the feature's extra cost is worth the time-performance improvement.
+**S3 Glacier** - low-cost storage class for data archiving. This class is for pure storage purposes where retrieval isn’t needed often at all. Retrieval times range from minutes to hours. There are differing retrieval methods depending on how acceptable the default retrieval times are for you:
+
+    Expedited: 1 - 5 minutes, but this option is the most expensive
+    Standard: 3 - 5 hours to restore.
+    Bulk: 5 - 12 hours. This option has the lowest cost and is good for a large set of data.
+
 
 **S3 Deep Glacier** - The lowest cost S3 storage where retrieval can take 12 hours.
 
