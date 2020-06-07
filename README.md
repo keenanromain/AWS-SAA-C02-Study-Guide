@@ -113,6 +113,8 @@ IAM Policies are separated from the other entities above because they are not an
 
 - You cannot nest IAM Groups. Individual IAM users can belong to multiple groups, but creating subgroups so that one IAM Group is embedded inside of another IAM Group is not possible.
 
+- With IAM Policies, you can easily add tags that help define which resources are accessible by whom. These tags are then used to control access via a particular IAM policy. For example, production and development EC2 instances might be tagged as such. This would ensure that people who should only be able to access development instances cannot access production instances.  
+
 ### Priority Levels in IAM:
 - **Explicit Deny**: Denies access to a particular resource and this ruling cannot be overruled.
 
