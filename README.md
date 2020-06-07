@@ -93,6 +93,10 @@ IAM comes with the ability to share access at granular levels of permission and 
 
 **Policies** - the documented rulesets that are applied to grant or limit access. In order for users, groups, or roles to properly set permissions, they use policies. Policies are written in JSON and you can either use custom policies for your specific needs or use the default policies set by AWS.
 
+![Screen Shot 2020-06-06 at 10 40 01 PM](https://user-images.githubusercontent.com/13093517/83959020-bec54d80-a846-11ea-8ec7-15872a5364fe.png)
+
+IAM Policies are separated from the other entities above because they are not an IAM Identity. Instead, they are attached to IAM Identities so that the IAM Identity in question can perform its neccessary function.
+
 ### IAM Details:
 
 - IAM is a global AWS services that is not limited by regions. Any user, group, role or policy is accessible globally.
