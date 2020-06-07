@@ -286,8 +286,9 @@ The AWS CDN service is called CloudFront. It serves up cached content and assets
     - Enable CloudFront access logs. 
     - Capture requests that are sent to the CloudFront API.
 
-### CloudFront Signed URLs
-- CloudFront signed URLs and signed cookies provide the same basic functionality: they allow you to control who can access your content. If you want to serve private content through CloudFront and you're trying to decide whether to use signed URLs or signed cookies, consider the following:
+### CloudFront Signed URLs and Signed Cookies
+- CloudFront signed URLs and signed cookies provide the same basic functionality: they allow you to control who can access your content. These features exist because many companies that distribute content via the internet want to restrict access to documents, business data, media streams, or content that is intended for selected users. As an example, users who have paid a fee should be able to access private content that users on the free tier shouldn't. 
+- If you want to serve private content through CloudFront and you're trying to decide whether to use signed URLs or signed cookies, consider the following:
   - Use signed URLs for the following cases:
     - You want to use an RTMP distribution. Signed cookies aren't supported for RTMP distributions.
     - You want to restrict access to individual files, for example, an installation download for your application.
