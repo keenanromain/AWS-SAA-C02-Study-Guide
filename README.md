@@ -2,7 +2,9 @@
 
 ## Table of Contents
 <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#introduction">Introduction</a>
-<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#identity-access-management-iam"> Identity Access Management (IAM)</a>
+
+<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#identity-access-management-iam">Identity Access Management (IAM)</a>
+<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#simple-storage-service-s3">Simple Storage Service (S3)</a>
 
 ## Introduction
 
