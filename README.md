@@ -90,7 +90,7 @@
 
 ## Identity Access Management (IAM)
 
-### IAM's Key Features:
+### IAM Simplified:
 
 IAM offers a centralized hub of control within AWS & is a focal point that integrates with all other AWS Services.
 IAM comes with the ability to share access at granular levels of permission and it supports the ability to use identity federation (the process of delegating authentication responsibility to a trusted external party like Facebook or Google) for temporary or limited access. IAM comes with MFA support and allows you to set up custom password rotation policy across your entire organiation. It is also PCI DSS compliant (passes government mandated credit card security regulations).
@@ -109,7 +109,7 @@ IAM comes with the ability to share access at granular levels of permission and 
 
 IAM Policies are separated from the other entities above because they are not an IAM Identity. Instead, they are attached to IAM Identities so that the IAM Identity in question can perform its neccessary function.
 
-### IAM Details:
+### IAM Key Details:
 
 - IAM is a global AWS services that is not limited by regions. Any user, group, role or policy is accessible globally.
 
@@ -137,7 +137,7 @@ IAM Policies are separated from the other entities above because they are not an
 
 ## Simple Storage Service (S3)
 
-### S3's Key Features:
+### S3 Simplified:
 S3 provides developers and IT teams with secure, durable, and highly-scalable object storage. Object storage, as opposed to block storage, is a general term that refers to data composed of three things:
 
   1.) the data itself that you want to store
@@ -298,7 +298,7 @@ The Amazon S3 notification feature enables you to receive and send notifications
 
 ## CloudFront
 
-### CloudFront's Key Features
+### CloudFront Simplified
 The AWS CDN service is called CloudFront. It serves up cached content and assets for the increased global performance of your application. The main components of CloudFront are the edge locations (cache endpoints), the origin (original source of truth to be cached such as an EC2 instance, an S3 bucket, an Elastic Load Balancer or a Route 53 config), and the distribution (the arrangement of edge locations from the origin or basically the network itself). <a href="https://aws.amazon.com/cloudfront/features/">More info on CloudFront's features</a>
 
 ### CloudFront Key Details
@@ -330,7 +330,7 @@ The AWS CDN service is called CloudFront. It serves up cached content and assets
 
 ## Snowball
 
-### Snowball's Key Details
+### Snowball Simplified
 Snowball is a giant physical disk that is used for migrating high quantities of data into AWS. It is a peta-byte scale data transport solution. Using a large disk like Snowball helps to circumvent common large scale data transfer problems such as high network costs, long transfer times, and security concerns. Snowballs are extremely secure by design and once the data transfer is complete, the snowballs are wiped clean of your data.
 
 ### Snowball Key Features
