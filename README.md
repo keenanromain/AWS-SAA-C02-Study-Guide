@@ -281,6 +281,16 @@ The Amazon S3 notification feature enables you to receive and send notifications
    - S3 then consolidates those records into log files
    - S3 finally uploads the log files to your secondary monitoring bucket as log objects
 
+### S3 Multipart Upload
+- Multipart upload allows you to upload a single object as a set of parts. Each part is a contiguous portion of the object's data. You can upload these object parts independently and in any order. 
+- If transmission of any part fails, you can retransmit that part without affecting other parts. After all parts of your object are uploaded, Amazon S3 assembles these parts and creates the object.
+- Possible reasons for why you would want to use Multipart upload:
+  - Multipart upload delivers the ability to begin an upload before you know the final object size.
+  - Multipart upload delivers improved throughput.
+  - Multipart upload delivers the ability to pause and resume object uploads.
+  - Multipart upload delivers quick recovery from network issues.
+- You can use an AWS SDK to upload an object in parts. Alternatively, you can perform the same action via the AWS CLI.
+
 
 
 ## CloudFront
