@@ -7,6 +7,8 @@
 
 <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#simple-storage-service-s3">Simple Storage Service (S3)</a>
 
+<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#cloudfront">CloudFront</a>
+
 <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#snowball">Snowball</a>
 
 <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#storage-gateway">Storage Gateway</a>
