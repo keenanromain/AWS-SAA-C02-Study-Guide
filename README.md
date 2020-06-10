@@ -309,7 +309,8 @@ The Amazon S3 notification feature enables you to receive and send notifications
 - The pre-signed URLs are valid only for the specified duration and anyone who receives the pre-signed URL within that duration can then access the object.
 - The following diagram highlights how Pre-signed URLs work:
 
-![Screen Shot 2020-06-09 at 8 19 51 PM](https://user-images.githubusercontent.com/13093517/84213420-9a5bb200-aa8e-11ea-96fe-d4349b671f24.png)
+![Screen Shot 2020-06-09 at 8 20 53 PM](https://user-images.githubusercontent.com/13093517/84213482-c6773300-aa8e-11ea-84a1-3c17e14197bc.png)
+
 
 ## CloudFront
 
