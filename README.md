@@ -202,7 +202,6 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
   3.) For access via the console & the terminal, use cross-account IAM roles
 
 - S3 is a great candidate for static website hosting. When you enable static website hosting for S3 you need both an index.html file and an error.html file. Static website hosting creates a website endpoint that can be accessed via the internet.
-- S3 presigned URLs provide temporary access (upload or download) to an object. They are commonly used to provide access to private objects. You can specify the duration of the URL's existence.
 - When you upload new files, they will not inherit the properties of the previous version. 
 
 ### S3 Storage Classes:
@@ -297,7 +296,20 @@ The Amazon S3 notification feature enables you to receive and send notifications
   - Multipart upload delivers quick recovery from network issues.
 - You can use an AWS SDK to upload an object in parts. Alternatively, you can perform the same action via the AWS CLI.
 
+### S3 Pre-signed URLs
+- All S3 objects are private by default, however the object owner of a private bucket with private objects can optionally share those objects with without having to change the permissions of the bucket to be public.
+- This is done by creating a pre-signed URL. Using your own security credentials, you can grant time-limited permission to download or view your private S3 objects.
+- When you create a pre-signed URL for your S3 object, you must do the following:
+  - provide your security credentials
+  - specify a bucket
+  - specify an object key
+  - specify the HTTP method (GET to download the object)
+  - specift the expiration date and time.
+  
+- The pre-signed URLs are valid only for the specified duration and anyone who receives the pre-signed URL within that duration can then access the object.
+- The following diagram highlights how Pre-signed URLs work:
 
+![Screen Shot 2020-06-09 at 8 19 51 PM](https://user-images.githubusercontent.com/13093517/84213420-9a5bb200-aa8e-11ea-96fe-d4349b671f24.png)
 
 ## CloudFront
 
