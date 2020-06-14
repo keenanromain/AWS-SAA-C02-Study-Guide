@@ -334,6 +334,7 @@ The AWS CDN service is called CloudFront. It serves up cached content and assets
 - If you run PCI or HIPAA-compliant workloads and need to log usage data, you can do the following:
     - Enable CloudFront access logs. 
     - Capture requests that are sent to the CloudFront API.
+- An Origin Access Identity (OAI) is used for sharing private content via CloudFront. The OAI is a virtual user that will be used to give your CloudFront distribution permission to fetch a private object from your origin (e.g. S3 bucket).
 
 ### CloudFront Signed URLs and Signed Cookies
 - CloudFront signed URLs and signed cookies provide the same basic functionality: they allow you to control who can access your content. These features exist because many companies that distribute content via the internet want to restrict access to documents, business data, media streams, or content that is intended for selected users. As an example, users who have paid a fee should be able to access private content that users on the free tier shouldn't. 
