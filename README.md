@@ -217,10 +217,11 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 
 **S3 Glacier** - low-cost storage class for data archiving. This class is for pure storage purposes where retrieval isn’t needed often at all. Retrieval times range from minutes to hours. There are differing retrieval methods depending on how acceptable the default retrieval times are for you:
 
-    Expedited: 1 - 5 minutes, but this option is the most expensive
+    Expedited: 1 - 5 minutes, but this option is the most expensive.
     Standard: 3 - 5 hours to restore.
     Bulk: 5 - 12 hours. This option has the lowest cost and is good for a large set of data.
 
+The Expedited duration listed above could possibly be longer during rare situations of unusually high demand. If it is absolutely critical to have quick access to your Glacier data under all circumstances, you must purchase Provisioned Capacity. Provisioned Capacity guarentees that Expedited retrievals always work within the time constraints of 1 to 5 minutes.
 
 **S3 Deep Glacier** - The lowest cost S3 storage where retrieval can take 12 hours.
 
