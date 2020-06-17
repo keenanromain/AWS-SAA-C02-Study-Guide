@@ -19,7 +19,7 @@
 
 <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#security-groups">Security Groups</a>
 
-<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#ebs-simplified">Elastic Block Store (EBS)</a>
+<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-block-store-ebs">Elastic Block Store (EBS)</a>
 
 ## Introduction
 
