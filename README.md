@@ -527,13 +527,16 @@ EBS provides persistent block storage for volumes paired with EC2 instances. You
   - Cold Hard Disk Drive (magnetic, built for less frequently accessed workloads)
   - Magnetic
 - Wherever your EC2 instance is, your volume is going to be in the same availability zone
-- The easiest way to move an EC2 instance and a volume to another availability zone is to take a snapshot (basically a photograph of the disk’s current existence)
-You create images of snapshots so that they can be deployed to different availability zones. When creating an image from a snapshot, you must make sure that the virtualization is hardware-assisted if you want to ultimately deploy the volume of this image as a different volume type. From there, simply spin up a new EC2 instance based off of the old image’s volume and if you want, delete the original instance and volume
+- The easiest way to move an EC2 instance and a volume to another availability zone is to take a snapshot (basically a photograph of the disk’s current existence and the state of everything within it).
+- When creating an image from a snapshot, if you want to deploy the volume of the new image as a different volume type from the old snapshot then you must make sure that the virtualization is hardware-assisted. From there, simply spin up a new EC2 instance based off of the old image’s volume and if you want, delete the original instance and volume.
+- In summary: Instance -> Snapshot -> Image (AMI) -> provision new instance off of the image
+- You can copy AMIs into entirely new regions if you want.
+- When copying AMIs to new regions, Amazon won’t copy launch permissions, user-defined tags, or Amazon S3 bucket permissions from the source AMI to the new AMI. You must ensure those details are properly set for your instances in the new region.
 
 
 
 ### EBS Storage Types: SSD vs. HDD
-- SSD-backed volumes are built for transactional workloads involving frequent read/write operations, where the dominant performance attribute is IOPS. Rule of thumb: Will your workload be IOPS heavy? Plan for SSD.
-- HDD-backed volumes are built for large streaming workloads where throughput (measured in MiB/s) is a better performance measure than IOPS. Rule of thumb: Will your workthroughput heavy? Plan for HDD
+- SSD-backed volumes are built for transactional workloads involving frequent read/write operations, where the dominant performance attribute is IOPS. **Rule of thumb**: Will your workload be IOPS heavy? Plan for SSD.
+- HDD-backed volumes are built for large streaming workloads where throughput (measured in MiB/s) is a better performance measure than IOPS. **Rule of thumb**: Will your workload be throughput heavy? Plan for HDD.
 ![hdd_vs_ssd](https://user-images.githubusercontent.com/13093517/84944872-76165b80-b0b4-11ea-819c-a93deb999ea2.png)
 
