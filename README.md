@@ -15,11 +15,16 @@
 
 <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-compute-cloud-ec2">Elastic Compute Cloud (EC2)</a>
 
-<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#web-application-firewall-waf">Web Application Firewall (WAF)</a>
+<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-block-store-ebs">Elastic Block Store (EBS)</a>
+
+<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-network-interfaces-eni">Elastic Network Interfaces (ENI)</a>
+
 
 <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#security-groups">Security Groups</a>
 
-<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-block-store-ebs">Elastic Block Store (EBS)</a>
+<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#web-application-firewall-waf">Web Application Firewall (WAF)</a>
+
+
 
 ## Introduction
 
@@ -471,52 +476,6 @@ The following table highlights the many instance states that a VM can be in at a
 - Each placement group name within your AWS must be unique
 - You can move an existing instance into a placement group guaranteed that it is in a stopped state. You can move the instance via the CLI or an AWS SDK, but not the console. You can also take a snapshot of the existing instance, convert it into an AMI, and launch it into the placement group where you desire it to be.
 
-## Web Application Firewall (WAF)
-
-### WAF Simplified
-AWS WAF is a web application that lets you allow or block the HTTP(s) requests that are bound for CloudFront, API Gateway, Application Load Balancers, EC2, and other Layer 7 entrypoints into your AWS environment. AWS WAF gives you control over how traffic reaches your applications by enabling you to create security rules that block common attack patterns, such as SQL injection or cross-site scripting, and rules that filter out specific traffic patterns that you can define. WAF's default rule-set addresses issues like the OWASP Top 10 security risks and is regularly updated whenever new vulnerbilities are discovered.
-
-### WAF Key Details
-- As mentioned above, WAF operates as a Layer 7 firewall. This grants it the ability to monitor granular web-based conditions like URL query string parameters. This level of detail helps to detect both foul play and honest issues with the requests getting passed onto your AWS environment.
-- With WAF, you can set conditions such as which IP addresses are allowed to make what kind of requests or access what kind of content.
-- Based off of these conditions, the corresponding endpoint will either allow the request by serving the requested content or return an HTTP 403 Forbidden status.
-- WAF achieves its functionality by either:
-  - Allowing all requests except for the ones you specified
-  - Blocking all requests except for the ones you specified
-  - Counting the requests that match the properties you specified
-
-### WAF Protection Capabilities
-- The web request characteristics that can be used to block access:
-  - The IP address that a request originates from
-  - The country that a request originates from
-  - The values found in the request headers
-  - Any strings that appear in the request (either specific strings or strings that match a regex pattern)
-  - The length of the request
-  - Any presence of SQL code (likely a SQL injection attempt)
-  - Any presence of a script (likely a cross-site scripting attempt)
-- You can also use NACLs to block malicious IP addresses, prevent SQL injections / XSS, and block requests from specific countries. However, it is good form to practice defense in depth. 
-- Denying or blocking malicious users at the WAF level has the added advantage of protecting your AWS ecosystem at its outermost border.
-
-## Security Groups
-
-### Security Groups Simplified
-Security Groups are used to control access (SSH, HTTP, RDP, etc.) with EC2. They act as a virtual firewall for your instances to control inbound and outbound traffic. When you launch an instance in a VPC, you can assign up to five security groups to the instance and security groups act at the instance level, not the subnet level. 
-
-### Security Groups Key Details
-
-- Security groups control inbound and outbound traffic for your instances (they act as a Firewall for EC2 Instances) while NACLs control inbound and outbound traffic for your subnets (they act as a Firewall for Subnets). Security Groups usually control the list of ports that are allowed to be used by your EC2 instances and the NACLs control which network or list of IP addresses can connect to your whole VPC.
-- Everytime you make a change to a security group, that change occurs immediately
-- Whenever you create an inbound rule, an outbound rule is created immediately. This is because Security Groups are *stateful*. This means that when you create an ingress rule for a security group, a corresponding egress rule is created to match it. This is in contrast with NACLs which are *stateless* and require manual intervention for creating both inbound and outbound rules.
-- Security Group rules are based on ALLOWs and there is no concept of DENY when in comes to Security Groups. This means you cannot explicitly deny or blacklist specific ports via Security Groups, you can only implicitly deny them by excluding them in your ALLOWs list
-- Because of the above detail, everything is blocked by default. You must go in and intentionally allow access for certain ports. 
-- Security groups are specific to a single VPC, so you can't share a Security Group between multiple VPCs. However, you can copy a Security Group to create a new Security Group with the same rules in another VPC for the same AWS Account.
-- Security Groups are regional and can span AZs, but can't be cross-regional.
-- Outbound rules exist if you need to connect your server to a different service such as an API endpoint or a DB backend. You need to enable the ALLOW rule for the correct port though so that traffic can leave EC2 and enter the other AWS service.
-- You can attach multiple security groups to one EC2 instance and you can have multiple EC2 instances under the umbrella of one security group
-- You can specify the source of your security group (basically who is allowed to bypass the virtual firewall) to be a single **/32** IP address, an IP range, or even a separate security group.
-- You cannot block specific IP addresses with Security Groups (use NACLs instead)
-- You can increase your Security Group limit by submitting a request to AWS
-
 ## Elastic Block Store (EBS)
 
 ### EBS Simplified
@@ -596,4 +555,72 @@ An Amazon EBS volume is a durable, block-level storage device that you can attac
 - EBS encrypts your volume with a data key using the AES-256 algorithm. 
 - Snapshots of encrypted volumes are naturally encrypted as well. Volumes restored from encrypted snapshots are also encrypted too. You can only share unencrypted snapshots.
 - The old way of encrypting a root device was to create a snapshot of a provisioned EC2 instance. While making a copy of that snapshot, you then enabled encryption during the copy's creation. Finally, once the copy was encrypted, you then created an AMI from the encrypted copy and used to have an EC2 instance with encryption on the root device. Because of how complex this is, you can now simply encrypt root devices as part of the EC2 provisioning options.
+
+## Elastic Network Interfaces (ENI)
+
+### ENI Simplified
+An elastic network interface is a networking component that represents a virtual network card. When you provision a new instance, there will be an ENI attached automatically and you can create and configure additional network interfaces if desired. When you move a network interface from one instance to another, network traffic is redirected to the new instance. 
+
+### ENI Key Details
+- ENI is used mainly for low-budget, high-availability network solutions
+- However, if you suspect you need high network throughput then you can use Enhanced Networking ENI.
+- Enhanced Networking ENI uses single root I/O virtualization to provide high-performance networking capabilities on supported instance types. SR-IOV provides higher I/O and lower throughput and it ensures higher bandwidth, higher packet per second (PPS) performance, and consistently lower inter-instance latencies. SR-IOV does this by dedicating the interface to a single instance and effectively bypassing parts of the Hypervisor which allows for better performance.
+- Adding more ENIs won’t necessarily speed up your network throughput, but Enhanced Networking ENI will.
+- There is no extra charge for using Enhanced Networking ENI and the better network performance it provides. The only downside is that Enhanced Networking ENI is not available on all EC2 instance families and types.
+- You can attach a network interface to an EC2 instance in the following ways:
+  - When it's running (hot attach)
+  - When it's stopped (warm attach)
+  - When the instance is being launched (cold attach).
+- If an EC2 instance fails with ENI properly configured, you (or more likely,the code running on your behalf) can attach the network interface to a hot standby instance. Because ENI interfaces maintain their own private IP addresses, Elastic IP addresses, and MAC address, network traffic will begin to flow to the standby instance as soon as you attach the network interface on the replacement instance. Users will experience a brief loss of connectivity between the time the instance fails and the time that the network interface is attached to the standby instance, but no changes to the VPC route table or your DNS server are required.
+- For instances that work with Machine Learning and High Performance Computing, use EFA (Elastic Fabric Adaptor). EFAs accelerate the work required from the above use cases. EFA provides lower and more consistent latency and higher throughput than the TCP transport traditionally used in cloud-based High Performance Computing systems. 
+- EFA can also use OS-bypass (on linux only) that will enable ML and HPC applications to interface with the Elastic Fabric Adaptor directly, rather than be normally routed to it through the OS. This gives it a huge performance increase.
+- You can enable a VPC flow log on your network interface to capture information about the IP traffic going to and from a network interface. 
+
+## Security Groups
+
+### Security Groups Simplified
+Security Groups are used to control access (SSH, HTTP, RDP, etc.) with EC2. They act as a virtual firewall for your instances to control inbound and outbound traffic. When you launch an instance in a VPC, you can assign up to five security groups to the instance and security groups act at the instance level, not the subnet level. 
+
+### Security Groups Key Details
+
+- Security groups control inbound and outbound traffic for your instances (they act as a Firewall for EC2 Instances) while NACLs control inbound and outbound traffic for your subnets (they act as a Firewall for Subnets). Security Groups usually control the list of ports that are allowed to be used by your EC2 instances and the NACLs control which network or list of IP addresses can connect to your whole VPC.
+- Everytime you make a change to a security group, that change occurs immediately
+- Whenever you create an inbound rule, an outbound rule is created immediately. This is because Security Groups are *stateful*. This means that when you create an ingress rule for a security group, a corresponding egress rule is created to match it. This is in contrast with NACLs which are *stateless* and require manual intervention for creating both inbound and outbound rules.
+- Security Group rules are based on ALLOWs and there is no concept of DENY when in comes to Security Groups. This means you cannot explicitly deny or blacklist specific ports via Security Groups, you can only implicitly deny them by excluding them in your ALLOWs list
+- Because of the above detail, everything is blocked by default. You must go in and intentionally allow access for certain ports. 
+- Security groups are specific to a single VPC, so you can't share a Security Group between multiple VPCs. However, you can copy a Security Group to create a new Security Group with the same rules in another VPC for the same AWS Account.
+- Security Groups are regional and can span AZs, but can't be cross-regional.
+- Outbound rules exist if you need to connect your server to a different service such as an API endpoint or a DB backend. You need to enable the ALLOW rule for the correct port though so that traffic can leave EC2 and enter the other AWS service.
+- You can attach multiple security groups to one EC2 instance and you can have multiple EC2 instances under the umbrella of one security group
+- You can specify the source of your security group (basically who is allowed to bypass the virtual firewall) to be a single **/32** IP address, an IP range, or even a separate security group.
+- You cannot block specific IP addresses with Security Groups (use NACLs instead)
+- You can increase your Security Group limit by submitting a request to AWS
+
+## Web Application Firewall (WAF)
+
+### WAF Simplified
+AWS WAF is a web application that lets you allow or block the HTTP(s) requests that are bound for CloudFront, API Gateway, Application Load Balancers, EC2, and other Layer 7 entrypoints into your AWS environment. AWS WAF gives you control over how traffic reaches your applications by enabling you to create security rules that block common attack patterns, such as SQL injection or cross-site scripting, and rules that filter out specific traffic patterns that you can define. WAF's default rule-set addresses issues like the OWASP Top 10 security risks and is regularly updated whenever new vulnerbilities are discovered.
+
+### WAF Key Details
+- As mentioned above, WAF operates as a Layer 7 firewall. This grants it the ability to monitor granular web-based conditions like URL query string parameters. This level of detail helps to detect both foul play and honest issues with the requests getting passed onto your AWS environment.
+- With WAF, you can set conditions such as which IP addresses are allowed to make what kind of requests or access what kind of content.
+- Based off of these conditions, the corresponding endpoint will either allow the request by serving the requested content or return an HTTP 403 Forbidden status.
+- WAF achieves its functionality by either:
+  - Allowing all requests except for the ones you specified
+  - Blocking all requests except for the ones you specified
+  - Counting the requests that match the properties you specified
+
+### WAF Protection Capabilities
+- The web request characteristics that can be used to block access:
+  - The IP address that a request originates from
+  - The country that a request originates from
+  - The values found in the request headers
+  - Any strings that appear in the request (either specific strings or strings that match a regex pattern)
+  - The length of the request
+  - Any presence of SQL code (likely a SQL injection attempt)
+  - Any presence of a script (likely a cross-site scripting attempt)
+- You can also use NACLs to block malicious IP addresses, prevent SQL injections / XSS, and block requests from specific countries. However, it is good form to practice defense in depth. 
+- Denying or blocking malicious users at the WAF level has the added advantage of protecting your AWS ecosystem at its outermost border.
+
+
 
