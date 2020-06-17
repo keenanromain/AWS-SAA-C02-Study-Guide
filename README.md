@@ -468,20 +468,20 @@ The following table highlights the many instance states that a VM can be in at a
 ## Web Application Firewall (WAF)
 
 ### WAF Simplified
-AWS WAF is a web application that lets you allow or block the HTTP(s) requests that are forwarded onto CloudFront, API Gateway, Application Load Balancers, or any other Layer 7 entrypoint into your AWS environment. 
+AWS WAF is a web application that lets you allow or block the HTTP(s) requests that are bound for CloudFront, API Gateway, Application Load Balancers, EC2, and other Layer 7 entrypoints into your AWS environment. AWS WAF gives you control over how traffic reaches your applications by enabling you to create security rules that block common attack patterns, such as SQL injection or cross-site scripting, and rules that filter out specific traffic patterns that you can define. WAF's default rule-set addresses issues like the OWASP Top 10 security risks and is regularly updated whenever new vulnerbilities are discovered.
 
 ### WAF Key Details
-- As mentioned above, WAF operates as a Layer 7 firewall. This grants it the ability to monitor on granular web-based conditions like URL query string parameters for example. This level of detail helps detect both foul play and honest issues within the data getting passed into the AWS environment.
+- As mentioned above, WAF operates as a Layer 7 firewall. This grants it the ability to monitor granular web-based conditions like URL query string parameters. This level of detail helps to detect both foul play and honest issues with the requests getting passed onto your AWS environment.
 - With WAF, you can set conditions such as which IP addresses are allowed to make what kind of requests or access what kind of content.
 - Based off of these conditions, the corresponding endpoint will either allow the request by serving the requested content or return an HTTP 403 Forbidden status.
-- WAF achieves its functionality by:
+- WAF achieves its functionality by either:
   - Allowing all requests except for the ones you specified
   - Blocking all requests except for the ones you specified
   - Counting the requests that match the properties you specified
-- Denying or blocking malicious users at the WAF level has the advantage of protecting your AWS ecosystem at its outermost border.
+- Denying or blocking malicious users at the WAF level has the added advantage of protecting your AWS ecosystem at its outermost border.
 
 ### WAF Protection Capabilities
-- You can define the web request characteristics that will block access such as:
+- The web request characteristics that can be used to block access:
   - The IP address that a request originates from
   - The country that a request originates from
   - The values found in the request headers
@@ -489,4 +489,4 @@ AWS WAF is a web application that lets you allow or block the HTTP(s) requests t
   - The length of the request
   - Any presence of SQL code (likely a SQL injection attempt)
   - Any presence of a script (likely a cross-site scripting attempt)
-- You can also use NACLs to block malicious IP addresses, prevent SQL injections/XSS, and block requests from specific countries, but it is good form to practice defense in depth. 
+- You can also use NACLs to block malicious IP addresses, prevent SQL injections / XSS, and block requests from specific countries. However, it is good form to practice defense in depth. 
