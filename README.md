@@ -464,3 +464,28 @@ The following table highlights the many instance states that a VM can be in at a
 - Each placement group name within your AWS must be unique
 - You can move an existing instance into a placement group guaranteed that it is in a stopped state. You can move the instance via the CLI or an AWS SDK, but not the console. You can also take a snapshot of the existing instance, convert it into an AMI, and launch it into the placement group where you desire it to be.
 
+## Web Application Firewall (WAF)
+
+### WAF Simplified
+AWS WAF is a web application that lets you allow or block the HTTP(s) requests that are forwarded onto CloudFront, API Gateway, Application Load Balancers, or any other Layer 7 entrypoint into your AWS environment. 
+
+### WAF Key Details
+- As mentioned above, WAF operates as a Layer 7 firewall. This grants it the ability to monitor on granular web-based conditions like URL query string parameters for example. This level of detail helps detect both foul play and honest issues within the data getting passed into the AWS environment.
+- With WAF, you can set conditions such as which IP addresses are allowed to make what kind of requests or access what kind of content.
+- Based off of these conditions, the corresponding endpoint will either allow the request by serving the requested content or return an HTTP 403 Forbidden status.
+- WAF achieves its functionality by:
+  - Allowing all requests except for the ones you specified
+  - Blocking all requests except for the ones you specified
+  - Counting the requests that match the properties you specified
+- Denying or blocking malicious users at the WAF level has the advantage of protecting your AWS ecosystem at its outermost border.
+
+### WAF Protection Capabilities
+- You can define the web request characteristics that will block access such as:
+  - The IP address that a request originates from
+  - The country that a request originates from
+  - The values found in the request headers
+  - Any strings that appear in the request (either specific strings or strings that match a regex pattern)
+  - The length of the request
+  - Any presence of SQL code (likely a SQL injection attempt)
+  - Any presence of a script (likely a cross-site scripting attempt)
+- You can also use NACLs to block malicious IP addresses, prevent SQL injections/XSS, and block requests from specific countries, but it is good form to practice defense in depth. 
