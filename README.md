@@ -411,6 +411,7 @@ EC2 spins up resizeable server instances that can scale up and down quickly. An 
 - By default, the public IP address of an EC2 Instance is released when the instance is stopped even if its stopped temporarily. Therefore, it is best to refer to an instance by its external DNS hostname. If you require a persistent public IP address that can be associated to the same instance, use an Elastic IP address which is basically a static IP address instead. 
 - If you have requirements to self-manage a SQL database, EC2 can be a solid alternative to RDS. To ensure high availability, remember to have at least one other EC2 Instance in a separate Availability zone so even if a DB instance goes down, the other(s) will still be available.
 - A golden image is simply an AMI that you have fully customized to your liking with all necessary software/data/configuration details set and ready to go once. This personal AMI can then be the source from which you launch new instances.
+- Instance status checks check the health of the running EC2 server, systems status check monitor the health of the underlying hypervisor. If you ever notice a systems status issue, just stop the instance and start it again (no need to reboot) as the VM will start up again on a new hypervisor.
 
 ### EC2 Instance Pricing
 - **On-Demand instances** are based on a fixed rate by the hour or second. As the name implies, you can start an On-Demand instance whenever you need one and can stop it when you no longer need it. There is no requirement for a long-term commitment.
@@ -478,7 +479,6 @@ AWS WAF is a web application that lets you allow or block the HTTP(s) requests t
   - Allowing all requests except for the ones you specified
   - Blocking all requests except for the ones you specified
   - Counting the requests that match the properties you specified
-- Denying or blocking malicious users at the WAF level has the added advantage of protecting your AWS ecosystem at its outermost border.
 
 ### WAF Protection Capabilities
 - The web request characteristics that can be used to block access:
@@ -490,3 +490,25 @@ AWS WAF is a web application that lets you allow or block the HTTP(s) requests t
   - Any presence of SQL code (likely a SQL injection attempt)
   - Any presence of a script (likely a cross-site scripting attempt)
 - You can also use NACLs to block malicious IP addresses, prevent SQL injections / XSS, and block requests from specific countries. However, it is good form to practice defense in depth. 
+- Denying or blocking malicious users at the WAF level has the added advantage of protecting your AWS ecosystem at its outermost border.
+
+## Security Groups
+
+### Security Groups Simplified
+Security Groups are used to control access (SSH, HTTP, RDP, etc.) with EC2. They act as a virtual firewall for your instances to control inbound and outbound traffic. When you launch an instance in a VPC, you can assign up to five security groups to the instance and security groups act at the instance level, not the subnet level. 
+
+### Security Groups Key Details
+
+- Security groups control inbound and outbound traffic for your instances (they act as a Firewall for EC2 Instances) while NACLs control inbound and outbound traffic for your subnets (they act as a Firewall for Subnets). Security Groups usually control the list of ports that are allowed to be used by your EC2 instances and the NACLs control which network or list of IP addresses can connect to your whole VPC.
+- Everytime you make a change to a security group, that change occurs immediately
+- Whenever you create an inbound rule, an outbound rule is created immediately. This is because Security Groups are *stateful*. This means that when you create an ingress rule for a security group, a corresponding egress rule is created to match it. This is in contrast with NACLs which are *stateless* and require manual intervention for creating both inbound and outbound rules.
+- Security Group rules are based on ALLOWs and there is no concept of DENY when in comes to Security Groups. This means you cannot explicitly deny or blacklist specific ports via Security Groups, you can only implicitly deny them by excluding them in your ALLOWs list
+- Because of the above detail, everything is blocked by default. You must go in and intentionally allow access for certain ports. 
+- Security groups are specific to a single VPC, so you can't share a Security Group between multiple VPCs. However, you can copy a Security Group to create a new Security Group with the same rules in another VPC for the same AWS Account.
+- Security Groups are regional and can span AZs, but can't be cross-regions.
+- Outbound rules exist if you need to connect your server to a different service such as an API endpoint or a DB backend. You need to enable the ALLOW rule for the correct port though so that traffic can leave EC2 and enter the other AWS service.
+- You can attach multiple security groups to one EC2 instance and you can have multiple EC2 instances under the umbrella of one security group
+- You can specify the source of your security group (basically who is allowed to bypass the virtual firewall) to be a single **/32** IP address, an IP range, or even a separate security group.
+- You cannot block specific IP addresses with Security Groups (use NACLs instead)
+- You can increase your Security Group limit by submitting a request to AWS
+
