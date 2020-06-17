@@ -507,10 +507,33 @@ Security Groups are used to control access (SSH, HTTP, RDP, etc.) with EC2. They
 - Security Group rules are based on ALLOWs and there is no concept of DENY when in comes to Security Groups. This means you cannot explicitly deny or blacklist specific ports via Security Groups, you can only implicitly deny them by excluding them in your ALLOWs list
 - Because of the above detail, everything is blocked by default. You must go in and intentionally allow access for certain ports. 
 - Security groups are specific to a single VPC, so you can't share a Security Group between multiple VPCs. However, you can copy a Security Group to create a new Security Group with the same rules in another VPC for the same AWS Account.
-- Security Groups are regional and can span AZs, but can't be cross-regions.
+- Security Groups are regional and can span AZs, but can't be cross-regional.
 - Outbound rules exist if you need to connect your server to a different service such as an API endpoint or a DB backend. You need to enable the ALLOW rule for the correct port though so that traffic can leave EC2 and enter the other AWS service.
 - You can attach multiple security groups to one EC2 instance and you can have multiple EC2 instances under the umbrella of one security group
 - You can specify the source of your security group (basically who is allowed to bypass the virtual firewall) to be a single **/32** IP address, an IP range, or even a separate security group.
 - You cannot block specific IP addresses with Security Groups (use NACLs instead)
 - You can increase your Security Group limit by submitting a request to AWS
+
+## Elastic Block Store (EBS)
+
+### EBS Simplified
+EBS provides persistent block storage for volumes paired with EC2 instances. You can think of EBS as cloud-based virtual hard disk. Each EBS volume is automatically replicated within its Availability Zone to protect from both component failure and disaster recovery (similar to Standard S3) which guarentees High Availability.
+
+### EBS Key Details
+- There are five different types of EBS Storage:
+  - General Purpose (SSD)
+  - Provisioned IOPS (SSD, built for speed)
+  - Throughput Optimized Hard Disk Drive (magnetic, built for larger data loads)
+  - Cold Hard Disk Drive (magnetic, built for less frequently accessed workloads)
+  - Magnetic
+- Wherever your EC2 instance is, your volume is going to be in the same availability zone
+- The easiest way to move an EC2 instance and a volume to another availability zone is to take a snapshot (basically a photograph of the disk’s current existence)
+You create images of snapshots so that they can be deployed to different availability zones. When creating an image from a snapshot, you must make sure that the virtualization is hardware-assisted if you want to ultimately deploy the volume of this image as a different volume type. From there, simply spin up a new EC2 instance based off of the old image’s volume and if you want, delete the original instance and volume
+
+
+
+### EBS Storage Types: SSD vs. HDD
+- SSD-backed volumes are built for transactional workloads involving frequent read/write operations, where the dominant performance attribute is IOPS. Rule of thumb: Will your workload be IOPS heavy? Plan for SSD.
+- HDD-backed volumes are built for large streaming workloads where throughput (measured in MiB/s) is a better performance measure than IOPS. Rule of thumb: Will your workthroughput heavy? Plan for HDD
+![hdd_vs_ssd](https://user-images.githubusercontent.com/13093517/84944872-76165b80-b0b4-11ea-819c-a93deb999ea2.png)
 
