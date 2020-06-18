@@ -1,29 +1,29 @@
 # AWS-SAA-C02-Study-Guide
 
 ## Table of Contents
-1 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#introduction">Introduction</a>
+1. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#introduction">Introduction</a>
 
-2 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#identity-access-management-iam">Identity Access Management (IAM)</a>
+2. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#identity-access-management-iam">Identity Access Management (IAM)</a>
 
-3 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#simple-storage-service-s3">Simple Storage Service (S3)</a>
+3. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#simple-storage-service-s3">Simple Storage Service (S3)</a>
 
-4 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#cloudfront">CloudFront</a>
+4. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#cloudfront">CloudFront</a>
 
-5 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#snowball">Snowball</a>
+5. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#snowball">Snowball</a>
 
-6 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#storage-gateway">Storage Gateway</a>
+6. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#storage-gateway">Storage Gateway</a>
 
-7 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-compute-cloud-ec2">Elastic Compute Cloud (EC2)</a>
+7. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-compute-cloud-ec2">Elastic Compute Cloud (EC2)</a>
 
-8 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-block-store-ebs">Elastic Block Store (EBS)</a>
+8. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-block-store-ebs">Elastic Block Store (EBS)</a>
 
-9 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-network-interfaces-eni">Elastic Network Interfaces (ENI)</a>
+9. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-network-interfaces-eni">Elastic Network Interfaces (ENI)</a>
 
-10 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#security-groups">Security Groups</a>
+10. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#security-groups">Security Groups</a>
 
-11 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#web-application-firewall-waf">Web Application Firewall (WAF)</a>
+11. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#web-application-firewall-waf">Web Application Firewall (WAF)</a>
 
-12 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#cloudwatch">CloudWatch</a>
+12. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#cloudwatch">CloudWatch</a>
 
 
 ## Introduction
