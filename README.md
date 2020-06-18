@@ -33,6 +33,10 @@
 
 16. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#amazon-fsx-for-lustre">Amazon FSx for Lustre</a>
 
+17. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#relational-database-service-rds">Relational Database Service (RDS)</a>
+
+18. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#aurora">Aurora</a>
+
 ## Introduction
 
 <a href="https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate-Exam-Guide_v1.1_2019_08_27_FINAL.pdf">**The official AWS Solutions Architect - Associate (SAA-C02) exam guide**</a>
@@ -822,7 +826,7 @@ DB instances that are encrypted can't be modified to disable encryption.
 ## Aurora
 
 ### Aurora Simplified
-Aurora is a MySQL/PostgreSQL-compatible RDBMS that combines the speed and availability of high-end commercial databases with the simplicity and costs of an open-source DB. It is far more effective as an AWS database due to the 5x and 3x performance multipliers for MySQL and PostgreSQL respectively.
+Aurora is the AWS flagship DB known to combine the performance and availability of traditional enterprise databases with the simplicity and cost-effectiveness of open source databases. It is a MySQL/PostgreSQL-compatible RDBMS that provides the security, availability, and reliability of commercial databases at 1/10th the cost of competitors. It is far more effective as an AWS database due to the 5x and 3x performance multipliers for MySQL and PostgreSQL respectively.
 
 ### Aurora Key Details
 - In case of an infrastructure failure, Aurora performs an automatic failover to to a replica of its own.
