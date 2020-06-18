@@ -754,6 +754,7 @@ Amazon FSx for Lustre makes it easy and cost effective to launch and run the ope
 ## Relational Database Service (RDS)
 
 ### RDS Simplified
+RDS is a managed service that makes it easy to set up, operate, and scale a relational database in AWS. It provides cost-efficient and resizable capacity while automating or outsourcing time-consuming administration tasks such as hardware provisioning, database setup, patching and backups.
 
 ### RDS Key Details
 - RDS comes in six different flavors:
@@ -855,7 +856,6 @@ Aurora is the AWS flagship DB known to combine the performance and availability 
 - You can connect to cluster endpoints associated with different roles or jobs across your Aurora DB. This is because different instances or groups of instances perform different functions.
 - For example, to perform DDL statements you can connect to the primary instance. To perform queries, you can connect to the reader endpoint, with Aurora automatically performing load-balancing among all the Aurora Replicas behind the reader endpoint. For diagnosis or tuning, you can connect to a different endpoint to examine details. 
 - Since the entryway for your DB Instance remains the same after a failover, your application can resume database operation without the need for manual administrative intervention for any of your endpoints.
-
 
 ### Aurora Reader Endpoints
 - Aurora Reader endpoints are a subset of the above idea of cluster endpoints. Use the reader endpoint for read operations, such as queries. By processing those statements on the read-only Aurora Replicas, this endpoint reduces the overhead on the primary instance. 
