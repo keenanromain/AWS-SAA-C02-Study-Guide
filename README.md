@@ -122,7 +122,7 @@
 IAM offers a centralized hub of control within AWS & is a focal point that integrates with all other AWS Services.
 IAM comes with the ability to share access at granular levels of permission and it supports the ability to use identity federation (the process of delegating authentication responsibility to a trusted external party like Facebook or Google) for temporary or limited access. IAM comes with MFA support and allows you to set up custom password rotation policy across your entire organiation. It is also PCI DSS compliant (passes government mandated credit card security regulations).
 
-### Entities within IAM:
+### IAM Entities:
 
 **Users** - any individual end user such as an employee, system architect, CTO, etc.
 
