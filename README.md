@@ -648,25 +648,36 @@ Within the storage and content delivery domains, CloudWatch can inform you about
   - Page file utilization
   - Log collection
 - If you need the above information, then you can retrieve it via the official CloudWatch agent or you can create a custom metric and send the data on your own via a custom script.
-- CloudWatch's key objectives:
+- CloudWatch's key purpose:
   - Collect metrics
   - Collect logs
   - Collect events
+  - Create alarms
+  - Create dashboards
+
+### CloudWatch Logs
+- You can use Amazon CloudWatch Logs to monitor, store, and access your log files from Amazon EC2 instances, AWS CloudTrail, Amazon Route 53, and other sources. You can then retrieve the associated log data from CloudWatch Logs.
+- It helps you centralize the logs from all of your systems, applications, and AWS services that you use, in a single, highly scalable service.
+- You can create log groups so that you join logical units of CloudWatch Logs together.
+- You can stream custom log files for further insights.
+
+### CloudWatch Events
+- Amazon CloudWatch Events delivers a near real-time stream of system events that describe changes in AWS resources. 
+- You can use events to trigger lambdas for example while using alarms to inform you that something went wrong.
 
 ### CloudWatch Alarms
 - CloudWatch alarms send notifications or automatically make changes to the resources you are monitoring based on rules that you define. 
 - For example, you can create custom CloudWatch alarms which will trigger notifications such as surpassing a set billing threshold.
 - CloudWatch alarms have two states of either `ok` or `alarm`
 
-### CloudWatch Logs
-- You can use Amazon CloudWatch Logs to monitor, store, and access your log files from Amazon EC2 instances, AWS CloudTrail, Amazon Route 53, and other sources. You can then retrieve the associated log data from CloudWatch Logs.
-- You can create log groups to join logical units of CloudWatch logs together.
+### CloudWatch Metrics
+- CloudWatch Metrics represent a time-ordered set of data points.
+- These basically are a variable you can monitor over time to help tell if everything is okay, e.g. Hourly CPU Utilization.
+- CloudWatch Metrics allows you to track high resolution metrics at sub-minute intervals all the way down to per second.
 
-
-### CloudWatch Events
-- Amazon CloudWatch Events delivers a near real-time stream of system events that describe changes in AWS resources. You can use events to trigger lambdas for example while alarms to inform you that something went wrong.
-
-
+### CloudWatch Dashboards
+- CloudWatch dashboards are customizable home pages in the CloudWatch console that you can use to monitor your resources in a single view
+- These dashboards integrate with CloudWatch Metrics and CloudWatch Alarms to create customized views of the metrics and alarms for your AWS resources.
 
 
 
