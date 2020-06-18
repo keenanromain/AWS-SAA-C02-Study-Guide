@@ -873,9 +873,9 @@ Amazon DynamoDB is a key-value and document database that delivers single-digit 
 
 ### DynamoDB Key Details
 - The main components of DyanmoDB are:
- - a collection which serves as the foundational table
- - a document which is equivalent to a row in a SQL database
- - key-value pairs which are the fields within the document or row
+  - a collection which serves as the foundational table
+  - a document which is equivalent to a row in a SQL database
+  - key-value pairs which are the fields within the document or row
 - The convenience of non-relational DBs is that each row can look entirely different based on your use case. There doesn't need to be uniformity. For example, if you need a new column for a particular entry you don't also need to ensure that that column exists for the other entries.
 - DyanmoDB supports both document and key-value based models. It is a great fit for mobile, web, gaming, ad-tech, IoT, etc.
 - DynamoDB is stored via SSD which is why it is so fast.
