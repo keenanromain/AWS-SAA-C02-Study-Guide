@@ -623,6 +623,8 @@ AWS WAF is a web application that lets you allow or block the HTTP(s) requests t
 - Denying or blocking malicious users at the WAF level has the added advantage of protecting your AWS ecosystem at its outermost border.
 
 ## CloudWatch
+
+### CloudWatch Simplified
 Amazon CloudWatch is a monitoring and observability service. It provides you with data and actionable insights to monitor your applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health.
 
 ### CloudWatch Key Details
