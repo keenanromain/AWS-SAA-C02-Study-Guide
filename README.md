@@ -703,6 +703,6 @@ AWS CloudTrail is a service that enables governance, compliance, operational aud
   - S3 object-level API activity
   - Lambda function execution activity 
 - By default, CloudTrail logs management events, but not data events. 
-
+- By default, CloudTrail Events log files are encrypted using Amazon S3 server-side encryption (SSE). You can also choose to encrypt your log files with an AWS Key Management Service (AWS KMS) key. As these logs are stored in S3, you can define Amazon S3 lifecycle rules to archive or delete log files automatically. If you want notifications about log file delivery and validation, you can set up Amazon SNS notifications.
 
 
