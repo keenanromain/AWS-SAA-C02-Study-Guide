@@ -633,8 +633,10 @@ running smoothly.
 Within the storage and content delivery domains, CloudWatch can inform you about the health of EBS Volumes, Storage Gateways, and CloudFront.
 - With regards to EC2, CloudWathc can only monitor host level metrics such as CPU, network, disk, and status checks for insights like the health of the underlying hypervisor.
 - CloudWatch is *NOT* CloudTrail so it is important to know that only CloudTrail can monitor AWS access for security and auditing reasons. CloudWatch is all about performance. CloudTrail is all about auditing.
-- CloudWatch with EC2 will monitor events every 5 minutes by default, but you can have 1 minute intervals if you turn on Detailed Monitoring.
+- CloudWatch with EC2 will monitor events every 5 minutes by default, but you can have 1 minute intervals if you use Detailed Monitoring.
+
 ![Screen Shot 2020-06-17 at 8 16 23 PM](https://user-images.githubusercontent.com/13093517/84963455-71af6a00-b0d7-11ea-8168-15dd791bf000.png)
+
 - You can customize your CloudWatch dashboards for insights.
 - There is a multi-platform CloudWatch agent which can be installed on both Linux and Windows-based instances. This agent enables you to select the metrics to be collected, including sub-resource metrics such as per-CPU core. You can use this single agent to collect both system metrics and log files from Amazon EC2 instances and on-premises servers.
 - The following metrics are not collected from EC2 instances via CloudWatch:
