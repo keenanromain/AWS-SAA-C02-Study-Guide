@@ -25,6 +25,8 @@
 
 12. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#cloudwatch">CloudWatch</a>
 
+13. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#cloudtrail">CloudTrail</a>
+
 
 ## Introduction
 
@@ -678,6 +680,29 @@ Within the storage and content delivery domains, CloudWatch can inform you about
 ### CloudWatch Dashboards
 - CloudWatch dashboards are customizable home pages in the CloudWatch console that you can use to monitor your resources in a single view
 - These dashboards integrate with CloudWatch Metrics and CloudWatch Alarms to create customized views of the metrics and alarms for your AWS resources.
+
+
+## CloudTrail
+
+### CloudTrail Simplified
+AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account. With it, you can log, continuously monitor, and retain account activity related to actions across your AWS infrastructure. CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, API calls, and other AWS services. It is a regional service, but you can configure CloudTrail to collect trails in all regions.
+
+### CloudTrail Key Details
+- CloudTrail Events logs API calls or activities. 
+- CloudTrail Events stores the last 90 days of events in its Event History. This is enabled by default and is no additional cost.
+- This event history simplifies security analysis, resource change tracking, and troubleshooting.
+- There are two types of events that can be logged in CloudTrail: management events and data events. 
+- Management events provide information about management operations that are performed on resources in your AWS account. 
+- Think of Management events as things normally done by people when they are in AWS. Examples:
+  - a user sign in
+  - a policy changed
+  - a newly created security configuration
+  - a logging rule deletion
+- Data events provide information about the resource operations performed on or in a resource. 
+- Think of Data events as things normally done by software when hitting various AWS endpoints. Examples:
+  - S3 object-level API activity
+  - Lambda function execution activity 
+- By default, CloudTrail logs management events, but not data events. 
 
 
 
