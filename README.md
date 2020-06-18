@@ -1,29 +1,29 @@
 # AWS-SAA-C02-Study-Guide
 
 ## Table of Contents
-<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#introduction">Introduction</a>
+1 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#introduction">Introduction</a>
 
-<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#identity-access-management-iam">Identity Access Management (IAM)</a>
+2 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#identity-access-management-iam">Identity Access Management (IAM)</a>
 
-<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#simple-storage-service-s3">Simple Storage Service (S3)</a>
+3 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#simple-storage-service-s3">Simple Storage Service (S3)</a>
 
-<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#cloudfront">CloudFront</a>
+4 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#cloudfront">CloudFront</a>
 
-<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#snowball">Snowball</a>
+5 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#snowball">Snowball</a>
 
-<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#storage-gateway">Storage Gateway</a>
+6 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#storage-gateway">Storage Gateway</a>
 
-<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-compute-cloud-ec2">Elastic Compute Cloud (EC2)</a>
+7 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-compute-cloud-ec2">Elastic Compute Cloud (EC2)</a>
 
-<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-block-store-ebs">Elastic Block Store (EBS)</a>
+8 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-block-store-ebs">Elastic Block Store (EBS)</a>
 
-<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-network-interfaces-eni">Elastic Network Interfaces (ENI)</a>
+9 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-network-interfaces-eni">Elastic Network Interfaces (ENI)</a>
 
+10 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#security-groups">Security Groups</a>
 
-<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#security-groups">Security Groups</a>
+11 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#web-application-firewall-waf">Web Application Firewall (WAF)</a>
 
-<a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#web-application-firewall-waf">Web Application Firewall (WAF)</a>
-
+12 - <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#cloudwatch">CloudWatch</a>
 
 
 ## Introduction
@@ -621,6 +621,48 @@ AWS WAF is a web application that lets you allow or block the HTTP(s) requests t
   - Any presence of a script (likely a cross-site scripting attempt)
 - You can also use NACLs to block malicious IP addresses, prevent SQL injections / XSS, and block requests from specific countries. However, it is good form to practice defense in depth. 
 - Denying or blocking malicious users at the WAF level has the added advantage of protecting your AWS ecosystem at its outermost border.
+
+## CloudWatch
+Amazon CloudWatch is a monitoring and observability service. It provides you with data and actionable insights to monitor your applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health.
+
+### CloudWatch Key Details
+- CloudWatch collects monitoring and operational data in the form of logs, metrics, and events.
+- You can use CloudWatch to detect anomalous behavior in your environments, set alarms, visualize logs and metrics side by side, take automated actions, troubleshoot issues, and discover insights to keep your applications
+running smoothly.
+- Within the compute domain, CloudWatch can inform you about the health of EC2 instances, Autoscaling Groups, Elastic Load Balancers, and Route53 Health Checks.
+Within the storage and content delivery domains, CloudWatch can inform you about the health of EBS Volumes, Storage Gateways, and CloudFront.
+- With regards to EC2, CloudWathc can only monitor host level metrics such as CPU, network, disk, and status checks for insights like the health of the underlying hypervisor.
+- CloudWatch is *NOT* CloudTrail so it is important to know that only CloudTrail can monitor AWS access for security and auditing reasons. CloudWatch is all about performance. CloudTrail is all about auditing.
+- CloudWatch with EC2 will monitor events every 5 minutes by default, but you can have 1 minute intervals if you turn on Detailed Monitoring.
+![Screen Shot 2020-06-17 at 8 16 23 PM](https://user-images.githubusercontent.com/13093517/84963455-71af6a00-b0d7-11ea-8168-15dd791bf000.png)
+- You can customize your CloudWatch dashboards for insights.
+- There is a multi-platform CloudWatch agent which can be installed on both Linux and Windows-based instances. This agent enables you to select the metrics to be collected, including sub-resource metrics such as per-CPU core. You can use this single agent to collect both system metrics and log files from Amazon EC2 instances and on-premises servers.
+- The following metrics are not collected from EC2 instances via CloudWatch:
+  - Memory utilization
+  - Disk swap utilization
+  - Disk space utilization
+  - Page file utilization
+  - Log collection
+- If you need the above information, then you can retrieve it via the official CloudWatch agent or you can create a custom metric and send the data on your own via a custom script.
+- CloudWatch's key objectives:
+  - Collect metrics
+  - Collect logs
+  - Collect events
+
+### CloudWatch Alarms
+- CloudWatch alarms send notifications or automatically make changes to the resources you are monitoring based on rules that you define. 
+- For example, you can create custom CloudWatch alarms which will trigger notifications such as surpassing a set billing threshold.
+- CloudWatch alarms have two states of either `ok` or `alarm`
+
+### CloudWatch Logs
+- You can use Amazon CloudWatch Logs to monitor, store, and access your log files from Amazon EC2 instances, AWS CloudTrail, Amazon Route 53, and other sources. You can then retrieve the associated log data from CloudWatch Logs.
+- You can create log groups to join logical units of CloudWatch logs together.
+
+
+### CloudWatch Events
+- Amazon CloudWatch Events delivers a near real-time stream of system events that describe changes in AWS resources. You can use events to trigger lambdas for example while alarms to inform you that something went wrong.
+
+
 
 
 
