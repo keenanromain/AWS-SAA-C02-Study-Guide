@@ -27,6 +27,8 @@
 
 13. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#cloudtrail">CloudTrail</a>
 
+14. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-file-system-efs">Elastic File System (EFS)</a>
+
 
 ## Introduction
 
@@ -705,4 +707,21 @@ AWS CloudTrail is a service that enables governance, compliance, operational aud
 - By default, CloudTrail logs management events, but not data events. 
 - By default, CloudTrail Events log files are encrypted using Amazon S3 server-side encryption (SSE). You can also choose to encrypt your log files with an AWS Key Management Service (AWS KMS) key. As these logs are stored in S3, you can define Amazon S3 lifecycle rules to archive or delete log files automatically. If you want notifications about log file delivery and validation, you can set up Amazon SNS notifications.
 
+## Elastic File System (EFS)
 
+### EFS Simplified 
+EFS provides a simple and fully managed elastic NFS file system for use within AWS. EFS automatically and instantly scales your file system storage capacity up or down as you add or remove files without disrupting your application.
+
+### EFS Key Details 
+- In EFS, storage capacity is elastic (grows and shrinks automatically) and its size changes based on adding or removing files.
+- While EBS mounts one EBS volume to one instance, you can attach one EFS volume across multiple EC2 instances.
+- The EC2 instances communicate to the remote file system using the NFSv4 protocol. This makes it required to open up the NFS port for our security group (EC2 firewall rules) to allow inbound traffic on that port.
+- Within an EFS volume, the mount target state will let you know what instances are available for mounting
+- With EFS, you only pay for the storage that you use so you pay as you go. No pre-provisioning required.
+- EFS can scale up to the petabytes and can support thousands of concurrent NFS connections.
+- Data is stored across multiple AZs in a region and EFS ensures read after write consistency.
+- It is best for file storage that is accessed by a fleet of servers rather than just one server
+
+## Amazon FSx (for Windows & Lustre)
+
+### Amazon FSx Simplified
