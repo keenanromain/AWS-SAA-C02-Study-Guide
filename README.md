@@ -29,6 +29,9 @@
 
 14. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-file-system-efs">Elastic File System (EFS)</a>
 
+15. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#amazon-fsx-for-windows">Amazon FSx for Windows</a>
+
+16. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#amazon-fsx-for-lustre">Amazon FSx for Lustre</a>
 
 ## Introduction
 
