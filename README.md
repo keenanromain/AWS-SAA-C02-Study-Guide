@@ -43,6 +43,9 @@
 
 20. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elasticache">ElastiCache</a>
 
+21. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#route53">Route53</a>
+
+
 
 ## Introduction
 
@@ -964,3 +967,28 @@ The ElastiCache service makes it easy to deploy, operate, and scale an in-memory
 
 - Another advatnage of using ElastiCache is that by caching query results, you pay the price of the DB query only once without having to re-execute the query unless the data changes.
 - Amazon ElastiCache can scale-out, scale-in, and scale-up to meet fluctuating application demands. Write and memory scaling is supported with sharding. Replicas provide read scaling.
+
+## Route53
+
+### Route53 Simplified
+
+### Route53 Key Details
+- DNS is used to map human-readable domain names into an internet protocol address similarly to how phonebooks map company names with phone numbers.
+- AWS has its own domain registrar.
+- When you buy a domain name, every DNS address starts with an SOA (Start of Authority) record. The SOA record stores information about the name of the server that kicked off the transfer of ownership, the administrator who will now use the domain, the current metadata available, and the default number of seconds or TTL. 
+- NS records, or Name Server records, are used by the Top Level Domain hosts (.org, .com, .uk, etc.) to direct traffic to the Content servers. The Content DNS servers contain the authoritative DNS records.
+- Browsers talk to the Top Level Domains whenever they are queried and encounter domain name that they do not recognize.
+  1. Browsers will ask for the authoritative DNS records associated with the domain.
+  2. Because the Top Level Domain contains NS records, the TLD can in turn queries the Name Servers for their own SOA.
+  3. Within the SOA, there will be the requested information.
+  4. Once this information is collected, it will then be returned all the way back to the original browser asking for it.
+- In summary: Browser -> TLD -> NS -> SOA -> DNS record. The pipeline reverses when the correct DNS record is found.
+- Authoritative name servers store DNS record information, usually a DNS hosting provider or domain registrar like GoDaddy that offers both DNS registration and hosting.
+- There are a multitude of DNS records for Route53:
+  - **A records**: These are the fundamental type of DNS record. The “A” in A records stands for “address”. These records are used by a computer to directly pair a domain name to its IP address.
+  - **CName records**: Also refered to as the Canonical Name. These records are used to resolve one domain name to another domain name. For example, the domain of the mobile version of a website may be a CName from the domain of the browser version of that same website rather than a separate IP address. This would allow mobile users who visit the site and to receive the mobile version.
+  - **Alias records**: These records are used to map your domains to AWS resources such as load balancers, CDN endpoints, and S3 buckets. Alias records function similarly to CNames in the sense that you map one domain to another. The key difference though is that by pointing your Alias record at a service rather than a domain name, you have the ability to freely change your domain names if needed and not have to worry about what records might be mapped to it. Alias records give you dynamic functionality.
+  - **MX records**: These records are used for mail across the internet.
+  - **PTR records**: These records are like the opposite of an A record. PTR records map an IP to a domain and they are used as a way of looking up a domain names when you already have an IP address.
+
+
