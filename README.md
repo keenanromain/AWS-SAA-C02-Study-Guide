@@ -41,7 +41,7 @@
 
 19. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#redshift">Redshift</a>
 
-20. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#redshift">ElastiCache</a>
+20. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elasticache">ElastiCache</a>
 
 
 ## Introduction
