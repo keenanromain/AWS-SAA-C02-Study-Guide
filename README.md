@@ -47,6 +47,8 @@
 
 22. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#elastic-load-balancers-elb">Elastic Load Balancers (ELB)</a>
 
+23. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#auto-scaling">Auto Scaling</a>
+
 
 
 
@@ -1073,3 +1075,15 @@ For example, with Path Patterns you can route general requests to one target gro
 -  Elastic Load Balancers (along with CloudFront) support Perfect Forward Secrecy. This is a feature that provides additional safeguards against the eavesdropping of encrypted data in transit through the use of a uniquely random session key. This is done by ensuring that the in-use part of an encryption system automatically and frequently changes the keys it uses to encrypt and decrypt information. So if this latest key is compromised at all, it will only expose a small portion of the user's recent data.
 - Classic Load Balancers do not support Server Name Indication (SNI). SNI allows the server (the LB in this case) to safely host multiple TLS Certificates for multiple sites all under a single IP address (the Alias record or CName record in this case). To allow SNI, you have to use an Application Load Balancer instead or use it with a CloudFront web distribution. 
 
+## Auto Scaling
+
+### Auto Scaling Simplified
+
+### Auto Scaling Key Details
+- Auto Scaling is a major benefit from the cloud so if you ever have a requirement for scaling , automatically think of the Auto Scaling service. 
+- Auto Scaling has three components:
+  - **Groups**: These are logical components. A webserver group of EC2 instances, a database group of RDS instances, etc.
+  - **Configuration Templates**: Groups use a template to configure and launch new instances to better match the scaling needs. You can specify information for the new instances like the AMI to use, the instance type, security groups, block devices to associate with the instances, and more.
+  - **Scaling Options**: Scaling Options provides several ways for you to scale your Auto Scaling groups. You can base the scaling trigger on the occurence of a specified condition or on a schedule.
+- The following image highlights the state of an Auto scaling group. The orange squares represent the active instances. The other squares represent the potential instances that can and will be spin up when necessary.
+![Screen Shot 2020-06-19 at 4 44 18 PM](https://user-images.githubusercontent.com/13093517/85178368-50bc5580-b24c-11ea-9acc-45ca5742e889.png)
