@@ -1138,6 +1138,18 @@ VPC lets you provision a logically isolated section of AWS where you can launch 
 - The **/16** CIDR block is the largest range of IPs that can be used for an AWS subnet. A **/28** CIDR block is the smallest IP range available for an AWS subnet.
 - With CIDR in general, a **/32** denotes one IP address and **/0** refers to the entire network The larger higher go in CIDR, the more narrow the IP range will be.
 - The Default VPC for your AWS environment permits all subnets to have a route out to the internet (all subnets in the default VPC are internet accessible). The default setting allows you to immediately deploy instances and each EC2 instance has both a public and private IP address.
+- The VPC Wizard is the automated tool for creating new VPCs.
+- You can have your VPC on dedicated hardware so that the network is exclusive at the physical level, but this option is extremely expensive. Fortunately, once a VPC is set to Dedicated hosting it can be changed back to default hosting via the AWS CLI, SDK or API. Existing hosts must be in a `stopped` state to do so.
+- Once you create a custom VPC, new subnets are not created by default. You must create them separately. The same is true for an internet gateway. If you want your VPC to have internet access, you need to also create the gateway so that the network can be publicly reached by the world.
+- Once you create a custom VPC hiwever, the following are created by default:
+  - a route table
+  - a NACL
+  - a security group
+  
+![Screen Shot 2020-06-19 at 6 26 37 PM](https://user-images.githubusercontent.com/13093517/85183681-8cf6b280-b25a-11ea-8b54-d1e54ba754a6.png)
+
+- These created components correspond to the traffic flow in which data reaches your instances. With traffic coming from outside the VPC or within it, it must go through the route table to know where its desired destination is. The traffic then passes through sub-net level security as described by the NACL. If the NACL deems it valid, the traffic then passes through instance level security as described by the security group. If the traffic hasn't been dropped at this point, only then will it reach the instance it is intended for.
+
 
 
 
@@ -1167,9 +1179,15 @@ VPC lets you provision a logically isolated section of AWS where you can launch 
 - VPC peering allows you to connect one VPC with another via a direct network route using the Private IPs belonging to both. With VPC peering, instances in different VPCs behave as if they were on the same network.
 - You can create a VPC peering connection between your own VPCs, regardless if they are in the same region or not, and with a VPC in an enirely different AWS account.
 - VPC Peering is usually done in such a way that there is one central VPC that peers with others. Only central VPC can talk to all the other VPCs. The other VPCs can only talk to the central VPC unless they open a direct tunnel to another non-central VPC.
-- You cannot do transitive peering for non-central VPCs. Non-central VPCs cannot go through the central VPC to get to another non-central VPC. You must set up a new portal between non-central nodes. The following diagram highlights this idea.
+- You cannot do transitive peering for non-central VPCs. Non-central VPCs cannot go through the central VPC to get to another non-central VPC. You must set up a new portal between non-central nodes. The following diagram highlights this idea. VPC B is free to communicate with VPC A with VPC Peering enabled between both. However, it cannot continue on the communicate with VPC C. Only VPC A can communicate with VPC C.
 
 ![Screen Shot 2020-06-19 at 6 12 02 PM](https://user-images.githubusercontent.com/13093517/85183188-e1009780-b258-11ea-8a81-ad0612cd1053.png)
+
+- As a rule of thumb, it is worth knowing the VPC peering configurations that are *not* supported rather than knowing the configurations that are. The following are prohibited:
+  - Overlapping CIDR Blocks
+  - Transitive Peering
+  - Edge to Edge Routing Through a gateway or connection device (VPN connection, Internet Gateway, AWS Direct Connect connection, etc.)
+- You can peer across regions, but you cannot have one subnet stretched over multiple availability zones. However, you can have multiple subnets in the same availability zone.  
 
 
 
