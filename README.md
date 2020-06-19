@@ -753,6 +753,7 @@ Amazon FSx for Windows File Server provides a fully managed native Microsoft Fil
 - FSx for Windows also permits connectivity between on-premise servers and AWS so those same on-premise servers can make use of Amazon FSx too.
 - You can use Microsoft Active Directory to authenticate into the file system.
 - Amazon FSx for Windows provides multiple levels of security and compliance to help ensure your data is protected. Amazon FSx automatically encrypts your data at-rest and in-transit.
+- You can access Amazon FSx for Windows from a variety of compute resources, not just EC2.
 
 ## Amazon FSx for Lustre
 
