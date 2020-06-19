@@ -1141,6 +1141,7 @@ VPC lets you provision a logically isolated section of AWS where you can launch 
 - The VPC Wizard is the automated tool for creating new VPCs.
 - You can have your VPC on dedicated hardware so that the network is exclusive at the physical level, but this option is extremely expensive. Fortunately, once a VPC is set to Dedicated hosting it can be changed back to default hosting via the AWS CLI, SDK or API. Existing hosts must be in a `stopped` state to do so.
 - Once you create a custom VPC, new subnets are not created by default. You must create them separately. The same is true for an internet gateway. If you want your VPC to have internet access, you need to also create the gateway so that the network can be publicly reached by the world.
+- Because of this, when you create an IGW it will initially be in an detached state. You will need to manually assign it to the VPC.
 - Once you create a custom VPC hiwever, the following are created by default:
   - a route table
   - a NACL
@@ -1148,11 +1149,18 @@ VPC lets you provision a logically isolated section of AWS where you can launch 
   
 ![Screen Shot 2020-06-19 at 6 26 37 PM](https://user-images.githubusercontent.com/13093517/85183681-8cf6b280-b25a-11ea-8b54-d1e54ba754a6.png)
 
-- These created components correspond to the traffic flow in which data reaches your instances. With traffic coming from outside the VPC or within it, it must go through the route table to know where its desired destination is. The traffic then passes through sub-net level security as described by the NACL. If the NACL deems it valid, the traffic then passes through instance level security as described by the security group. If the traffic hasn't been dropped at this point, only then will it reach the instance it is intended for.
+- These created components correspond to the traffic flow in which data reaches your instances. Whether the traffic originates from outside of the VPC or from within it, it must frist go through the route table to know where its desired destination is. The traffic then passes through sub-net level security as described by the NACL. If the NACL deems the traffic as valid, the traffic then passes through instance level security as described by the security group. If the traffic hasn't been dropped at this point, only then will it reach the instance it is intended for.
+- Security groups do not span VPCs. ICMP ensures that instances from one security group can ping others in a different security group. It is IPv4 and IPv6 compatible. ICMP sources can either be the security group itself or the IP of the instance.
+- Inside VPCs, the components communicate with each other using their private IPs. All instances within a VPC has a private IP, but only those that communicate with the external world have a public IP.
 
 
 
-
+### VPC Subnets
+- When you create a subnet, be sure to specify which VPC you want to envelop it in. You can assign both IPv4 and IPv6 ranges to your subnets.
+- Amazon always reserves five IP addresses within subnets.The first four IP addresses and the last IP address in each subnet CIDR block are not the ones unavailable for use.
+- Why use subnets?
+  - They improve traffic flow, and thus speed & performance of the entire network. A IGW receiving a packet and checking which of 5 subnets the packet should be delivered to is much faster than checking 100 instances individually. And if the destination of a packet is within the subnet from where it originates, the traffic stays inside the subnet and won't clutter rest of the VPC.
+  - Subnets function as logical groups to put your entities inside of. It makes it much easier to configure similar resources as a group instead of for every individual instance.
 
 
 ### NACLs
@@ -1160,6 +1168,13 @@ VPC lets you provision a logically isolated section of AWS where you can launch 
 
 
 ### NAT Instances and NAT Gateways
+nat instance vs nat gateway?
+public vs private ip?
+- Attaching an IGW to a VPC allows instances with public IPs to directly access the internet. NAT however serves as an intermediate step which allow instances that do not have public IPs to first translate their own private IP into the NAT's public IP before accessing the internet.
+For this reason, you need to route traffic from a private subnet to your NAT gateway. At this point, the IGW can only see that the request has come from the NAT gateway. If someone tries to initiate a connection to your NAT gateway directly (instead of an expected response), the NAT just drops the packet as it has no entry of it mapped in its tracking table for which private instance to pass the request onto.
+- NAT is only able to route traffic out to the internet (and back in) and the communication must always be initiated from the private instances.
+- You need to launch a NAT gateway per AZ and there’s a 1-to-1 mapping with each AZ.
+
 
 ### Bastion Hosts or Jump Boxes
 - A Bastion Host is a server within a public-facing subnet that can connect to the servers between the private-facing subnet. It's through a bastion host that administrators can securely access instances behind private subnets without being compromised via an internet gateway. This way, you can manage the servers as part of your job.
@@ -1168,8 +1183,15 @@ VPC lets you provision a logically isolated section of AWS where you can launch 
 
 
 ### Internet Gateways
+- If the Internet gateway is not attached to the VPC, which is a prerequisite for the instances to be accessed from the internet, then the instances in your VPC will not be reachable. 
+- When a Public IP address is assigned to an EC2 instance, it is effectively registered by the Internet Gateway as a valid public endpoint. However, each instance is only aware of its private IP and not its public IP. Only the IGW knows of the public IPs that belong to instances. 
+- When an EC2 instance initiates a connection to the public internet, the request is sent using the public IP as its source even though the instance doesn't know a thing about it. This functions successfully however because the IGW performs its own NAT translation where private IPs are mapped to public IPs and vice versa for traffic flowing into and out of the VPC. So when traffic from the internet is destined for an instance's public IP endpoint, the IGW receives it and forwards the traffic onto the EC2 instance using its internal private IP.
 
 ### Route Tables
+- Route tables have the ability are trusted to make sure that subnets can communicate with each other.
+- You can have multiple route tables. The default route table that was created during the creation of the VPC will register new subnets when they are created. If you do not want your new subnet to be associated with the default route table, you must specify that you want it associated with a different route table.
+- Because of this default behavior there is a potential security concern. If the default route table is public the new subnets associated with it will also be public. The best practice then is to ensure that the default route table where new subnets are associated with is private and that there is no route out to the internet. Then, you can create a custom route table that is public with a route out to the intern. If you want a new subnet to be publically accessible, you can simply associate it with the custom route table.
+
 
 ### AWS DirectConnect
 
