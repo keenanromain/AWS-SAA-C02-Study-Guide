@@ -1123,5 +1123,55 @@ AWS Auto Scaling lets you build scaling plans that automate how groups of differ
 - After the Auto Scaling Group scales using a policy, it waits for the cooldown period to complete before resuming further scaling activities if needed.
 - The default waiting period is 300 seconds, but this can be modified.
 
+## Virtual Private Cloud (VPC)
+
+### VPC Simplified
+VPC lets you provision a logically isolated section of AWS where you can launch services and systems within a virtual network that you define.
+
+### VPC Key Details
+- You can think of VPC as your own virtual datacenter in the cloud
+- You have complete control of your own network; including the IP range, the creation of subnets, the configuration of route tables and the network gateways used.
+- You can also use VPC as a kind of gateway between your corporate data center and AWS via a hardware VPN so that the VPC can become an extension of your on-prem environment.
+- With a VPC, you can launch EC2 instances into a subnet of our choosing, assign the IP range within a given subnet, configure route tables between subnets, configure access to the web via internet gateways, assign security groups to individual instances, and create Access Control Lists for the subnets.
+- This customization gives you much more control to specify and personalize your infrastructure setup. For example, you can have one public-facing subnet for your web servers to receive HTTP(s) traffic and then another private-facing subnet for your database server where internet access is forbidden.
+- This gives you the ability to practice security in depth. From the sub-network (NACLs) down to the individual server (security group) and further down to the application itself (secure practices), you can set up multiple levels of defense against malicious users and programs.
+- The **/16** CIDR block is the largest range of IPs that can be used for an AWS subnet. A **/28** CIDR block is the smallest IP range available for an AWS subnet.
+- With CIDR in general, a **/32** denotes one IP address and **/0** refers to the entire network The larger higher go in CIDR, the more narrow the IP range will be.
+- The Default VPC for your AWS environment permits all subnets to have a route out to the internet (all subnets in the default VPC are internet accessible). The default setting allows you to immediately deploy instances and each EC2 instance has both a public and private IP address.
+
+
+
+
+
+### NACLs
+- Network Access Control Lists (or NACLs) are basically the security groups for networks. The main difference between security groups and NACLs is that security groups are stateless, meaning you can perform both allow and deny rules that may be divergent depending if traffic is inbound or outbound for that rule. 
+
+
+### NAT Instances and NAT Gateways
+
+### Bastion Hosts or Jump Boxes
+- A Bastion Host is a server within a public-facing subnet that can connect to the servers between the private-facing subnet. It's through a bastion host that administrators can securely access instances behind private subnets without being compromised via an internet gateway. This way, you can manage the servers as part of your job.
+- The best way to implement a bastion host is to create a small EC2 instance that only has a security group rule for a particular IP address. This ensures maximum security and will limit attack vectors.
+- It is perfectly fine to use a small instance rather than a large one because this instance will only be used as a jump server that is used to connect to other servers once you connect to it.
+
+
+### Internet Gateways
+
+### Route Tables
+
+### AWS DirectConnect
+
+### VPN
+
+### VPC Peering
+- VPC peering allows you to connect one VPC with another via a direct network route using the Private IPs belonging to both. With VPC peering, instances in different VPCs behave as if they were on the same network.
+- You can create a VPC peering connection between your own VPCs, regardless if they are in the same region or not, and with a VPC in an enirely different AWS account.
+- VPC Peering is usually done in such a way that there is one central VPC that peers with others. Only central VPC can talk to all the other VPCs. The other VPCs can only talk to the central VPC unless they open a direct tunnel to another non-central VPC.
+- You cannot do transitive peering for non-central VPCs. Non-central VPCs cannot go through the central VPC to get to another non-central VPC. You must set up a new portal between non-central nodes. The following diagram highlights this idea.
+
+![Screen Shot 2020-06-19 at 6 12 02 PM](https://user-images.githubusercontent.com/13093517/85183188-e1009780-b258-11ea-8a81-ad0612cd1053.png)
+
+
+
 
 
