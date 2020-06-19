@@ -41,6 +41,8 @@
 
 19. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#redshift">Redshift</a>
 
+20. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#redshift">ElastiCache</a>
+
 
 ## Introduction
 
@@ -957,7 +959,7 @@ The ElastiCache service makes it easy to deploy, operate, and scale an in-memory
 - For data that doesn’t change frequently and is oftenly asked for, it makes a lot of sense to cache said data rather than querying it from the database.
 - Common configurations that improve DB performance include introducing read replicas of a DB primary and inserting a caching layer into the storage architecture. 
 - MemcacheD is for simple caching purposes with horizontal scaling and multi-threaded performance, but if you require more complexity for your caching environment then choose Redis.
-
+- A further comparison between Redis and MemcacheD for Redis:
 ![Screen Shot 2020-06-18 at 8 18 34 PM](https://user-images.githubusercontent.com/13093517/85083820-edc1b480-b1a0-11ea-88b0-15f90bd60282.png)
 
 - Another advatnage of using ElastiCache is that by caching query results, you pay the price of the DB query only once without having to re-execute the query unless the data changes.
