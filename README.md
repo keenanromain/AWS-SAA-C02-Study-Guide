@@ -1153,8 +1153,10 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
 - The IP range of a default VPC is always **/16**.
 - When creating IP ranges for your subnets, the **/16** CIDR block is the largest range of IPs that can be used. This is because subnets must have just as many IPs or fewers IPs than the VPC it belongs to. A **/28** CIDR block is the smallest IP range available for subnets.
 - With CIDR in general, a **/32** denotes a single IP address and **/0** refers to the entire network The higher you go in CIDR, the more narrow the IP range will be.
-- The information about IPs above is in regards to private IP addresses. As the name implies, they are not reachable over the Internet and instead are used for communication between the instances in your VPC. When you launch an instance into a VPC, a private IP address from the IPv4 address range of the subnet is assigned to the default network interface (eth0) of the instance.
+- The information about IPs above is in regards to both public and private IP addresses. 
+- Private IP addresses are not reachable over the Internet and instead are used for communication between the instances in your VPC. When you launch an instance into a VPC, a private IP address from the IPv4 address range of the subnet is assigned to the default network interface (eth0) of the instance.
 - This means that all instances within a VPC has a private IP, but only those selected to communicate with the external world have a public IP.
+- When you launch an instance into a subnet that has public access via an Internet Gateway, a public IP address and a private UP address is created. The public IP address is assigned to the primary network interface (eth0) that's created for the instance. A public IP address is mapped to the primary private IP address through network address translation (NAT). 
 - You can optionally associate an IPv6 CIDR block with your VPC and subnets, and assign IPv6 addresses from that block to the resources in your VPC.
 - VPCs are region specific and you can have up to five VPCs per region.
 - By default, AWS is configured to have one subnet in each AZ of the regions where your application is.
