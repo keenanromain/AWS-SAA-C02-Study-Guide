@@ -1176,6 +1176,15 @@ VPC lets you provision a logically isolated section of AWS where you can launch 
 | We process rules in order, starting with the lowest numbered rule, when deciding whether to allow traffic  |  We evaluate all rules before deciding whether to allow traffic |
 | Automatically applies to all instances in the subnets that it's associated with (therefore, it provides an additional layer of defense if the security group rules are too permissive) |  Applies to an instance only if someone specifies the security group when launching the instance, or associates the security group with the instance later on |
 - NACLs don't keep info of where a request is coming from hence why it is referred to as stateless. 
+- Whenever you create a new NACL (instead of using the default that comes with the VPC), the default rules will deny all inbounds and outbounds. Conversely, the default NACL that comes along with each new VPC has default rules to allow everything.
+- If you create a new NACL, you must associate whichever desired subnets to it manually so that they can inherit the NACL’s rule set. If you don’t explicitly assign a subnet to an NACL, AWS will associate it with your default NACL.
+- Because NACLs are stateless, you must also ensure that outbound rules exist alongside the inbound rules so that ingress and egress can flow smoothly.
+- If you are using NAT Gateway along with your NACL, you must ensure the use of the NAT Gateway ephemeral port range within the inbound and outbound rules of the NACL. Because NAT Gateway can appear upon whichever port for the duration of its connection, you must ensure that all possible ports are all accounted for.
+- Network ACL Rules are evaluated by rule number, from lowest to highest, and executed immediately when a matching allow/deny rule is found. Because of this, order matters with your rule numbers. The lower the number of a rule on the list, the more precedence that rule will have. List your rules accordingly. 
+A subnet can only follow the rules listed by one NACL at a time. However, a NACL can describe the rules for any number of subnets. The rules will take effect immediately.
+- NACLs are evaluated before security groups.
+- You block IPs with NACLS, not security groups
+
 
 
 ### NAT Instances vs. NAT Gateways
@@ -1194,10 +1203,11 @@ For this reason, you need to route traffic from a private subnet to your NAT gat
 - It is actually best practice to have multiple NAT Gateways in different AZs to be responsible for whichever subnet that is in the same AZ. This localizes failure.
 
 
-
 ### Bastion Hosts
+- Bastion Hosts are special purpose computers on a network designed and configured to withstand attacks. This computer generally runs a single program (proxy server for example) and is stripped beyond this sole application/purpose in order to reduce attack vectors. The purpose of Bastion hosts are to remotely access the instances behind the private subnet. There are pre-baked bastion AMIs.
 - A Bastion Host is a server within a public-facing subnet that can connect to the servers between the private-facing subnet. It's through a bastion host that administrators can securely access instances behind private subnets without being compromised via an internet gateway. This way, you can manage the servers as part of your job.
 - While NACLs provide security through the use of port restrictions, Bastion Hosts act as a barrier server between the outside world and your private networks by utilizing a stripped-down and secured OS (i.e. all unnecessary services are turned off to limit the potential for vulnerabilities, etc.), and therefore act as another layer of security on top of NACLs.
+- If you are going to be RDPing or SSHing into the instances of your private subnet, use a bastion host. If you are going to be providing internet traffic into the instances of your private subnet, use a NAT.
 - The best way to implement a bastion host is to create a small EC2 instance that only has a security group rule for a particular IP address. This ensures maximum security and will limit attack vectors.
 - It is perfectly fine to use a small instance rather than a large one because this instance will only be used as a jump server that is used to connect to other servers once you connect to it.
 
@@ -1214,6 +1224,17 @@ For this reason, you need to route traffic from a private subnet to your NAT gat
 
 
 ### AWS DirectConnect
+- Direct Connect is an AWS service that establishes a dedicated network connection between your premises and AWS. You can create this private connectivity to reduce network costs, increase bandwidth, and provide more consistent network experience compared to regular internet-based connections.
+- The use case for Direct Connect is high throughput workloads or if you need a stable or reliable connection
+- The following are the steps for setting up an AWS DirectConnect connection:
+  1. Create a virtual interface in the DirectConnect console. This is a public virtual interface.
+  2. Go to the VPC console and then VPN connections. Create a customer gateway for your on-premise.
+  3. Create a virtual private gateway and attach it to the desired VPC environment.
+  4. Select VPN connections and create a new VPN connection. Select both the customer gateway and the virtual private gateway.
+  5. Once the VPN connection is available, set up the VPN either on the customer gateway or the on-prem firewall itself
+- Data flow into AWS via DirectConnect looks like the folloing: On-prem router -> dedicated line -> your own cage / DMZ -> cross connect line -> AWS Direct Connect Router -> AWS backbone -> AWS Cloud
+
+### AWS Global Accelerator
 
 ### VPN
 
