@@ -1227,6 +1227,25 @@ For this reason, you need to route traffic from a private subnet to your NAT gat
 - You can peer across regions, but you cannot have one subnet stretched over multiple availability zones. However, you can have multiple subnets in the same availability zone.  
 
 
+### VPC Flow Logs
+- VPC Flow Logs is a feature that captures the IP information for all traffic flowing into and out of your VPC. Flow log data is sent to an S3 bucket or CloudWatch where you can view, retrieve, and manipulate this data. 
+- You can capture the traffic flow at various stages through its travel:
+  - Traffic flowing into and out of the VPC (at the IGW)
+  - Traffic flowing into and out of the subnet
+  - Traffic flowing into and out of the network interface of the EC2 instance (eth0, eth1, en0, etc.)
+- VPS Flow Logs capture packet metadata and not packet contents. Things like:
+  - The source IP
+  - The destination IP
+  - The packet size
+  - Anything which could be observed from outside of the packet.
+- Your flow logs can be configured to log valid traffic, invalid traffic, or both
+- You can have flow logs sourced from a different VPC compared to the VPC where your Flow Logs are. However, the other VPC must be peered via VPC Peering and under your account via AWS Organizations.
+- You can customize your logs by tagging them.
+- Once you create a flow log, you cannot change its config. You must make a new one.
+- Not all IP traffic is monitored under VPC Flow Logs. The following is a list of things that are ignored by Flow Logs:
+  - Query requests for instance metadata
+  - DHCP traffic
+  - Query requests to the AWS DNS server
 
 
 
