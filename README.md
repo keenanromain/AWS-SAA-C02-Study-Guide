@@ -1143,7 +1143,7 @@ VPC lets you provision a logically isolated section of AWS where you can launch 
 - You can have your VPC on dedicated hardware so that the network is exclusive at the physical level, but this option is extremely expensive. Fortunately, once a VPC is set to Dedicated hosting it can be changed back to default hosting via the AWS CLI, SDK or API. Existing hosts must be in a `stopped` state to do so.
 - Once you create a custom VPC, new subnets are not created by default. You must create them separately. The same is true for an internet gateway. If you want your VPC to have internet access, you need to also create the gateway so that the network can be publicly reached by the world.
 - Because of this, when you create an IGW it will initially be in an detached state. You will need to manually assign it to the VPC.
-- Once you create a custom VPC hiwever, the following are created by default:
+- Once you create a custom VPC however, the following are created by default:
   - a route table
   - a NACL
   - a security group
@@ -1153,7 +1153,15 @@ VPC lets you provision a logically isolated section of AWS where you can launch 
 - These created components correspond to the traffic flow in which data reaches your instances. Whether the traffic originates from outside of the VPC or from within it, it must frist go through the route table to know where its desired destination is. The traffic then passes through sub-net level security as described by the NACL. If the NACL deems the traffic as valid, the traffic then passes through instance level security as described by the security group. If the traffic hasn't been dropped at this point, only then will it reach the instance it is intended for.
 - Security groups do not span VPCs. ICMP ensures that instances from one security group can ping others in a different security group. It is IPv4 and IPv6 compatible. ICMP sources can either be the security group itself or the IP of the instance.
 - Inside VPCs, the components communicate with each other using their private IPs. All instances within a VPC has a private IP, but only those that communicate with the external world have a public IP.
+- There is one default VPC per region. However, you can have as many custom VPCs as you want and all are private by default.
+- The CIDR of a default VPC is always **/16**.
+- AWS is configured to have one subnet in each AZ of the regions where your application is by default.
+- By default, instances that you launch into a VPC can't communicate with your own on-premise network. You can enable access to your on-prem network from your VPC by attaching a virtual private gateway to the VPC, creating a custom route table, updating your security group rules, and creating an AWS managed VPN connection.
 
+
+NACL will have an impact on how EC2 instances in a private subnet will communicate with any service, including VPC Endpoints.
+
+Network ACL should be properly set to allow communication between two subnets. The security group should also be properly configured so that servers in one subnet can communicate with the other servers in the other subnet. 
 
 
 ### VPC Subnets
@@ -1221,6 +1229,8 @@ For this reason, you need to route traffic from a private subnet to your NAT gat
 - Route tables have the ability are trusted to make sure that subnets can communicate with each other.
 - You can have multiple route tables. The default route table that was created during the creation of the VPC will register new subnets when they are created. If you do not want your new subnet to be associated with the default route table, you must specify that you want it associated with a different route table.
 - Because of this default behavior there is a potential security concern. If the default route table is public the new subnets associated with it will also be public. The best practice then is to ensure that the default route table where new subnets are associated with is private and that there is no route out to the internet. Then, you can create a custom route table that is public with a route out to the intern. If you want a new subnet to be publically accessible, you can simply associate it with the custom route table.
+- Every subnet that you create is automatically associated with the main route table for the VPC.
+- Route tables can be configured to access endpoints (public services accessed privately) and not just the internet.
 
 
 ### AWS DirectConnect
@@ -1235,8 +1245,29 @@ For this reason, you need to route traffic from a private subnet to your NAT gat
 - Data flow into AWS via DirectConnect looks like the folloing: On-prem router -> dedicated line -> your own cage / DMZ -> cross connect line -> AWS Direct Connect Router -> AWS backbone -> AWS Cloud
 
 ### AWS Global Accelerator
+- AWS Global Accelerator accelerates connectivity to improve performance and availability for users. Global Accelerator sits on top of the AWS backbone and directs traffic to optimal endpoints worldwide. By default, Global Accelerator provides you two static IP addresses that you can make use of.
+- Global Accelerator helps reduce the number of hops to get to your AWS resources. Your users just need to make it to an edge location and once there, everything will remain internal to the AWS global network. Normally, it takes many networks to reach the application in full and paths to and from the application may vary. With each hop, there is also risk involved either in security or in failure.
 
-### VPN
+![Screen Shot 2020-06-21 at 5 50 02 PM](https://user-images.githubusercontent.com/13093517/85235996-aa0cbc00-b3e7-11ea-9e85-039f0ba6e770.png)
+
+- Cloud front will cache static content to the closest AWS Point Of Presence location (e.g. Like S3 objects, etc), Whereas Global accelerator will use the same Amazon POP to accept the initial request and route it directly using global accelerator to reach to the service being hosted within your specified AWS Region, whichever one serves the request (Application LB, EC2, etc). 
+- In summary, Global Accelerator is a fast/reliable pipe between user and application. Cloudfront is a cache for content coming from a distant origin server.
+- The big picture of what a Global Accelerator is just that it helps end users have faster and more direct access to endpoints via using AWS' backbone network. Just think of it as a direct route for traffic to reach its destination. It's like going on a trip (web traffic) and stopping to ask for directions in possibly unsafe parts of town (multiple networks are visited which can increase security risks) along the way, as opposed to having a GPS (global accelerator) that leads you directly where you want to go (endpoint) without having to make unnecessary stops.
+- Global Accelerator's primary offering is to quickly and reliably move traffic between a user and an application - basically a fast and reliable pipe between the two. Route53 is not in the business of providing a fast pipe - it simply provides policies on routing traffic to endpoints. Route53's latency based routing might appear similar to Global Accelerator, but Route 53 is simply helping choose whatever region is relatively faster for the user, it has nothing to do with actually providing a fast network path.
+- Global Accelerator provides fast regional failover
+
+
+### VPC Virtual Private Network
+- Although the term "VPN connection" is a general concept, in the Amazon VPC documentation a VPN connection refers to the connection between your VPC and your own network. AWS supports Internet Protocol security (IPsec) VPN connections.
+- You can create a VPN  to establish communication between your on-premise environment and AWS over the Internet.
+- A customer gateway is a physical device or software application on the on-premise side of the VPN connection.
+- To create a VPN connection, you must define a customer gateway resource in AWS, which provides AWS information about your customer gateway device. Next, you have to set up an Internet-routable IP address (static) of the customer gateway's external interface.
+- The following diagram illustrates a single VPN connection.
+
+![Screen Shot 2020-06-21 at 6 13 17 PM](https://user-images.githubusercontent.com/13093517/85236301-e857aa80-b3ea-11ea-9de9-08d150d34864.png)
+
+- The above VPC has an attached virtual private gateway (note: not an internet gateway), there is a remote network that includes a customer gateway, which you must configure to enable the VPN connection. You set up the routing so that any traffic from the VPC bound for your network is routed to the virtual private gateway.
+
 
 ### VPC Peering
 - VPC peering allows you to connect one VPC with another via a direct network route using the Private IPs belonging to both. With VPC peering, instances in different VPCs behave as if they were on the same network.
@@ -1251,7 +1282,6 @@ For this reason, you need to route traffic from a private subnet to your NAT gat
   - Transitive Peering
   - Edge to Edge Routing Through a gateway or connection device (VPN connection, Internet Gateway, AWS Direct Connect connection, etc.)
 - You can peer across regions, but you cannot have one subnet stretched over multiple availability zones. However, you can have multiple subnets in the same availability zone.  
-
 
 ### VPC Flow Logs
 - VPC Flow Logs is a feature that captures the IP information for all traffic flowing into and out of your VPC. Flow log data is sent to an S3 bucket or CloudWatch where you can view, retrieve, and manipulate this data. 
@@ -1272,6 +1302,11 @@ For this reason, you need to route traffic from a private subnet to your NAT gat
   - Query requests for instance metadata
   - DHCP traffic
   - Query requests to the AWS DNS server
+
+### VPC Endpoints 
+- VPC Endpoints ensure that you can connect your VPC to supported AWS services without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect. Traffic between your VPC and other AWS services stay within the Amazon ecosystem and these Endpoints are virtual devices that are HA and without any bandwidth constraints. These work basically by attaching an ENI to an EC2 instance that can easily communicate to a wide range of AWS services.
+- Gateway Endpoints rely on creating entries in a route table and pointing them to private endpoints used for S3 or DynamoDB. Interface Endpoints use AWS PrivateLink and leverages the new Network Load Balancer capabilities. Boiled down, Interface Endpoints have a private IP address and thus are their own entity while Gateway Endpoints are mainly just a target. Because Interface Endpoints are their own provisioned item, they cost $.01/hour. Gateway Endpoints are free as they’re just a new route in your route table.
+- Interface Endpoint provisions an Elastic Network interface or ENI (think network card) within your VPC. They serve as an entry for traffic going to another supported AWS service. It uses a DNS record to direct your traffic to the private IP address of the interface. Gateway Endpoint uses route prefix in your route table to direct traffic meant for S3 or DynamoDB to the Gateway Endpoint (think 0.0.0.0/0 -> igw). So to secure your Interface Endpoint, use Security Groups. But to secure Gateway Endpoint, use VPC Endpoint Policies.
 
 
 
