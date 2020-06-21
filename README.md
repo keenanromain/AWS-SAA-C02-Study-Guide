@@ -1154,17 +1154,24 @@ VPC lets you provision a logically isolated section of AWS where you can launch 
 - Security groups do not span VPCs. ICMP ensures that instances from one security group can ping others in a different security group. It is IPv4 and IPv6 compatible. ICMP sources can either be the security group itself or the IP of the instance.
 - Inside VPCs, the components communicate with each other using their private IPs. All instances within a VPC has a private IP, but only those that communicate with the external world have a public IP.
 - There is one default VPC per region. However, you can have as many custom VPCs as you want and all are private by default.
+-  When you create a VPC, you must assign it an IPv4 CIDR block which is a range of private IPv4 addresses to be inherited by your instances when you create them. However, because the range of IPv4 addresses private, this makes them non-reachable over the Internet. To be able to connect to your instance over the Internet, or to enable communication between your instances and other AWS services that have public endpoints, you can alternatively assign a globally-unique public IPv4 address to your instance.
 - The CIDR of a default VPC is always **/16**.
 - AWS is configured to have one subnet in each AZ of the regions where your application is by default.
 - By default, instances that you launch into a VPC can't communicate with your own on-premise network. You can enable access to your on-prem network from your VPC by attaching a virtual private gateway to the VPC, creating a custom route table, updating your security group rules, and creating an AWS managed VPN connection.
+- You can optionally associate an IPv6 CIDR block with your VPC and subnets, and assign IPv6 addresses from that block to the resources in your VPC. IPv6 addresses are public and reachable over the Internet
+- In an ideal and secure VPC architecture, you launch the web servers or elastic load balancers in the public subnet and the database servers in the private subnet.
+- Here is an example of a hypotherical application sitting behind a typical VPC setup:
+
+![Screen Shot 2020-06-21 at 6 20 09 PM](https://user-images.githubusercontent.com/13093517/85236432-dd514a00-b3eb-11ea-9ab0-1b5acf4b8894.png)
+
+- VPCs are region specific and you can have up to five VPCs per region.
+- You use subnetworks, or subnets, to efficiently utilize networks that have a large number of hosts
 
 
-NACL will have an impact on how EC2 instances in a private subnet will communicate with any service, including VPC Endpoints.
-
-Network ACL should be properly set to allow communication between two subnets. The security group should also be properly configured so that servers in one subnet can communicate with the other servers in the other subnet. 
 
 
 ### VPC Subnets
+- If a network has a large number of hosts without logically grouped subdivisions, managing the many hosts can be a tedious job. Therefore we divide a network into sub-networks so that management becomes easier.
 - When you create a subnet, be sure to specify which VPC you want to envelop it in. You can assign both IPv4 and IPv6 ranges to your subnets.
 - Amazon always reserves five IP addresses within subnets.The first four IP addresses and the last IP address in each subnet CIDR block are not the ones unavailable for use.
 - Why use subnets?
@@ -1172,7 +1179,7 @@ Network ACL should be properly set to allow communication between two subnets. T
   - Subnets function as logical groups to put your entities inside of. It makes it much easier to configure similar resources as a group instead of for every individual instance.
 
 
-### VPC NACLs
+### VPC Network Access Control Lists
 - Network Access Control Lists (or NACLs) are like security groups but for sub-networks rather than instances. The main difference between security groups and NACLs is that security groups are stateless, meaning you can perform both allow and deny rules that may be divergent depending if traffic is inbound or outbound for that rule. 
 - The following table highlights the differences between NACLs and Subnets. 
 
@@ -1191,7 +1198,9 @@ Network ACL should be properly set to allow communication between two subnets. T
 - Network ACL Rules are evaluated by rule number, from lowest to highest, and executed immediately when a matching allow/deny rule is found. Because of this, order matters with your rule numbers. The lower the number of a rule on the list, the more precedence that rule will have. List your rules accordingly. 
 A subnet can only follow the rules listed by one NACL at a time. However, a NACL can describe the rules for any number of subnets. The rules will take effect immediately.
 - NACLs are evaluated before security groups.
-- You block IPs with NACLS, not security groups
+- You block IPs with NACLS, not security groups.
+- NACL will have an impact on how EC2 instances in a private subnet will communicate with any service, including VPC Endpoints.
+- Network ACL should be properly set to allow communication between two subnets. The security group should also be properly configured so that servers in one subnet can communicate with the other servers in the other subnet. 
 
 
 
@@ -1308,5 +1317,12 @@ For this reason, you need to route traffic from a private subnet to your NAT gat
 - Gateway Endpoints rely on creating entries in a route table and pointing them to private endpoints used for S3 or DynamoDB. Interface Endpoints use AWS PrivateLink and leverages the new Network Load Balancer capabilities. Boiled down, Interface Endpoints have a private IP address and thus are their own entity while Gateway Endpoints are mainly just a target. Because Interface Endpoints are their own provisioned item, they cost $.01/hour. Gateway Endpoints are free as they’re just a new route in your route table.
 - Interface Endpoint provisions an Elastic Network interface or ENI (think network card) within your VPC. They serve as an entry for traffic going to another supported AWS service. It uses a DNS record to direct your traffic to the private IP address of the interface. Gateway Endpoint uses route prefix in your route table to direct traffic meant for S3 or DynamoDB to the Gateway Endpoint (think 0.0.0.0/0 -> igw). So to secure your Interface Endpoint, use Security Groups. But to secure Gateway Endpoint, use VPC Endpoint Policies.
 
+### AWS PrivateLink
+- AWS PrivateLink simplifies the security of data shared with cloud-based applications by eliminating the exposure of data to the public Internet. AWS PrivateLink provides private connectivity between different VPCs, AWS services, and on-premises applications, securely on the Amazon network.
+- VPC PrivateLink allows you to publish an "endpoint" that others can connect with from their own VPC. It's similar to a normal VPC Endpoint, but instead of connecting to an AWS service, people can connect to your endpoint. Think of it as a way to publish a private API endpoint without having to go via the Internet.
+- By not traversing the Internet, AWS PrivateLink reduces the exposure to threat vectors such as brute force and distributed denial-of-service attacks. 
+- Use private IP connectivity and security groups so that your services function as though they were hosted directly on your private network.
+- It's similar to the AWS Direct Connect service in that it establishes private connections to the AWS cloud, except Direct Connect links users' on-premises environments to AWS. PrivateLink, on the other hand, secures traffic from users' VPC environments, which are already in AWS.
+- It functions similarly to VPC Peering which apply to VPCs, but PrivateLink applies to Application/Service.
 
 
