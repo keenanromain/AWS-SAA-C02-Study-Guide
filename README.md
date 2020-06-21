@@ -1127,15 +1127,15 @@ AWS Auto Scaling lets you build scaling plans that automate how groups of differ
 ## Virtual Private Cloud (VPC)
 
 ### VPC Simplified
-VPC lets you provision a logically isolated section of AWS where you can launch services and systems within a virtual network that you define. By having the option of selecting which AWS resources are public facing and which are not, VPC provides much more granular control over security.
+VPC lets you provision a logically isolated section of the AWS cloud where you can launch services and systems within a virtual network that you define. By having the option of selecting which AWS resources are public facing and which are not, VPC provides much more granular control over security.
 
 ### VPC Key Details
 - You can think of VPC as your own virtual datacenter in the cloud. You have complete control of your own network; including the IP range, the creation of sub-networks (subnets), the configuration of route tables and the network gateways used.
-- You can launch EC2 instances into a subnet of your choosing, select the IPs to be available within a given subnet, assign security groups to individual instances, and create Access Control Lists for the subnets.
+- You can then launch EC2 instances into a subnet of your choosing, select the IPs to be available for the isntances, assign security groups them, and create Network Access Control Lists (NACLs) for the subnets themselves as additional protection.
 - This customization gives you much more control to specify and personalize your infrastructure setup. For example, you can have one public-facing subnet for your web servers to receive HTTP(s) traffic and then a different private-facing subnet for your database server where internet access is forbidden.
-- This gives you the ability to practice security in depth. From the sub-network (NACLs) down to the individual server (security group) and further down to the application itself (secure practices), you can set up multiple levels of defense against malicious users and programs.
-- The Default VPC for your AWS environment permits all subnets to have a route out to the internet mening all subnets in the default VPC are internet accessible. The default setting allows you to immediately deploy instances and each EC2 instance will have both a public and private IP address.
-- When you create a custom VPC, new subnets are not created by default. You must create them separately. The same is true for an internet gateway. If you want your VPC to have internet access, you need to also create the gateway so that the network can be publicly reached by the world.
+- VPCs come with defense in depth by design. From the sub-network (NACLs) down to the individual server (security group) and further down to the application itself (secure coding practices), you can set up multiple levels of protection against malicious users and programs.
+- The Default VPC for your AWS environment permits all subnets to have a route out to the internet meaning all subnets in the default VPC are internet accessible. The default setting allows you to immediately deploy instances and each EC2 instance will have both a public and private IP address.
+- When you create a custom VPC, new subnets are not created by default. You must create them separately. The same is true for an internet gateway. If you want your VPC to have internet access, you need to also create the gateway so that the network can be reached publicly by the world.
 - Because of this, when you create an IGW it will initially be in an detached state. You will need to manually assign it to the custom VPC.
 - Once you create a custom VPC however, the following are created by default:
   - a route table
@@ -1144,13 +1144,13 @@ VPC lets you provision a logically isolated section of AWS where you can launch 
   
 ![Screen Shot 2020-06-19 at 6 26 37 PM](https://user-images.githubusercontent.com/13093517/85183681-8cf6b280-b25a-11ea-8b54-d1e54ba754a6.png)
 
-- These components, which will be explained in depth in case they are not known already, actually correspond to the traffic flow for how data will reach your instances. Whether the traffic originates from outside of the VPC or from within it, it must first go through the route table to know where the desired destination is. The traffic then passes through subnet level security as described by the NACL. If the NACL deems the traffic as valid, the traffic then passes through to the instance level security as described by the security group. If the traffic hasn't been dropped at this point, only then will it reach the instance it is intended for.
-- The VPC Wizard is the automated tool for creating new VPCs.
-- You can have your VPC on dedicated hardware so that the network is exclusive at the physical level, but this option is extremely expensive. Fortunately, once a VPC is set to Dedicated hosting it can be changed back to default hosting via the AWS CLI, SDK or API. Existing hosts must be in a `stopped` state to do so.
-- VPC can also serve as a kind of bridge between your corporate data center and the AWS cloud. With an AWS VPN, your VPC becomes an extension of your on-prem environment.
+- These components, which will be explained in further depth in case they are not already known, actually correspond to the traffic flow for how data will reach your instances. Whether the traffic originates from outside of the VPC or from within it, it must first go through the route table by way of the router to know where the desired destination is. Once that is known, the traffic then passes through subnet level security as described by the NACL. If the NACL deems the traffic as valid, the traffic then passes through to the instance level security as described by the security group. If the traffic hasn't been dropped at this point, only then will it reach its intended instance.
+- The VPC Wizard is an automated tool that is useful for creating custom VPCs.
+- You can have your VPC on dedicated hardware so that the network is exclusive at the physical level, but this option is extremely expensive. Fortunately, if a VPC is on Dedicated hosting it can always be changed back to the default hosting. This can be done via the AWS CLI, SDK or API. However, existing hosts on the dedicated hardware must first be in a `stopped` state.
+- VPCs can also serve as a bridge between your corporate data center and the AWS cloud. With an VPC Virtual Private Network, your VPC becomes an extension of your on-prem environment.
 - The IP range of a default VPC is always **/16**.
 - When creating IP ranges for your subnets, the **/16** CIDR block is the largest range of IPs that can be used. This is because subnets must have just as many IPs or fewers IPs than the VPC it belongs to. .A **/28** CIDR block is the smallest IP range available.
-- With CIDR in general, a **/32** denotes one IP address and **/0** refers to the entire network The larger higher go in CIDR, the more narrow the IP range will be.
+- With CIDR in general, a **/32** denotes one IP address and **/0** refers to the entire network The higher you go in CIDR, the more narrow the IP range will be.
 
 
 
