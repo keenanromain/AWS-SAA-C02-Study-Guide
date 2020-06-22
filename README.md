@@ -360,7 +360,7 @@ The Amazon S3 notification feature enables you to receive and send notifications
 - As an example, let’s imagine you’re a developer at a large retailer and you need to analyze the weekly sales data from a single store, but the data for all 200 stores is saved in a new GZIP-ed CSV every day. 
   - Without S3 Select, you would need to download, decompress and process the entire CSV to get the data you needed. 
   - With S3 Select, you can use a simple SQL expression to return only the data from the store you’re interested in, instead of retrieving the entire object. 
-- By reducing the volume of data that has to be loaded and processed by your applications, S3 Select can improve the performance of most applications that frequently access data from S3 by up to 400% because you’re dealing with an order of magnitude less data.
+- By reducing the volume of data that has to be loaded and processed by your applications, S3 Select can improve the performance of most applications that frequently access data from S3 by up to 400% because you’re dealing with an order of magnitude of less data.
 
 
 ## CloudFront
