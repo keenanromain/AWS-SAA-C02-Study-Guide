@@ -1238,6 +1238,7 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
 - When a Public IP address is assigned to an EC2 instance, it is effectively registered by the Internet Gateway as a valid public endpoint. However, each instance is only aware of its private IP and not its public IP. Only the IGW knows of the public IPs that belong to instances. 
 - When an EC2 instance initiates a connection to the public internet, the request is sent using the public IP as its source even though the instance doesn't know a thing about it. This works because the IGW performs its own NAT translation where private IPs are mapped to public IPs and vice versa for traffic flowing into and out of the VPC. 
 - So when traffic from the internet is destined for an instance's public IP endpoint, the IGW receives it and forwards the traffic onto the EC2 instance using its internal private IP.
+- ***Summary***: IGW connects *your VPC with the internet*.
 
 ### Virtual Private Networks (VPNs)
 - VPCs can also serve as a bridge between your corporate data center and the AWS cloud. With a VPC Virtual Private Network (VPN), your VPC becomes an extension of your on-prem environment.
@@ -1254,6 +1255,7 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
 ![Screen Shot 2020-06-21 at 6 13 17 PM](https://user-images.githubusercontent.com/13093517/85236301-e857aa80-b3ea-11ea-9de9-08d150d34864.png)
 
 - The above VPC has an attached virtual private gateway (note: not an internet gateway) and there is a remote network that includes a customer gateway which you must configure to enable the VPN connection. You set up the routing so that any traffic from the VPC bound for your network is routed to the virtual private gateway.
+- ***Summary***: VPNs connect your *on-prem with your VPC* over the internet.
 
 
 ### AWS DirectConnect
@@ -1267,8 +1269,64 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
   4. Select VPN connections and create a new VPN connection. Select both the customer gateway and the virtual private gateway.
   5. Once the VPN connection is available, set up the VPN either on the customer gateway or the on-prem firewall itself
 - Data flow into AWS via DirectConnect looks like the following: On-prem router -> dedicated line -> your own cage / DMZ -> cross connect line -> AWS Direct Connect Router -> AWS backbone -> AWS Cloud
+- ***Summary***: DirectConnect connects your *on-prem with your VPC* through a non-public tunnel.
 
-### AWS Global Accelerator
+
+### VPC Endpoints 
+- VPC Endpoints ensure that you can connect your VPC to supported AWS services without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect. Traffic between your VPC and other AWS services stay within the Amazon ecosystem and these Endpoints are virtual devices that are HA and without bandwidth constraints. 
+- These work basically by attaching an ENI to an EC2 instance that can easily communicate to a wide range of AWS services.
+- **Gateway Endpoints** rely on creating entries in a route table and pointing them to private endpoints used for S3 or DynamoDB. Gateway Endpoints are mainly just a target that you set. 
+- **Interface Endpoints** use AWS PrivateLink and have a private IP address so they are their own entity and not just a target in a route table.  Because of this, they cost $.01/hour. Gateway Endpoints are free as they’re just a new route in to set.
+- Interface Endpoint provisions an Elastic Network interface or ENI (think network card) within your VPC. They serve as an entry and exit for traffic going to and from another supported AWS service. It uses a DNS record to direct your traffic to the private IP address of the interface. Gateway Endpoint uses route prefix in your route table to direct traffic meant for S3 or DynamoDB to the Gateway Endpoint (think 0.0.0.0/0 -> igw).
+- To secure your Interface Endpoint, use Security Groups. But to secure Gateway Endpoint, use VPC Endpoint Policies.
+- ***Summary***: VPC Endpoints connect your *VPC with AWS services* through a non-public tunnel.
+
+### AWS PrivateLink
+- AWS PrivateLink simplifies the security of data shared with cloud-based applications by eliminating the exposure of data to the public Internet. AWS PrivateLink provides private connectivity between different VPCs, AWS services, and on-premises applications, securely on the Amazon network.
+- It's similar to the AWS Direct Connect service in that it establishes private connections to the AWS cloud, except Direct Connect links on-premises environments to AWS. PrivateLink, on the other hand, secures traffic from VPC environments which are already in AWS.
+- This is useful because different AWS services often talk to each other over the internet. If you do not want that behavior and instead want AWS services to only communicate within the AWS network, use AWS PrivateLink. By not traversing the Internet, PrivateLink reduces the exposure to threat vectors such as brute force and distributed denial-of-service attacks. 
+- PrivateLink allows you to publish an "endpoint" that others can connect with from their own VPC. It's similar to a normal VPC Endpoint, but instead of connecting to an AWS service, people can connect to your endpoint.
+- Further, you'd want to use private IP connectivity and security groups so that your services function as though they were hosted directly on your private network.
+- Remember that AWS PrivateLink applies to Applicatiosn/Services communicating with each other within the AWS network. For VPCs to communicate with each other within the AWS network, use VPC Peering.
+- ***Summary:*** AWS PrivateLink connects your *AWS services with other AWS services* through a non-public tunnel.
+
+### VPC Peering
+- VPC peering allows you to connect one VPC with another via a direct network route using the Private IPs belonging to both. With VPC peering, instances in different VPCs behave as if they were on the same network.
+- You can create a VPC peering connection between your own VPCs, regardless if they are in the same region or not, and with a VPC in an enirely different AWS account.
+- VPC Peering is usually done in such a way that there is one central VPC that peers with others. Only the central VPC can talk to the other VPCs.
+- You cannot do transitive peering for non-central VPCs. Non-central VPCs cannot go through the central VPC to get to another non-central VPC. You must set up a new portal between non-central nodes if you need them to talk to each other.
+- The following diagram highlights the above idea. VPC B is free to communicate with VPC A with VPC Peering enabled between both. However, VPC B cannot continue the communication with VPC C. Only VPC A can communicate with VPC C.
+
+![Screen Shot 2020-06-19 at 6 12 02 PM](https://user-images.githubusercontent.com/13093517/85183188-e1009780-b258-11ea-8a81-ad0612cd1053.png)
+
+- It is worth knowing what VPC peering configurations are not supported:
+  - Overlapping CIDR Blocks
+  - Transitive Peering
+  - Edge to Edge Routing through a gateway or connection device (VPN connection, Internet Gateway, AWS Direct Connect connection, etc.)
+- You can peer across regions, but you cannot have one subnet stretched over multiple availability zones. However, you can have multiple subnets in the same availability zone.  
+- ***Summary***: VPC Peering connects your *VPC to another VPC* through a non-public tunnel.
+
+### VPC Flow Logs
+- VPC Flow Logs is a feature that captures the IP information for all traffic flowing into and out of your VPC. Flow log data is sent to an S3 bucket or CloudWatch where you can view, retrieve, and manipulate this data. 
+- You can capture the traffic flow at various stages through its travel:
+  - Traffic flowing into and out of the VPC (like at the IGW)
+  - Traffic flowing into and out of the subnet
+  - Traffic flowing into and out of the network interface of the EC2 instance (eth0, eth1, etc.)
+- VPS Flow Logs capture packet metadata and not packet contents. Things like:
+  - The source IP
+  - The destination IP
+  - The packet size
+  - Anything which could be observed from outside of the packet.
+- Your flow logs can be configured to log valid traffic, invalid traffic, or both
+- You can have flow logs sourced from a different VPC compared to the VPC where your Flow Logs are. However, the other VPC must be peered via VPC Peering and under your account via AWS Organizations.
+- You can customize your logs by tagging them.
+- Once you create a Flow Log, you cannot change its config. You must make a new one.
+- Not all IP traffic is monitored under VPC Flow Logs. The following is a list of things that are ignored by Flow Logs:
+  - Query requests for instance metadata
+  - DHCP traffic
+  - Query requests to the AWS DNS server
+  
+  ### AWS Global Accelerator
 - AWS Global Accelerator accelerates connectivity to improve performance and availability for users. Global Accelerator sits on top of the AWS backbone and directs traffic to optimal endpoints worldwide. By default, Global Accelerator provides you two static IP addresses that you can make use of.
 - Global Accelerator helps reduce the number of hops to get to your AWS resources. Your users just need to make it to an edge location and once there, everything will remain internal to the AWS global network. Normally, it takes many networks to reach the application in full and paths to and from the application may vary. With each hop, there is risk involved either in security or in failure.
 
@@ -1280,54 +1338,3 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
 - While CloudFront simply caches static content to the closest AWS Point Of Presence (POP) location, Global accelerator will use the same Amazon POP to accept initial requests and routes them directly to the services. 
 - Route53's latency based routing might also appear similar to Global Accelerator, but Route 53 is for simply helping choose which region for the user to use. Route53 has nothing to do with actually providing a fast network path.
 - Global Accelerator also provides fast regional failover.
-
-### VPC Endpoints 
-- VPC Endpoints ensure that you can connect your VPC to supported AWS services without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect. Traffic between your VPC and other AWS services stay within the Amazon ecosystem and these Endpoints are virtual devices that are HA and without any bandwidth constraints. These work basically by attaching an ENI to an EC2 instance that can easily communicate to a wide range of AWS services.
-- Gateway Endpoints rely on creating entries in a route table and pointing them to private endpoints used for S3 or DynamoDB. Interface Endpoints use AWS PrivateLink and leverages the new Network Load Balancer capabilities. Boiled down, Interface Endpoints have a private IP address and thus are their own entity while Gateway Endpoints are mainly just a target. Because Interface Endpoints are their own provisioned item, they cost $.01/hour. Gateway Endpoints are free as they’re just a new route in your route table.
-- Interface Endpoint provisions an Elastic Network interface or ENI (think network card) within your VPC. They serve as an entry for traffic going to another supported AWS service. It uses a DNS record to direct your traffic to the private IP address of the interface. Gateway Endpoint uses route prefix in your route table to direct traffic meant for S3 or DynamoDB to the Gateway Endpoint (think 0.0.0.0/0 -> igw). So to secure your Interface Endpoint, use Security Groups. But to secure Gateway Endpoint, use VPC Endpoint Policies.
-
-
-### AWS PrivateLink
-- AWS PrivateLink simplifies the security of data shared with cloud-based applications by eliminating the exposure of data to the public Internet. AWS PrivateLink provides private connectivity between different VPCs, AWS services, and on-premises applications, securely on the Amazon network.
-- It's similar to the AWS Direct Connect service in that it establishes private connections to the AWS cloud, except Direct Connect links on-premises environments to AWS. PrivateLink, on the other hand, secures traffic from VPC environments which are already in AWS.
-- This is useful because different AWS services often talk to each other over the internet. If you do not want that behavior and instead want AWS services to only communicate within the AWS network, use AWS PrivateLink. By not traversing the Internet, PrivateLink reduces the exposure to threat vectors such as brute force and distributed denial-of-service attacks. 
-- PrivateLink allows you to publish an "endpoint" that others can connect with from their own VPC. It's similar to a normal VPC Endpoint, but instead of connecting to an AWS service, people can connect to your endpoint.
-- Further, you'd want to use private IP connectivity and security groups so that your services function as though they were hosted directly on your private network.
-- Remember that AWS PrivateLink applies to Applicatiosn/Services communicating with each other within the AWS network. For VPCs to communicate with each other within the AWS network, use VPC Peering.
-
-### VPC Peering
-- VPC peering allows you to connect one VPC with another via a direct network route using the Private IPs belonging to both. With VPC peering, instances in different VPCs behave as if they were on the same network.
-- You can create a VPC peering connection between your own VPCs, regardless if they are in the same region or not, and with a VPC in an enirely different AWS account.
-- VPC Peering is usually done in such a way that there is one central VPC that peers with others. Only central VPC can talk to all the other VPCs. The other VPCs can only talk to the central VPC unless they open a direct tunnel to another non-central VPC.
-- You cannot do transitive peering for non-central VPCs. Non-central VPCs cannot go through the central VPC to get to another non-central VPC. You must set up a new portal between non-central nodes. The following diagram highlights this idea. VPC B is free to communicate with VPC A with VPC Peering enabled between both. However, it cannot continue on the communicate with VPC C. Only VPC A can communicate with VPC C.
-
-![Screen Shot 2020-06-19 at 6 12 02 PM](https://user-images.githubusercontent.com/13093517/85183188-e1009780-b258-11ea-8a81-ad0612cd1053.png)
-
-- As a rule of thumb, it is worth knowing the VPC peering configurations that are *not* supported rather than knowing the configurations that are. The following are prohibited:
-  - Overlapping CIDR Blocks
-  - Transitive Peering
-  - Edge to Edge Routing Through a gateway or connection device (VPN connection, Internet Gateway, AWS Direct Connect connection, etc.)
-- You can peer across regions, but you cannot have one subnet stretched over multiple availability zones. However, you can have multiple subnets in the same availability zone.  
-
-### VPC Flow Logs
-- VPC Flow Logs is a feature that captures the IP information for all traffic flowing into and out of your VPC. Flow log data is sent to an S3 bucket or CloudWatch where you can view, retrieve, and manipulate this data. 
-- You can capture the traffic flow at various stages through its travel:
-  - Traffic flowing into and out of the VPC (at the IGW)
-  - Traffic flowing into and out of the subnet
-  - Traffic flowing into and out of the network interface of the EC2 instance (eth0, eth1, en0, etc.)
-- VPS Flow Logs capture packet metadata and not packet contents. Things like:
-  - The source IP
-  - The destination IP
-  - The packet size
-  - Anything which could be observed from outside of the packet.
-- Your flow logs can be configured to log valid traffic, invalid traffic, or both
-- You can have flow logs sourced from a different VPC compared to the VPC where your Flow Logs are. However, the other VPC must be peered via VPC Peering and under your account via AWS Organizations.
-- You can customize your logs by tagging them.
-- Once you create a flow log, you cannot change its config. You must make a new one.
-- Not all IP traffic is monitored under VPC Flow Logs. The following is a list of things that are ignored by Flow Logs:
-  - Query requests for instance metadata
-  - DHCP traffic
-  - Query requests to the AWS DNS server
-
-
-
