@@ -51,6 +51,8 @@
 
 25. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#virtual-private-cloud-vpc"> Virtual Private Cloud (VPC)</a>
 
+26. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#simple-queuing-service-sqs"> Simple Queuing Service (SQS)</a>
+
 
 
 ## Introduction
