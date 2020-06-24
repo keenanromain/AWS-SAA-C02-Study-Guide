@@ -1,4 +1,5 @@
 # AWS-SAA-C02-Study-Guide
+These are the notes that I used to pass the AWS Certified Solutions Architect - Associate exam. I took the new exam, C02, as it tests for newer AWS technologies as part of the exam content. In order to pass, I studied the relevant <a href="https://acloud.guru/learn/aws-certified-solutions-architect-associate">A Cloud Guru</a> course twice and I took the Tutorials Dojo <a href="https://tutorialsdojo.com/courses/aws-certified-solutions-architect-associate-practice-exams/"> AWS Certified Solutions Architect Associate Practice Exams</a>. I also read many of the FAQs for the most critical services which are reccomended below.
 
 ## Table of Contents
 1. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#introduction">Introduction</a>
@@ -134,6 +135,8 @@ You can cover a lot of ground by skimming over what you already know or what you
   13. <a href="https://aws.amazon.com/fsx/windows/faqs/">Amazon FSx for Windows File Server FAQs</a>
 
   14. <a href="https://aws.amazon.com/fsx/lustre/faqs/">Amazon FSx for Lustre FAQs</a>
+  
+  15. <a href="https://aws.amazon.com/organizations/faqs/">AWS Organizations</a>
 
 ## Identity Access Management (IAM)
 
