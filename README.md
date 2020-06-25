@@ -54,6 +54,8 @@ These notes helped me pass the newer AWS Certified Solutions Architect - Associa
 
 26. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#simple-queuing-service-sqs"> Simple Queuing Service (SQS)</a>
 
+27. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#simple-workflow-service-swf"> Simple Workflow Service (SWF)</a>
+
 
 
 ## Introduction
@@ -1376,3 +1378,19 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
 - **SQS short-polling**: This polling technique will return immediately with either a message that’s already stored in the queue or empty-handed. 
 - The ReceiveMessageWaitTimeSeconds is the queue attribute that determines whether you are using Short or Long polling. By default, its value is zero which means it is using short-polling. If it is set to a value greater than zero, then it is long-polling.
 - Everytime you poll the queue, you incur a charge. So thoughtfully deciding on a polling strategy that fits your use case is important.
+
+## Simple Workflow Service
+
+### SWF Simplified
+SWF is a web service that makes it easy to coordinate work across distributed application components. SWF has a range of use cases including media processing, web app backends, business process workflows, and analytical pipelines.
+
+### SWF Key Details
+- SWF is a way of coordinating tasks between application and people. It is a service that combines digital and human-oriented workflows.
+- An example of a human-oriented workflow is the process in which Amazon warehouse workers find and ship your item as part of your Amazon order.
+- SWF provides a task-oriented API and ensures a task is assigned only once and is never duplicated. Using Amazon warehouse workers as an example again, this would make sense. Amazon wouldn’t want to send you the same item twice as they'd lose money.
+- The SWF pipeline is composed of three different worker applications that help to bring a job to completion:
+  - SWF Actors are workers that trigger the beginning of a workflow.
+  - SWF Deciders are workers that control the flow of the workflow once it's been started.
+  - SWF Activity Workers are the workers that actually carry out the task to completion.
+- With SWF, workflow executions can last up to one year compared to the 14 day maximum retention period for SQS.
+
