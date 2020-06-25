@@ -1379,7 +1379,7 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
 - The ReceiveMessageWaitTimeSeconds is the queue attribute that determines whether you are using Short or Long polling. By default, its value is zero which means it is using short-polling. If it is set to a value greater than zero, then it is long-polling.
 - Everytime you poll the queue, you incur a charge. So thoughtfully deciding on a polling strategy that fits your use case is important.
 
-## Simple Workflow Service
+## Simple Workflow Service (SWF)
 
 ### SWF Simplified
 SWF is a web service that makes it easy to coordinate work across distributed application components. SWF has a range of use cases including media processing, web app backends, business process workflows, and analytical pipelines.
