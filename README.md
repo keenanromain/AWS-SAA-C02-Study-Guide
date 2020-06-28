@@ -56,6 +56,7 @@ These notes helped me pass the newer AWS Certified Solutions Architect - Associa
 
 27. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#simple-workflow-service-swf"> Simple Workflow Service (SWF)</a>
 
+28. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#simple-notification-service-sns"> Simple Notification Service (SNS)</a>
 
 
 ## Introduction
@@ -1393,4 +1394,21 @@ SWF is a web service that makes it easy to coordinate work across distributed ap
   - SWF Deciders are workers that control the flow of the workflow once it's been started.
   - SWF Activity Workers are the workers that actually carry out the task to completion.
 - With SWF, workflow executions can last up to one year compared to the 14 day maximum retention period for SQS.
+
+## Simple Notification Service (SNS)
+
+### SNS Simplified
+Simple Notification Service is a pushed-based messaging service that provides a highly scalable, flexible, and cost-effective method to publish a custom messages to subscribers who wish to be informed about a certain topic.
+
+### SNS Key Details
+- SNS is mainly used to send alarms or alerts.
+- SNS provides topics for high-throughput, push-based, many-to-many messaging. 
+- Using Amazon SNS topics, your publisher systems can fan out messages to a large number of subscriber endpoints for parallel processing, including Amazon SQS queues, AWS Lambda functions, and HTTP/S webhooks. Additionally, SNS can be used to fan out notifications to end users using mobile push, SMS, and email. 
+- You can send these push notifications to Apple, Google, Fire OS, and Windows devices.
+- SNS allows you to group multiple recipients using topics. A topic is an access point for allowing recipients to dynamically subscribe for identical copies of the same notification.
+- One topic can support deliveries to multiple endpoint types. When you publish to a topic, SNS appropriately formats copies of that message to send to whichever kind of device.
+- To prevent messages being lost, messages are stored redundantly across multiple AZs.
+- There is no long or short polling involved with SNS due to the instantaneous pushing of messages
+- SNS has flexible message delivery over multiple transport protocols and has a simple API.
+
 
