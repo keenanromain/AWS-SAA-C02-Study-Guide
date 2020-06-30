@@ -60,6 +60,8 @@ These notes helped me pass the newer AWS Certified Solutions Architect - Associa
 
 29. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#kinesis"> Kinesis </a>
 
+30. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#lambda"> Lambda </a>
+
 
 ## Introduction
 
@@ -1437,6 +1439,39 @@ Amazon Kinesis makes it easy to collect, process, and analyze real-time, streami
 - The total capacity of a Kinesis stream is the sum of data within its constituent shards.
 - You can always increase the write capacity assigned to your shard table.
 
+## Lambda
+
+### Lambda Simplified
+AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume. With Lambda, you can run code for virtually any type of application or backend service - all with zero administration. You upload your code and Lambda takes care of everything required to run and scale your code with high availability. You can set up your code to be automatically triggered from other AWS services or be called directly from any web or mobile app.
+
+### Lambda Key Details
+- Lambda is a compute service where you upload your code as a function and AWS provisions the necessary details underneath the function so that the function executes successfully. 
+- AWS Lambda is the ultimate abstraction layer. You only worry about code, AWS does everything else.
+- Lambda supports Go, Python, C#, PowerShell, Node.js, and Java
+- Each Lambda function maps to one request. Lambda scales horizontally automatically.
+- Lambda is priced on the number of requests and the first one million are free. Each million afterwards is $0.20.
+- Lambda is also priced on the runtime of your code, rounded up to the nearest 100mb, and the amount of memory your code allocates.
+- Lambda works globally.
+- Lambda functions can trigger other Lambda functions.
+- You can use Lambda as an event-driven service that executes based on changes in your AWS ecosystem.
+- You can also use Lambda as a handler in response to HTTP events via API calls over the AWS SDK or API Gateway.
+- A Lambda function can be invoked internally by:
+![Screen Shot 2020-06-30 at 9 19 33 AM](https://user-images.githubusercontent.com/13093517/86130894-df35a000-bab2-11ea-9908-acbe3e8d4824.png)
+- A Lambda function can be invoked externally by:
+![Screen Shot 2020-06-30 at 9 21 16 AM](https://user-images.githubusercontent.com/13093517/86131022-1310c580-bab3-11ea-96b8-ced9f7496f0e.png)
+- When you create or update Lambda functions that use environment variables, AWS Lambda encrypts them using the AWS Key Management Service. When your Lambda function is invoked, those values are decrypted and made available to the Lambda code.
+- The first time you create or update Lambda functions that use environment variables in a region, a default service key is created for you automatically within AWS KMS. This key is used to encrypt environment variables. However, if you wish to use encryption helpers and use KMS to encrypt environment variables after your Lambda function is created, you must create your own AWS KMS key and choose it instead of the default key. 
+- To enable your Lambda function to access resources inside a private VPC, you must provide additional VPC-specific configuration information that includes VPC subnet IDs and security group IDs. AWS Lambda uses this information to set up elastic network interfaces (ENIs) that enable your function to connect securely to other resources within a private VPC.
+
+- AWS X-Ray allows you to debug your Lambda function in case of unexpected behavior.
 
 
-
+### Lambda@Edge
+- You can use Lambda@Edge to allow your Lambda functions to customize the content that CloudFront delivers.
+- It adds compute capacity to your CloudFront edge locations and allows you to execute the functions in AWS locations closer to your application's viewers. The functions run in response to CloudFront events, without provisioning or managing servers. You can use Lambda functions to change CloudFront requests and responses at the following points:
+  - After CloudFront receives a request from a viewer (viewer request)
+  - Before CloudFront forwards the request to the origin (origin request)
+  - After CloudFront receives the response from the origin (origin response)
+  - Before CloudFront forwards the response to the viewer (viewer response)
+![Screen Shot 2020-06-30 at 9 27 48 AM](https://user-images.githubusercontent.com/13093517/86131713-fc1ea300-bab3-11ea-8190-1d13128bee92.png)
+- You'd use Lambda@Edge to simplify and reduce origin infrastructure.
