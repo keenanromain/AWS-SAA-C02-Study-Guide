@@ -1455,7 +1455,9 @@ AWS Lambda lets you run code without provisioning or managing servers. You pay o
 - Lambda functions can trigger other Lambda functions.
 - You can use Lambda as an event-driven service that executes based on changes in your AWS ecosystem.
 - You can also use Lambda as a handler in response to HTTP events via API calls over the AWS SDK or API Gateway.
+
 ![Screen Shot 2020-06-30 at 9 19 33 AM](https://user-images.githubusercontent.com/13093517/86130894-df35a000-bab2-11ea-9908-acbe3e8d4824.png)
+
 - When you create or update Lambda functions that use environment variables, AWS Lambda encrypts them using the AWS Key Management Service. When your Lambda function is invoked, those values are decrypted and made available to the Lambda code.
 - The first time you create or update Lambda functions that use environment variables in a region, a default service key is created for you automatically within AWS KMS. This key is used to encrypt environment variables. However, if you wish to use encryption helpers and use KMS to encrypt environment variables after your Lambda function is created, you must create your own AWS KMS key and choose it instead of the default key. 
 - To enable your Lambda function to access resources inside a private VPC, you must provide additional VPC-specific configuration information that includes VPC subnet IDs and security group IDs. AWS Lambda uses this information to set up elastic network interfaces (ENIs) that enable your function to connect securely to other resources within a private VPC.
@@ -1470,5 +1472,7 @@ AWS Lambda lets you run code without provisioning or managing servers. You pay o
   - Before CloudFront forwards the request to the origin (origin request)
   - After CloudFront receives the response from the origin (origin response)
   - Before CloudFront forwards the response to the viewer (viewer response)
+  
 ![Screen Shot 2020-06-30 at 9 27 48 AM](https://user-images.githubusercontent.com/13093517/86131713-fc1ea300-bab3-11ea-8190-1d13128bee92.png)
+
 - You'd use Lambda@Edge to simplify and reduce origin infrastructure.
