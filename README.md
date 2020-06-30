@@ -62,6 +62,8 @@ These notes helped me pass the newer AWS Certified Solutions Architect - Associa
 
 30. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#lambda"> Lambda </a>
 
+31. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#api-gateway"> API Gateway </a>
+
 
 ## Introduction
 
@@ -1476,6 +1478,7 @@ AWS Lambda lets you run code without provisioning or managing servers. You pay o
 ![Screen Shot 2020-06-30 at 9 27 48 AM](https://user-images.githubusercontent.com/13093517/86131713-fc1ea300-bab3-11ea-8190-1d13128bee92.png)
 
 - You'd use Lambda@Edge to simplify and reduce origin infrastructure.
+
 
 ## API Gateway
 
