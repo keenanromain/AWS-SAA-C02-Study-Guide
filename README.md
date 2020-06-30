@@ -1521,6 +1521,6 @@ API Gateway is a fully managed service for developers that makes it easy to buil
 - CORS is enforced on the client (web browser) side.
 - A common example of this issue is if you are using a site with Javascript/AJAX for multiple domains under API Gateway. You would need to ensure that CORS is enabled.
 - CORS does not prevent XSS attacks, but does protect against CSRF attacks. What it does is controls who can use the data served by your endpoint. So if you have a weather website with callbacks to an API that checks the forecast, you could stop someone from writing a website that serves JavaScript calls into your API when they navigate to your website.
-- When someone attempts the malicious calls, your browser will read the CORS headers, and it will not allow the request to take place, protecting you from the attack.
+- When someone attempts the malicious calls, your browser will read the CORS headers and it will not allow the request to take place thus protecting you from the attack.
 
 
