@@ -1536,7 +1536,7 @@ CloudFormation is an automated tool for provisioning entire cloud-based environm
 - The templates are written in YAML or JSON
 - A full CloudFormation setup is called a stack.
 - Once a template is created, AWS will make the corresponding stack. This is the living and active representation of said template. One template can create an infinite number of stacks.
-- The resources field is the only mandatory field when creating a CloudFormation template
+- The *Resources* field is the only mandatory field when creating a CloudFormation template
 - Rollback triggers allow you to monitor the creation of the stack as it's built. If an error occurs, you can trigger a rollback as the name implies.
 - <a href="https://aws.amazon.com/quickstart/?quickstart-all.sort-by=item.additionalFields.updateDate&quickstart-all.sort-order=desc">AWS Quick Starts is composed of many high-quality CloudFormation stacks designed by AWS engineers.</a>
 - An example template that would spin up an EC2 instance:
