@@ -397,7 +397,7 @@ The AWS CDN service is called CloudFront. It serves up cached content and assets
 - There are two different types of distributions: 
   - **Web Distribution**: web sites, normal cached items, etc
   - **RTMP**: streaming content, adobe, etc
-- Edge locations are *NOT* just read only. They can be written to which will then return the write value back to the origin.
+- Edge locations are not just read only. They can be written to which will then return the write value back to the origin.
 - Cached content can be manually invalidated or cleared beyond the TTL, but this does incur a cost.
 - You can invalidate the distribution of certain objects or entire directories so that content is loaded directly from the origin everytime. Invalidating content is also helpful when debugging if content pulled from the origin seems correct, but pulling that same content from an edge location seems incorrect.
 - You can set up a failover for the origin by creating an origin group with two origins inside. One origin will act as the primary and the other as the secondary. CloudFront will automatically switch between the two when the primary origin fails.
