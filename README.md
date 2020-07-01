@@ -144,7 +144,7 @@ You can cover a lot of ground by skimming over what you already know or what you
 
   9. <a href="https://aws.amazon.com/elasticloadbalancing/faqs/"> Elastic Load Balancing FAQs</a>
 
-  10. <a href="https://aws.amazon.com/api-gateway/faqs/"> AWS API Gateway FAQs</a>
+  10. <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html"> Elastic network interfaces</a>
 
   11. <a href="https://aws.amazon.com/storagegateway/faqs/"> AWS Storage Gateway FAQs</a>
 
