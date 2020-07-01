@@ -1599,7 +1599,7 @@ The following section includes services, features, and techniques that may appea
 ### What is AWS Macie?
 - To understand Macie, it is important to understand PII or Personally Identifiable Information:
   - Personal data used to establish an individual’s identity which can be exploited
-  - Examples: SS #, phone #, home address, email address, D.O.B, passport #, etc.
+  - Examples: Social Security number, phone number, home address, email address, D.O.B, passport number, etc.
 - Amazon Macie is an ML-powered security service that helps you prevent data loss by automatically discovering, classifying, and protecting sensitive data stored in Amazon S3. Amazon Macie uses machine learning to recognize sensitive data such as personally identifiable information (PII) or intellectual property, assigns a business value, and provides visibility into where this data is stored and how it is being used in your organization.
 - You can be informed of detections via the Macie dashboards, alerts, or reporting.
 - Macie can also analyze CloudTrail logs to see who might have interacted with sensitive data.
