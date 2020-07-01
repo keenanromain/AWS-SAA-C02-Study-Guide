@@ -1603,3 +1603,13 @@ The following section includes services, features, and techniques that may appea
 - A media transcoder in the cloud. Basically, it is a service that converts media files from their original format to the media format specified whether for phones, tablets, PCs, etc.
 - Because of the built-in support for different media types, you can trust that the resulting quality will be good.
 - With Elastic Transcoder, you pay per minute of the transcode job and the resolution of the finished work.
+
+### What is AWS Directory Service?
+- AWS Directory Service provides multiple ways to use Amazon Cloud Directory and Microsoft Active Directory (AD) with other AWS services. 
+- Directories store information about users, groups, and devices, and administrators use them to manage access to information and resources. 
+- AWS Directory Service provides multiple directory choices for customers who want to use existing Microsoft AD or Lightweight Directory Access Protocol (LDAP)–aware applications in the cloud. It also offers those same choices to developers who need a directory to manage users, groups, devices, and access.
+
+### What is AWS STS?
+- AWS Security Token Service (AWS STS) is the service that you can use to create and provide trusted users with temporary security credentials that can control access to your AWS resources. 
+- Temporary security credentials work almost identically to the long-term access key credentials that your IAM users can use.
+- Temporary security credentials are short-term, as the name implies. They can be configured to last for anywhere from a few minutes to several hours. After the credentials expire, AWS no longer recognizes them or allows any kind of access from API requests made with them.
