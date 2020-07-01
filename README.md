@@ -1662,6 +1662,12 @@ The following section includes services, features, and techniques that may appea
 - The idea of the pilot light is an analogy that comes from the gas heater. In a gas heater, a small flame that’s always on and can quickly ignite the entire furnace to heat up a house. This scenario is similar to a backup-and-restore scenario.
 - For example, with AWS you can maintain a pilot light by configuring and running the most critical core elements of your system in AWS. When the time comes for recovery, you can rapidly provision a full-scale production environment around the critical core that has always been running.
 
+### What are Blue-Green deployments?
+- One of the challenges with automating deployments is the cut-over from the final stage of testing to live production. You usually need to do this quickly in order to minimize downtime.
+- The Blue-Green deployment approach does this by ensuring you have two production environments, as identical as possible. At any time one of them, let's say blue for the example, is live. As you prepare a new release of your software you do your final stage of testing in the green environment. Once the software is working in the green environment, you switch the router so that all incoming requests go to the green environment - the blue one is now idle.
+- Blue-green deployment also gives you a rapid way to rollback - if anything goes wrong you switch the router back to your blue environment.
+- CloudFormation and CodeDeploy (AWS's version of Jenkins) both support this deployment technique.
+
 ### What is Amazon Data Lifecycle Manager?
 - You can use Amazon Data Lifecycle Manager (Amazon DLM) to automate the creation, retention, and deletion of snapshots taken to back up your Amazon EBS volumes. 
 - Automating snapshot management helps you to:
@@ -1683,3 +1689,13 @@ The following section includes services, features, and techniques that may appea
 - You can easily move from any message broker to Amazon MQ because you don’t have to rewrite any messaging code in your applications.
 - Amazon MQ is suitable for enterprise IT pros, developers, and architects who are managing a message broker themselves–whether on-premises or in the cloud–and want to move to a fully managed cloud service without rewriting the messaging code in their applications.
 
+### What is AWS Config?
+- AWS Config is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources. Config continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations.
+- With Config, you can review changes in configurations and relationships between AWS resources, dive into detailed resource configuration histories, and determine your overall compliance against the configurations specified in your internal guidelines. This enables you to simplify compliance auditing, security analysis, change management, and operational troubleshooting.
+- AWS Config allows you to do the following: ·        
+  - Evaluate your AWS resource configurations for desired settings. ·         
+  - Get a snapshot of the current configurations of the supported resources that are associated with your AWS account. ·        
+  - Retrieve configurations of one or more resources that exist in your account. ·       
+  - Retrieve historical configurations of one or more resources. ·     
+  - Receive a notification whenever a resource is created, modified, or deleted.     
+  - View relationships between resources. For example, you might want to find all resources that use a particular security group.
