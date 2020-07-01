@@ -64,7 +64,12 @@ These notes helped me pass the newer AWS Certified Solutions Architect - Associa
 
 31. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#api-gateway"> API Gateway </a>
 
-32. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#cloudformation"> CloudFormation </a>
+32. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#cloudformation">CloudFormation </a>
+
+33. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#cloudformation">ElasticBeanstalk</a>
+
+34. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#aws-organizations">AWS Organizations</a>
+
 
 
 ## Introduction
@@ -1547,5 +1552,27 @@ CloudFormation is an automated tool for provisioning entire cloud-based environm
 - A template can be updated and then used to update the same stack.
 
 
+## ElasticBeanstalk
 
+### ElasticBeanstalk Simplified
+ElasticBeanstalk is another way to script out your provisioning process by deploying existing applications to the cloud. ElasticBeanstalk is aimed toward developers who know very little about the cloud and want the simplest way of deploying their code.
+
+### ElasticBeanstalk Key Details
+- Just upload your application and ElasticBeanstalk will take care of the underlying infrastructure.
+- ElasticBeanstalk has capacity provisioning, meaning you can use it with autoscaling from the get-go.
+ElasticBeanstalk applies updates to your application by having a duplicate ready with the already updated version. This duplicate is then swapped with the original. This is done as a preventative measure in case your updated application fails. If the app does fail, ElasticBeanstalk will switch back to the original copy with the older version and there will be no downtime experienced by the users who are using your application. 
+- You can use ElasticBeanstalk to even host Docker as Elastic Beanstalk supports the deployment of web applications from containers. With Docker containers, you can define your own runtime environment, your own platform, programming language, and any application dependencies (such as package managers or tools) that aren't supported by other platforms. ElasticBeanstalk makes it easy to deploy Docker as Docker containers are already self-contained and include all the configuration information and software required to run. 
+
+## AWS Organizations
+
+### AWS Organizations Simplified
+AWS Organizations is an account management service that enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage.
+
+### AWS Organizations Key Details
+- Best practices is to use the root account to manage billing only with separate accounts used to deploy resources.
+- The point of AWS Organizations is to deploy permissions to the separate accounts underneath the root account and have those policies trickle down. AWS Organizations helps you centrally govern your environment as you grow and scale your workloads on AWS. 
+- You can use organizational units (OUs) to group similar accounts together to administer as a single unit. This greatly simplifies the management of your accounts. 
+- You can attach a policy-based control to an OU, and all accounts within the OU automatically inherit the policy. So if your company's developers all have their own sandbox AWS account, they can be treated as a single unit and be restricted by the same policies.
+- With AWS Organizations, we can enable or disable services using Service Control Policies (SCPs) broadly on organizational units or more specifically on individual accounts
+- Use SCPs with AWS Organizations to establish access controls so that all IAM principals (users and roles) adhere to them. With SCPs, you can specify *Conditions*, *Resources*, and *NotAction* to deny access across accounts in your organization or organizational unit. For example, you can use SCPs to restrict access to specific AWS Regions, or prevent deleting common resources, such as an IAM role used for your central administrators.
 
