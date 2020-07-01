@@ -138,13 +138,13 @@ You can cover a lot of ground by skimming over what you already know or what you
 
   6. <a href="https://aws.amazon.com/ebs/faqs/">Amazon EBS FAQs</a>
 
-  7. <a href="https://aws.amazon.com/s3/faqs/">Amazon S3 FAQs</a>
+  7. <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html"> Elastic network interfaces</a>
 
-  8. <a href="https://aws.amazon.com/route53/faqs/"> Amazon Route 53 FAQs</a>
-
+  8. <a href="https://aws.amazon.com/s3/faqs/">Amazon S3 FAQs</a> 
+  
   9. <a href="https://aws.amazon.com/elasticloadbalancing/faqs/"> Elastic Load Balancing FAQs</a>
 
-  10. <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html"> Elastic network interfaces</a>
+  10. <a href="https://aws.amazon.com/route53/faqs/"> Amazon Route 53 FAQs</a>
 
   11. <a href="https://aws.amazon.com/storagegateway/faqs/"> AWS Storage Gateway FAQs</a>
 
@@ -430,6 +430,7 @@ Snowball is a giant physical disk that is used for migrating high quantities of 
 - As a rule of thumb, if it takes more than one week to upload your data to AWS using the spare capacity of your existing internet connection, then you should consider using Snowball. 
 - For example, if you have a 100 Mb connection that you can solely dedicate to transferring your data and you need to transfer 100 TB of data in total, it will take more than 100 days for the transfer to complete over that connection. You can make the same transfer in about a week by using multiple Snowballs.
 - Here is a reference for when Snowball should be considered based on the number of days it would take to make the same transfer over an internet connection:
+
 ![Screen Shot 2020-06-07 at 10 53 22 PM](https://user-images.githubusercontent.com/13093517/83988618-c271d680-a911-11ea-9594-a82f690a786b.png)
 
 ### Snowball Edge and Snowmobile:
