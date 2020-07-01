@@ -1675,3 +1675,11 @@ The following section includes services, features, and techniques that may appea
 - You can then create an Elastic IP address from your address pool and use it with your AWS resources, such as EC2 instances, NAT gateways, and Network Load Balancers. This is also called "Bring Your Own IP Addresses (BYOIP)".
 - To ensure that only you can bring your address range to your AWS account, you must authorize Amazon to advertise the address range and provide proof that you own the address range.
 - The benefit of ROA is that you can migrate pre-existing applications to AWS without requiring your partners and customers to change their IP address whitelists.  
+
+### What is Amazon MQ?
+- Amazon MQ is a managed message broker service that makes it easy to set up and operate message brokers in the cloud.
+- The service is used when migrating services and apps into the cloud from your on-prem which is how it differs from Amazon SQS.
+- Amazon MQ supports durability-optimized brokers backed by Amazon EFS to support high availability and message durability, and throughput-optimized brokers backed by Amazon EBS to support high-volume applications that require low latency and high throughput.
+- You can easily move from any message broker to Amazon MQ because you don’t have to rewrite any messaging code in your applications.
+- Amazon MQ is suitable for enterprise IT pros, developers, and architects who are managing a message broker themselves–whether on-premises or in the cloud–and want to move to a fully managed cloud service without rewriting the messaging code in their applications.
+
