@@ -207,7 +207,7 @@ IAM Policies are separated from the other entities above because they are not an
 ### S3 Simplified:
 S3 provides developers and IT teams with secure, durable, and highly-scalable object storage. Object storage, as opposed to block storage, is a general term that refers to data composed of three things:
 
-  1.) the data itself that you want to store
+  1.) the data that you want to store
 
   2.) an expandable amount of metadata
 
@@ -221,7 +221,7 @@ This makes it a perfect candidate to host files or directories and a poor candid
 Data uploaded into S3 is spread across multiple files and facilities. The files uploaded into S3 have an upper-bound of 5TB per file and the number of files that can be uploaded is virtually limitless. S3 buckets, which contain all files, are named in a universal namespace so uniqueness is required. All successful uploads will return an HTTP 200 response.
 
 ### S3 Key Details:
-- Objects (regular files or directories) are stored in S3 with a key, value, version ID, and metadata. They can also contain subresources for access control lists which are basically permissions for the object itself or they can contain torrents.
+- Objects (regular files or directories) are stored in S3 with a key, value, version ID, and metadata. They can also contain torrents and subresources for access control lists which are basically permissions for the object itself.
 - The data consistency model for S3 ensures immediate read access for new objects after the initial PUT requests. These new objects are introduced into AWS for the first time and thus do not need to be updated anywhere so they are available immediately.
 - The data consistency model for S3 ensures eventual read consistency for PUTS and DELETES of already existing objects. This is because the change takes a little time to propagate across the entire Amazon network.
 - Because of the eventual consistency model when updating existing objects in S3, those updates might not be immediately reflected. As object updates are made to the same key, an older version of the object might be provided back to the user when the next read request is made. 
@@ -257,7 +257,7 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 - Bucket policies secure data at the bucket level while access control lists secure data at the more granular object level.
 - By default, all newly created buckets are private.
 - S3 can be configured to create access logs which can be shipped into another bucket in the current account or even a separate account all together. This makes it easy to monitor who accesses what inside S3.
-- There are 3 different ways to share S3 buckets across accounts:
+- There are 3 different ways to share S3 buckets across AWS accounts:
 
   1.) For programmatic access only, use IAM & Bucket Policies to share entire buckets
 
@@ -266,14 +266,14 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
   3.) For access via the console & the terminal, use cross-account IAM roles
 
 - S3 is a great candidate for static website hosting. When you enable static website hosting for S3 you need both an index.html file and an error.html file. Static website hosting creates a website endpoint that can be accessed via the internet.
-- When you upload new files, they will not inherit the properties of the previous version. 
+- When you upload new files and have versioning enabled, they will not inherit the properties of the previous version. 
 
 ### S3 Storage Classes:
-**S3 Standard** - 99.99% availability and 11 x 9s durability. Stored redundantly across multiple devices in multiple facilities and is designed to withstand the failure of 2 concurrent data centers.
+**S3 Standard** - 99.99% availability and 11 9s durability. Data in this class is stored redundantly across multiple devices in multiple facilities and is designed to withstand the failure of 2 concurrent data centers.
 
-**S3 Infrequently Accessed (IA)** - For data that is needed less often, but when it is needed the data should be available quickly. Storage fee is cheaper, but charged for retrieval.
+**S3 Infrequently Accessed (IA)** - For data that is needed less often, but when it is needed the data should be available quickly. The storage fee is cheaper, but you are charged for retrieval.
 
-**S3 One Zone Infrequently Accessed (an improvement of the legacy RRS / Reduced Redundancy Storage)** -  For when you want the lower costs of IA, but do not require high availability. This is even cheaper because of it.
+**S3 One Zone Infrequently Accessed (an improvement of the legacy RRS / Reduced Redundancy Storage)** -  For when you want the lower costs of IA, but do not require high availability. This is even cheaper because of the lack of HA.
 
 **S3 Intelligent Tiering** - Uses built-in ML/AI to determine the most cost-effective storage class and then automatically moves your data to the appropriate tier. It does this without operational overhead or performance impact.
 
@@ -283,7 +283,7 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
     Standard: 3 - 5 hours to restore.
     Bulk: 5 - 12 hours. This option has the lowest cost and is good for a large set of data.
 
-The Expedited duration listed above could possibly be longer during rare situations of unusually high demand. If it is absolutely critical to have quick access to your Glacier data under all circumstances, you must purchase Provisioned Capacity. Provisioned Capacity guarentees that Expedited retrievals always work within the time constraints of 1 to 5 minutes.
+The Expedited duration listed above could possibly be longer during rare situations of unusually high demand across all of AWS. If it is absolutely critical to have quick access to your Glacier data under all circumstances, you must purchase *Provisioned Capacity*. Provisioned Capacity guarentees that Expedited retrievals always work within the time constraints of 1 to 5 minutes.
 
 **S3 Deep Glacier** - The lowest cost S3 storage where retrieval can take 12 hours.
 
@@ -303,29 +303,29 @@ You can encrypted on the AWS supported server-side in the following ways:
 
 ### S3 Versioning:
 - When versioning is enabled, S3 stores all versions of an object including all writes and even deletes.
-- It is a great feature for implictly backuping content and easy rollbacks in case of human error.
-- It can be thought of as analogous to Git
-- Once versioning is enabled on a bucket, it cannot be disabled - only suspended
-- Versioning integrates w/ lifecycle rules so you can set rules to expire or migrate data based on their version
-- Versioning also has MFA delete capability to provide an additional layer of security
+- It is a great feature for implictly backing up content and for easy rollbacks in case of human error.
+- It can be thought of as analogous to Git.
+- Once versioning is enabled on a bucket, it cannot be disabled - only suspended.
+- Versioning integrates w/ lifecycle rules so you can set rules to expire or migrate data based on their version.
+- Versioning also has MFA delete capability to provide an additional layer of security.
 
 ### S3 Lifecycle Management:
-- Automates the moving of objects between the different storage tiers
-- Can be used in conjunction with versioning
-- Lifecycle rules can be applied to both current and previous versions of an object
+- Automates the moving of objects between the different storage tiers.
+- Can be used in conjunction with versioning.
+- Lifecycle rules can be applied to both current and previous versions of an object.
 
 ### S3 Cross Region Replication:
-- Cross region replication only work if versioning is enabled
+- Cross region replication only work if versioning is enabled.
 - When cross region replication is enabled, no pre-existing data is transferred. Only new uploads into the original bucket are replicated. All subsequent updates are replicated.
 - When you replicate the contents of one bucket to another, you can actually change the ownership of the content if you want. You can also change the storage tier of the new bucket with the replicated content.
-- When files are deleted in the original bucket (via a delete marker as versioning prevents true deletions), those deletes are not replicated
+- When files are deleted in the original bucket (via a delete marker as versioning prevents true deletions), those deletes are not replicated.
 - <a href="https://aws.amazon.com/solutions/cross-region-replication-monitor/">Cross Region Replication Overview</a>
 - <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#replication-what-is-not-replicated ">What is and isn’t replicated such as encrypted objects, deletes, items in glacier, etc.</a>
 
 ### S3 Transfer Acceleration:
-- Transfer acceleration makes use of the CloudFront network by sending or receiving data at CDN points of presence (called edge locations) rather than slower uploads or downloads at the origin
+- Transfer acceleration makes use of the CloudFront network by sending or receiving data at CDN points of presence (called edge locations) rather than slower uploads or downloads at the origin.
 - This is accomplished by uploading to a distinct URL for the edge location instead of the bucket itself. This is then transferred over the AWS network backbone at a much faster speed.
-- <a href="https://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html">You can test transfer acceleration speed directly in comparison to regular uploads</a>
+- <a href="https://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html">You can test transfer acceleration speed directly in comparison to regular uploads.</a>
 
 ### S3 Event Notications:
 The Amazon S3 notification feature enables you to receive and send notifications when certain events happen in your bucket. To enable notifications, you must first configure the events you want Amazon S3 to publish (new object added, old object deleted, etc.) and the destinations where you want Amazon S3 to send the event notifications. Amazon S3 supports the following destinations where it can publish events:
