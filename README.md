@@ -70,6 +70,8 @@ These notes helped me pass the newer AWS Certified Solutions Architect - Associa
 
 34. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#aws-organizations">AWS Organizations</a>
 
+35. <a href="https://github.com/keenanromain/AWS-SAA-C02-Study-Guide#miscellaneous">Miscellaneous</a>
+
 
 
 ## Introduction
@@ -1576,3 +1578,18 @@ AWS Organizations is an account management service that enables you to consolida
 - With AWS Organizations, we can enable or disable services using Service Control Policies (SCPs) broadly on organizational units or more specifically on individual accounts
 - Use SCPs with AWS Organizations to establish access controls so that all IAM principals (users and roles) adhere to them. With SCPs, you can specify *Conditions*, *Resources*, and *NotAction* to deny access across accounts in your organization or organizational unit. For example, you can use SCPs to restrict access to specific AWS Regions, or prevent deleting common resources, such as an IAM role used for your central administrators.
 
+## Miscellaneous
+
+The following section includes services, features, and techniques that may appear on the exam. They are also extremely useful to know as an engineer using AWS. If the following does appear on the exam, it will not be tested in depth which is why they are grouped under the **Miscellaneous** tag. I encourage learning more about each item in depth for your career's benefit, but it is not necessary for the exam.
+
+### What is Athena?
+- Athena is an interactive query service which allows you to interact and query data from S3 using standard SQL commands. This is beneficial for programmatic querying for the average developer. It is serverless, requires no provisioning, and you pay per query and per TB scanned. You basically turn S3 into a SQL supported database by using Athena. 
+- Example use cases:
+  - Query logs that are dumped into S3 buckets as an alternative or supplement to the ELK stack
+  - Setting queries to run business reports based off of the data regularly entering S3
+  - Running queries on click-stream data to have further insight of customer behavior
+
+### What is AWS Macie?
+- To understand Macie, it is important to understand PII or Personally Identifiable Information:
+  - Personal data used to establish an individual’s identity which can be exploited
+  - Examples: SS #, phone #, home address, email address, D.O.B, passport #, etc.
