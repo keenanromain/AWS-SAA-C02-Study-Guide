@@ -1580,7 +1580,7 @@ AWS Organizations is an account management service that enables you to consolida
 
 ## Miscellaneous
 
-The following section includes services, features, and techniques that may appear on the exam. They are also extremely useful to know as an engineer using AWS. If the following does appear on the exam, it will not be tested in depth which is why they are grouped under the **Miscellaneous** tag. I encourage learning more about each item in depth for your career's benefit, but it is not necessary for the exam.
+The following section includes services, features, and techniques that may appear on the exam. They are also extremely useful to know as an engineer using AWS. If the following items do appear on the exam, they will not be tested in detail. You'll just have to know what the meaning is behind the name. It is a great idea to learn each item in depth for your career's benefit, but it is not necessary for the exam.
 
 ### What is AWS Resource Access Manager?
 - AWS Resource Access Manager (RAM) is a service that enables you to easily and securely share AWS resources with any AWS account or within your AWS Organization. You can share AWS Transit Gateways, Subnets, AWS License Manager configurations, and Amazon Route 53 Resolver rules resources with RAM.
