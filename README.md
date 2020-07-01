@@ -1593,3 +1593,13 @@ The following section includes services, features, and techniques that may appea
 - To understand Macie, it is important to understand PII or Personally Identifiable Information:
   - Personal data used to establish an individual’s identity which can be exploited
   - Examples: SS #, phone #, home address, email address, D.O.B, passport #, etc.
+- Amazon Macie is an ML-powered security service that helps you prevent data loss by automatically discovering, classifying, and protecting sensitive data stored in Amazon S3. Amazon Macie uses machine learning to recognize sensitive data such as personally identifiable information (PII) or intellectual property, assigns a business value, and provides visibility into where this data is stored and how it is being used in your organization.
+- You can be informed of detections via the Macie dashboards, alerts, or reporting.
+- Macie can also analyze CloudTrail logs to see who might have interacted with sensitive data.
+- Macie continuously monitors data access activity for anomalies, and delivers alerts when it detects risk of unauthorized access or inadvertent data leaks. 
+- Macie has ability to detect global access permissions inadvertently being set on sensitive data, detect uploading of API keys inside source code, and verify sensitive customer data is being stored and accessed in a manner that meets their compliance standards.
+
+### What is Elastic Transcoder?
+- A media transcoder in the cloud. Basically, it is a service that converts media files from their original format to the media format specified whether for phones, tablets, PCs, etc.
+- Because of the built-in support for different media types, you can trust that the resulting quality will be good.
+- With Elastic Transcoder, you pay per minute of the transcode job and the resolution of the finished work.
