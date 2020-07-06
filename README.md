@@ -353,6 +353,7 @@ The Amazon S3 notification feature enables you to receive and send notifications
 
 ### S3 Multipart Upload:
 - Multipart upload allows you to upload a single object as a set of parts. Each part is a contiguous portion of the object's data. You can upload these object parts independently and in any order. 
+- Multipart uploads are recommended for files over 100 MB and is *the only way* to upload files over 5 GB. It achieves functionality by uploading your data in parallel to boost efficiency.
 - If transmission of any part fails, you can retransmit that part without affecting other parts. After all parts of your object are uploaded, Amazon S3 assembles these parts and creates the object.
 - Possible reasons for why you would want to use Multipart upload:
   - Multipart upload delivers the ability to begin an upload before you know the final object size.
@@ -360,6 +361,7 @@ The Amazon S3 notification feature enables you to receive and send notifications
   - Multipart upload delivers the ability to pause and resume object uploads.
   - Multipart upload delivers quick recovery from network issues.
 - You can use an AWS SDK to upload an object in parts. Alternatively, you can perform the same action via the AWS CLI.
+- You can also parallelize downloads from S3 using **byte-range fetches**. If there's a failure during the download, the failure is localized just to the specfic byte range and not the whole object.
 
 ### S3 Pre-signed URLs:
 - All S3 objects are private by default, however the object owner of a private bucket with private objects can optionally share those objects with without having to change the permissions of the bucket to be public.
@@ -383,6 +385,7 @@ The Amazon S3 notification feature enables you to receive and send notifications
   - Without S3 Select, you would need to download, decompress and process the entire CSV to get the data you needed. 
   - With S3 Select, you can use a simple SQL expression to return only the data from the store you’re interested in, instead of retrieving the entire object. 
 - By reducing the volume of data that has to be loaded and processed by your applications, S3 Select can improve the performance of most applications that frequently access data from S3 by up to 400% because you’re dealing with significantly less data.
+- You can also use S3 Select for Glacier.
 
 
 ## CloudFront
