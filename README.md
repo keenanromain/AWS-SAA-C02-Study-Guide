@@ -961,6 +961,14 @@ Amazon DynamoDB is a key-value and document database that delivers single-digit 
 - With triggers, you can build applications that react to data modifications in DynamoDB tables.
 - Whenever an application creates, updates, or deletes items in the table, DynamoDB Streams writes a stream record with the primary key attribute(s) of the items that were modified. A stream record contains information about a data modification to a single item in a DynamoDB table. You can configure the stream so that the stream records capture additional information, such as the "before" and "after" images of modified items.
 
+### DynamoDB Global Tables
+- Global Tables is a multi-region, multi-master replication solution for fast local performance of globally distributed apps.
+- Global Tables replicates your Amazon DynamoDB tables automatically across your choice of AWS regions.
+- It is based on DynamoDB streams and is multi-region redundant for data recovery or high availability purposes. Application failover is as simple as redirecting your application’s DynamoDB calls to another AWS region.
+- Global Tables eliminates the difficult work of replicating data between regions and resolving update conflicts, enabling you to focus on your application’s business logic. You do not need to rewrite your applications to make use of Global Tables. 
+- Replication latency with Global Tables is typically under one second.
+
+
 ## Redshift
 
 ### Redshift Simplified:
