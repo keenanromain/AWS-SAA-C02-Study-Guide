@@ -948,8 +948,11 @@ Amazon DynamoDB is a key-value and document database that delivers single-digit 
 - Amazon DynamoDB Accelerator (DAX) is a fully managed, highly available, in-memory cache that can reduce Amazon DynamoDB response times from milliseconds to microseconds, even at millions of requests per second.
 - With DAX, your applications remain fast and responsive, even when unprecedented request volumes come your way. There is no tuning required. 
 - DAX lets you scale on-demand out to a ten-node cluster, giving you millions of requests per second.
+- DAX does more than just increase read performance by having write through cache. This improves write performance as well.
 - Just like DynamoDB, DAX is fully managed. You no longer need to worry about management tasks such as hardware or software provisioning, setup and configuration, software patching, operating a reliable, distributed cache cluster, or replicating data over multiple instances as you scale.
+- This means there is no need for developers to manage the caching logic. DAX is completely compatible with existing DynamoDB API calls.
 - DAX enables you to provision one DAX cluster for multiple DynamoDB tables, multiple DAX clusters for a single DynamoDB table or somewhere in between giving you maximal flexibility.
+- DAX is designed for HA so in the event of a failure of one AZ, it will fail over to one of its replicas in another AZ. This is also managed automatically. 
 
 ### DynamoDB Streams:
 - A DynamoDB stream is an ordered flow of information about changes to items in an Amazon DynamoDB table. When you enable a stream on a table, DynamoDB captures information about every modification to data items in the table.
