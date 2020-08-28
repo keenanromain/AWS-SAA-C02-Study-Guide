@@ -108,13 +108,13 @@ Go through the course you purchased as part of Step 1. twice. The first time sho
 
 *Domain 2: Design High-Performing Architectures*
 
-  2.1 - Identify elastic and scalable computesolutions for a workload
+  2.1 - Identify elastic and scalable **compute** solutions for a workload
 
-  2.2 - Select high-performingand scalable storage solutions for a workload
+  2.2 - Select high-performing and scalable **storage** solutions for a workload
 
-  2.3 - Select high-performingnetworking solutions for a workload
+  2.3 - Select high-performing **networking** solutions for a workload
 
-  2.4 - Choose high-performingdatabase solutions for a workload
+  2.4 - Choose high-performing **database** solutions for a workload
 
 
 *Domain 3: Design Secure Applications and Architectures*
@@ -128,11 +128,11 @@ Go through the course you purchased as part of Step 1. twice. The first time sho
 
 *Domain 4: Design Cost-Optimized Architectures*
 
-  4.1 - Identify cost-effective storage solutions
+  4.1 - Identify cost-effective **storage** solutions
 
-  4.2 - Identify cost-effective compute and database services
+  4.2 - Identify cost-effective **compute** and **database** services
 
-  4.3 - Design cost-optimized network architectures
+  4.3 - Design cost-optimized **network** architectures
 
 
 
