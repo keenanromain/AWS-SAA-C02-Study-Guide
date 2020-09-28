@@ -1,5 +1,5 @@
 # AWS SAA-C02 Study Guide
-This study guide will help you pass the newer AWS Certified Solutions Architect - Associate exam. In order to pass, reference this guide while working through the material in the following steps:
+This study guide will help you pass the newer AWS Certified Solutions Architect - Associate exam. Ideally, you should reference this guide while working through the following material:
 
   1. Stephane Maarek's <a href="https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c02/">Ultimate AWS Certified Solutions Architect Associate 2020 course</a> or A Cloud Guru's <a href="https://acloud.guru/learn/aws-certified-solutions-architect-associate">AWS Certified Solutions Architect Associate 2020 course</a>
   2. The FAQs for the most critical services, included in the recommended reading list below
@@ -7,11 +7,8 @@ This study guide will help you pass the newer AWS Certified Solutions Architect 
   4. Andrew Brown's <a href="https://www.youtube.com/watch?v=Ia-UEYYR44s">AWS Certified Solutions Architect - Associate 2020 (PASS THE EXAM!) | Ad-Free Course
 </a> 
 
-Go through the course you purchased as part of Step 1. twice. The first time should be a runthrough to introduce yourself to new AWS concepts and exam details. Jot down the services that confuse you and start with their FAQs as part of Step 2. You should then go through Step 1. once more, but this time as a deep dive. Be sure to pause frequently so that you research concepts that aren't perfectly clear, take notes, and experiment on the AWS console. Once you've completed Step 1. and Step 2., begin testing yourself with the Tutorial Dojo exams. Take the time to read the explanations for the questions that you get wrong. During the days leading up to your exam, go through Andrew Brown's YouTube video as the final step just as a refresher. If at any point you find yourself feeling uncertain of your progress and in need of more time, you can postpone your AWS exam date. This can be done twice. Finally, be sure to keep up on the ongoing discussions in <a href="https://old.reddit.com/r/AWSCertifications/">r/AWSCertifications</a>. There you will find more general information regarding exam tips, study material, and advice from other exam takers.
-
-*Note*: When experimenting on your AWS account, be sure to understand what is <a href="https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc">free</a> and what isn't. Relevant Free Tier FAQs can be found <a href="https://aws.amazon.com/free/free-tier-faqs/">here</a>.
-
-*Note*: Udemy often has their courses go on sale from time to time. It might be worth waiting to purchase either the Tutorial Dojo practice exam or Stephane Maarek's course depending on how urgently you need the study material.
+*Notes*:
+If at any point you find yourself feeling uncertain of your progress and in need of more time, you can postpone your AWS exam date. Be sure to also keep up on the ongoing discussions in <a href="https://reddit.com/r/AWSCertifications/">r/AWSCertifications</a> as you will find more information on exam tips, studying material, and advice from other exam takers. Before experimenting with AWS, it's very important to be sure that you know what is <a href="https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc">free</a> and what isn't. Relevant Free Tier FAQs can be found <a href="https://aws.amazon.com/free/free-tier-faqs/">here</a>. Finally, Udemy often has their courses go on sale from time to time. It might be worth waiting to purchase either the Tutorial Dojo practice exam or Stephane Maarek's course depending on how urgently you need the content.
 
 
 
