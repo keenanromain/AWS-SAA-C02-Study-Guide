@@ -105,13 +105,13 @@ If at any point you find yourself feeling uncertain of your progress and in need
 
 *Domain 2: Design High-Performing Architectures*
 
-  2.1 - Identify elastic and scalable computesolutions for a workload
+  2.1 - Identify elastic and scalable **compute** solutions for a workload
 
-  2.2 - Select high-performingand scalable storage solutions for a workload
+  2.2 - Select high-performing and scalable **storage** solutions for a workload
 
-  2.3 - Select high-performingnetworking solutions for a workload
+  2.3 - Select high-performing **networking** solutions for a workload
 
-  2.4 - Choose high-performingdatabase solutions for a workload
+  2.4 - Choose high-performing **database** solutions for a workload
 
 
 *Domain 3: Design Secure Applications and Architectures*
@@ -125,11 +125,11 @@ If at any point you find yourself feeling uncertain of your progress and in need
 
 *Domain 4: Design Cost-Optimized Architectures*
 
-  4.1 - Identify cost-effective storage solutions
+  4.1 - Identify cost-effective **storage** solutions
 
-  4.2 - Identify cost-effective compute and database services
+  4.2 - Identify cost-effective **compute** and **database** services
 
-  4.3 - Design cost-optimized network architectures
+  4.3 - Design cost-optimized **network** architectures
 
 
 
@@ -171,7 +171,8 @@ You can cover a lot of ground by skimming over what you already know or what you
 
 ### IAM Simplified:
 
-IAM offers a centralized hub of control within AWS and integrates with all other AWS Services. IAM comes with the ability to share access at various levels of permission and it supports the ability to use identity federation (the process of delegating authentication to a trusted external party like Facebook or Google) for temporary or limited access. IAM comes with MFA support and allows you to set up custom password rotation policy across your entire organiation. It is also PCI DSS compliant (passes government mandated credit card security regulations).
+IAM offers a centralized hub of control within AWS and integrates with all other AWS Services. IAM comes with the ability to share access at various levels of permission and it supports the ability to use identity federation (the process of delegating authentication to a trusted external party like Facebook or Google) for temporary or limited access. IAM comes with MFA support and allows you to set up custom password rotation policy across your entire organiation. 
+It is also PCI DSS compliant i.e. payment card industry data security standard. (passes government mandated credit card security regulations).
 
 ### IAM Entities:
 
