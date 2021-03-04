@@ -137,7 +137,7 @@ If at any point you find yourself feeling uncertain of your progress and in need
 
 You can cover a lot of ground by skimming over what you already know or what you can infer to be true. In particular, read the first sentence of each paragraph and if you have no uncertainty about what is being said in that sentence, move on to the first sentence of the next paragraph. Take notes whenever necessary.
 
-  1. <a href="https://d1.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf">AWS Well-Architected Framework</a>
+  1. <a href="https://docs.aws.amazon.com/wellarchitected/latest/framework/wellarchitected-framework.pdf">AWS Well-Architected Framework</a>
 
   2. <a href="https://aws.amazon.com/vpc/faqs/">Amazon VPC FAQs</a>
 
