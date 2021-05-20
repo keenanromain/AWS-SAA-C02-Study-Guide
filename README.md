@@ -597,7 +597,7 @@ An Amazon EBS volume is a durable, block-level storage device that you can attac
 - Snapshots only capture the state of change from when the last snapshot was taken. This is what is recorded in each new snapshot, not the entire state of the server.
 - Because of this, it may take some time for your first snapshot to be created. This is because the very first snapshot's change of state is the entire new volume. Only afterwards will the delta be captured because there will then be something previous to compare against. 
 - EBS snapshots occur asynchronously which means that a volume can be used as normal while a snapshot is taking place.
-- When creating a snapshot for a future root device, tt is considered best practices to stop the running instance where the original device is before taking the snapshot.
+- When creating a snapshot for a future root device, it is considered best practices to stop the running instance where the original device is before taking the snapshot.
 - The easiest way to move an EC2 instance and a volume to another availability zone is to take a snapshot.
 - When creating an image from a snapshot, if you want to deploy a different volume type for the new image (e.g. General Purpose SSD -> Throughput Optimized HDD) then you must make sure that the virtualization for the new image is hardware-assisted.
 - A short summary for creating copies of EC2 instances: Old instance -> Snapshot -> Image (AMI) -> New instance
