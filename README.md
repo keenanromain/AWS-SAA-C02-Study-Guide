@@ -856,7 +856,7 @@ RDS is a managed service that makes it easy to set up, operate, and scale a rela
 ### RDS Read Replicas:
 - Read Replication is exclusively used for performance enhancement.
 - With a Read Replica configuration, EC2 connects to the RDS backend using a DNS address and every write that is received by the master database is also passed onto a DB secondary so that it becomes a perfect copy of the master. This has the overall effect of reducing the number of transactions on the master because the secondary DBs can be queried for the same data. 
-- However, if the master DB were to fail, there is no automatic failover. You would have to manually create a new connection string to sync with one of the read replicas so that it becomes a master on its own. Then you’d have to update your EC2 instances to point at the read replica. You can have up to have copies of your master DB with read replication.
+- However, if the master DB were to fail, there is no automatic failover. You would have to manually create a new connection string to sync with one of the read replicas so that it becomes a master on its own. Then you’d have to update your EC2 instances to point at the read replica. You can have up to five copies of your master DB with read replication.
 - You can promote read replicas to be their very own production database if needed.
 - Read replicas are supported for all six flavors of DB on top of RDS.
 - Each Read Replica will have its own DNS endpoint. 
