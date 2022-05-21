@@ -805,7 +805,7 @@ Amazon FSx for Windows File Server provides a fully managed native Microsoft Fil
 - You can access Amazon FSx for Windows from a variety of compute resources, not just EC2.
 - You can deploy your Amazon FSx for Windows in a single AZ or in a Multi-AZ configuration.
 - You can use SSD or HDD for the storage device depending on your requirements.
-- FSx for Windows support daily automated backups and admins take take backups when needed as well.
+- FSx for Windows support daily automated backups and admins in taking backups when needed as well.
 - FSx for Windows removes duplicated content and compresses common content
 - By default, all data is encrypted at rest.
 
