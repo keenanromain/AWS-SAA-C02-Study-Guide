@@ -294,7 +294,7 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
     Standard: 3 - 5 hours to restore.
     Bulk: 5 - 12 hours. This option has the lowest cost and is good for a large set of data.
 
-The Expedited duration listed above could possibly be longer during rare situations of unusually high demand across all of AWS. If it is absolutely critical to have quick access to your Glacier data under all circumstances, you must purchase *Provisioned Capacity*. Provisioned Capacity guarentees that Expedited retrievals always work within the time constraints of 1 to 5 minutes.
+The Expedited duration listed above could possibly be longer during rare situations of unusually high demand across all of AWS. If it is absolutely critical to have quick access to your Glacier data under all circumstances, you must purchase *Provisioned Capacity*. Provisioned Capacity guarantees that Expedited retrievals always work within the time constraints of 1 to 5 minutes.
 
 **S3 Deep Glacier** - The lowest cost S3 storage where retrieval can take 12 hours.
 
@@ -861,7 +861,7 @@ RDS is a managed service that makes it easy to set up, operate, and scale a rela
 - Read replicas are supported for all six flavors of DB on top of RDS.
 - Each Read Replica will have its own DNS endpoint. 
 - Automated backups must be enabled in order to use read replicas.
-- You can have read replicas with Multi-AZ turned on or have the read replica in an entirely separate region. You can have even have read replicas of read replicas, but watch out for latency or replication lag.
+- You can have read replicas with Multi-AZ turned on or have the read replica in an entirely separate region. You can even have read replicas of read replicas, but watch out for latency or replication lag.
 The caveat for Read Replicas is that they are subject to small amounts of replication lag. This is because they might be missing some of the latest transactions as they are not updated as quickly as primaries. Application designers need to consider which queries have tolerance to slightly stale data. Those queries should be executed on the read replica, while those demanding completely up-to-date data should run on the primary node.
 
 
@@ -898,11 +898,11 @@ DB instances that are encrypted can't be modified to disable encryption.
 Aurora is the AWS flagship DB known to combine the performance and availability of traditional enterprise databases with the simplicity and cost-effectiveness of open source databases. It is a MySQL/PostgreSQL-compatible RDBMS that provides the security, availability, and reliability of commercial databases at 1/10th the cost of competitors. It is far more effective as an AWS database due to the 5x and 3x performance multipliers for MySQL and PostgreSQL respectively.
 
 ### Aurora Key Details:
-- In case of an infrastructure failure, Aurora performs an automatic failover to to a replica of its own.
+- In case of an infrastructure failure, Aurora performs an automatic failover to a replica of its own.
 - Amazon Aurora typically involves a cluster of DB instances instead of a single instance. Each connection is handled by a specific DB instance. When you connect to an Aurora cluster, the host name and port that you specify point to an intermediate handler called an endpoint. Aurora uses the endpoint mechanism to abstract these connections. Thus, you don't have to hard code all the host names or write your own logic for load-balancing and rerouting connections when some DB instances aren't available.
 - By default, there are 2 copies in a minimum of 3 availability zones for 6 copies total for all of your Aurora data. This makes it possible for it to handle the potential loss of up to 2 copies of your data without impacting write availability and up to 3 copies of your data without impacting read availability.
 - Aurora storage is self-healing and data blocks and disks are continuously scanned for errors. If any are found, those errors are repaired automatically.
-- Aurora replication differs from RDS replicas in the sense that it is possible for Aurora's replicas to be be both a standby as part of a multi-AZ configuration as well as a target for read traffic. In RDS, the multi-AZ standby cannot be configured to be a read endpoint and only read replicas can serve that function.
+- Aurora replication differs from RDS replicas in the sense that it is possible for Aurora's replicas to be both a standby as part of a multi-AZ configuration as well as a target for read traffic. In RDS, the multi-AZ standby cannot be configured to be a read endpoint and only read replicas can serve that function.
 - With Aurora replication, you can have up to fifteen copies. If you want downstream MySQL or PostgreSQL as you replicated copies, then you can only have 5 or 1.
 - Automated failover is only possible with Aurora read replication
 - For more on the differences between RDS replication and Aurora Replication, please consult the following:
@@ -1432,7 +1432,7 @@ SWF is a web service that makes it easy to coordinate work across distributed ap
   - SWF Actors are workers that trigger the beginning of a workflow.
   - SWF Deciders are workers that control the flow of the workflow once it's been started.
   - SWF Activity Workers are the workers that actually carry out the task to completion.
-- With SWF, workflow executions can last up to one year compared to the 14 day maximum retention period for SQS.
+- With SWF, workflow executions can last up to one year compared to the 14 days maximum retention period for SQS.
 
 ## Simple Notification Service (SNS)
 
