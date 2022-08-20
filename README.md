@@ -307,7 +307,7 @@ S3 data can be encrypted both in transit and at rest.
 
 **Encryption At Rest**: When the immobile data sitting inside S3 is encrypted. If someone breaks into a server, they still won’t be able to access encrypted info within that server. Encryption at rest can be done either on the server-side or the client-side. The server-side is when S3 encrypts your data as it is being written to disk and decrypts it when you access it. The client-side is when you personally encrypt the object on your own and then upload it into S3 afterwards.
 
-You can encrypted on the AWS supported server-side in the following ways:
+You can encrypt on the AWS supported server-side in the following ways:
 - **S3 Managed Keys / SSE - S3 (server side encryption S3 )** - when Amazon manages the encryption and decryption keys for you automatically. In this scenario, you concede a little control to Amazon in exchange for ease of use.
 - **AWS Key Management Service / SSE - KMS** - when Amazon and you both manage the encryption and decryption keys together.
 - **Server Side Encryption w/ customer provided keys / SSE - C** - when I give Amazon my own keys that I manage. In this scenario, you concede ease of use in exchange for more control.
