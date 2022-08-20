@@ -375,7 +375,7 @@ The Amazon S3 notification feature enables you to receive and send notifications
 - You can also parallelize downloads from S3 using **byte-range fetches**. If there's a failure during the download, the failure is localized just to the specific byte range and not the whole object.
 
 ### S3 Pre-signed URLs:
-- All S3 objects are private by default, however the object owner of a private bucket with private objects can optionally share those objects with without having to change the permissions of the bucket to be public.
+- All S3 objects are private by default, however the object owner of a private bucket with private objects can optionally share those objects without having to change the permissions of the bucket to be public.
 - This is done by creating a pre-signed URL. Using your own security credentials, you can grant time-limited permission to download or view your private S3 objects.
 - When you create a pre-signed URL for your S3 object, you must do the following:
   - Provide your security credentials.
