@@ -358,7 +358,7 @@ The Amazon S3 notification feature enables you to receive and send notifications
 - By default, logging is disabled. When logging is enabled, logs are saved to a bucket in the same AWS Region as the source bucket. 
 - Each access log record provides details about a single access request, such as the requester, bucket name, request time, request action, response status, and an error code, if relevant.
 - It works in the following way:
-   - S3 periodically collecting access log records of the bucket you want to monitor
+   - S3 periodically collects access log records of the bucket you want to monitor
    - S3 then consolidates those records into log files
    - S3 finally uploads the log files to your secondary monitoring bucket as log objects
 
