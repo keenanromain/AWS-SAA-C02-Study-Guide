@@ -307,7 +307,7 @@ S3 data can be encrypted both in transit and at rest.
 
 **Encryption At Rest**: When the immobile data sitting inside S3 is encrypted. If someone breaks into a server, they still won’t be able to access encrypted info within that server. Encryption at rest can be done either on the server-side or the client-side. The server-side is when S3 encrypts your data as it is being written to disk and decrypts it when you access it. The client-side is when you personally encrypt the object on your own and then upload it into S3 afterwards.
 
-You can encrypted on the AWS supported server-side in the following ways:
+You can encrypt on the AWS supported server-side in the following ways:
 - **S3 Managed Keys / SSE - S3 (server side encryption S3 )** - when Amazon manages the encryption and decryption keys for you automatically. In this scenario, you concede a little control to Amazon in exchange for ease of use.
 - **AWS Key Management Service / SSE - KMS** - when Amazon and you both manage the encryption and decryption keys together.
 - **Server Side Encryption w/ customer provided keys / SSE - C** - when I give Amazon my own keys that I manage. In this scenario, you concede ease of use in exchange for more control.
@@ -358,7 +358,7 @@ The Amazon S3 notification feature enables you to receive and send notifications
 - By default, logging is disabled. When logging is enabled, logs are saved to a bucket in the same AWS Region as the source bucket. 
 - Each access log record provides details about a single access request, such as the requester, bucket name, request time, request action, response status, and an error code, if relevant.
 - It works in the following way:
-   - S3 periodically collecting access log records of the bucket you want to monitor
+   - S3 periodically collects access log records of the bucket you want to monitor
    - S3 then consolidates those records into log files
    - S3 finally uploads the log files to your secondary monitoring bucket as log objects
 
@@ -375,7 +375,7 @@ The Amazon S3 notification feature enables you to receive and send notifications
 - You can also parallelize downloads from S3 using **byte-range fetches**. If there's a failure during the download, the failure is localized just to the specific byte range and not the whole object.
 
 ### S3 Pre-signed URLs:
-- All S3 objects are private by default, however the object owner of a private bucket with private objects can optionally share those objects with without having to change the permissions of the bucket to be public.
+- All S3 objects are private by default, however the object owner of a private bucket with private objects can optionally share those objects without having to change the permissions of the bucket to be public.
 - This is done by creating a pre-signed URL. Using your own security credentials, you can grant time-limited permission to download or view your private S3 objects.
 - When you create a pre-signed URL for your S3 object, you must do the following:
   - Provide your security credentials.
