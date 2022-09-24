@@ -1461,7 +1461,7 @@ Amazon Kinesis makes it easy to collect, process, and analyze real-time, streami
 - It is a fully managed service that automatically scales to match the throughput of your data and requires no ongoing administration. It can also batch, compress, and encrypt the data before loading it, minimizing the amount of storage used at the destination and increasing security.
 - There are three different types of Kinesis:
   - Kinesis Streams
-    - Kinesis Streams works where the data producers stream their data into Kinesis Streams which can retain the data that enters it from one day up until 7 days. Once inside 
+    - Kinesis Streams works where the data producers stream their data into Kinesis Streams which can retain the data from one day up until 7 days. Once inside 
       Kinesis Streams, the data is contained within shards.
     - Kinesis Streams can continuously capture and store terabytes of data per hour from hundreds of thousands of sources such as website clickstreams, financial 
       transactions, social media feeds, IT logs, and location-tracking events. For example: purchase requests from a large online store like Amazon, stock prices, Netflix 
