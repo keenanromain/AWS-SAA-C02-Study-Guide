@@ -548,7 +548,7 @@ The following table highlights the many instance states that a VM can be in at a
     - If you would like a balance of risk tolerance and network performance, use Partitioned Placement Groups.
   
 - Each placement group name within your AWS must be unique
-- You can move an existing instance into a placement group guaranteed that it is in a stopped state. You can move the instance via the CLI or an AWS SDK, but not the console. You can also take a snapshot of the existing instance, convert it into an AMI, and launch it into the placement group where you desire it to be.
+- You can move an existing instance into a placement group provided that it is in a stopped state. You can move the instance via the CLI or an AWS SDK, but not the console. You can also take a snapshot of the existing instance, convert it into an AMI, and launch it into the placement group where you desire it to be.
 
 ## Elastic Block Store (EBS)
 
