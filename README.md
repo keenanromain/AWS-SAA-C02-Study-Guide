@@ -1255,7 +1255,7 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
 
 
 ### NAT Instances vs. NAT Gateways:
-- Attaching an Internet Gateway to a VPC allows instances with public IPs to directly access the internet. NAT does a similar thing, however it is for instances that do not have a public IP. It serves as an intermediate step which allow private instances to first masked their own private IP as the NAT's public IP before accessing the internet.
+- Attaching an Internet Gateway to a VPC allows instances with public IPs to directly access the internet. NAT does a similar thing, however it is for instances that do not have a public IP. It serves as an intermediate step which allow private instances to first mask their own private IP as the NAT's public IP before accessing the internet.
 - You would want your private instances to access the internet so that they can have normal software updates. NAT prevents any initiating of a connection from the internet.
 - **NAT instances** are individual EC2 instances that perform the function of providing private subnets a means to securely access the internet. 
 - Because they are individual instances, High Availability is not a built-in feature and they can become a choke point in your VPC. They are not fault-tolerant and serve as a single point of failure. While it is possible to use auto-scaling groups, scripts to automate failover, etc. to prevent bottlenecking, it is far better to use the NAT Gateway as an alternative for a scalable solution.
