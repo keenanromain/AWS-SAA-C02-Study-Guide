@@ -1397,7 +1397,7 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
 ## Simple Queuing Service (SQS)
 
 ### SQS Simplified:
- SQS is a web-based service that gives you access to a message queue that can be used to store messages while waiting for a queue to process them. It helps in the decoupling of systems and the horizontal scaling of AWS resources.
+ SQS is a web-based service that gives you access to a message queue that can be used to store messages while waiting for another service to process them. It helps in the decoupling of systems and the horizontal scaling of AWS resources.
 
 ### SQS Key Details:
 - The point behind SQS is to decouple work across systems. This way, downstream services in a system can perform work when they are ready to rather than when upstream services feed them data.
