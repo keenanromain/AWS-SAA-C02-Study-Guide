@@ -1030,7 +1030,7 @@ The ElastiCache service makes it easy to deploy, operate, and scale an in-memory
 - Amazon ElastiCache offers fully managed Redis and Memcached for the most demanding applications that require sub-millisecond response times.
 - For data that doesn’t change frequently and is often asked for, it makes a lot of sense to cache said data rather than querying it from the database.
 - Common configurations that improve DB performance include introducing read replicas of a DB primary and inserting a caching layer into the storage architecture. 
-- MemcacheD is for simple caching purposes with horizontal scaling and multi-threaded performance, but if you require more complexity for your caching environment then choose Redis.
+- Memcached is for simple caching purposes with horizontal scaling and multi-threaded performance, but if you require more complexity for your caching environment then choose Redis.
 - A further comparison between MemcacheD and Redis for ElastiCache:
 ![Screen Shot 2020-06-18 at 8 18 34 PM](https://user-images.githubusercontent.com/13093517/85083820-edc1b480-b1a0-11ea-88b0-15f90bd60282.png)
 
