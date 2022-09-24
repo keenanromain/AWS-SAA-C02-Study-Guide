@@ -1154,7 +1154,7 @@ AWS Auto Scaling lets you build scaling plans that automate how groups of differ
 - When it comes to actually scale your instance groups, the Auto Scaling service is flexible and can be done in various ways:
   - Auto Scaling can scale based on the demand placed on your instances. This option automates the scaling process by specifying certain thresholds that, when reached, will trigger the scaling. This is the most popular implementation of Auto Scaling.
   - Auto Scaling can ensure the current number of instances at all times. This option will always maintain the number of servers you want running even when they fail.
-  - Auto Scaling can scale only with manual intervention. If want to control all of the scaling yourself, this option makes sense.
+  - Auto Scaling can scale only with manual intervention. If you want to control all of the scaling yourself, this option makes sense.
   - Auto Scaling can scale based on a schedule. If you can reliably predict spikes in traffic, this option makes sense.
   - Auto Scaling based off of predictive scaling. This option lets AWS AI/ML learn more about your environment in order to predict the best time to scale for both performance improvements and cost-savings.
 - In maintaining the current running instance, Auto Scaling will perform occasional health checks on the running instances to ensure that they are all healthy. When the service detects that an instance is unhealthy, it will terminate that instance and then bring up a new one online.
