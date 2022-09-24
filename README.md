@@ -881,7 +881,7 @@ Automated backups are enabled by default. The backup data is stored freely up to
   - Network traffic to and from the database is encrypted using Secure Sockets Layer (SSL).
   - You can use IAM to centrally manage access to your database resources, instead of managing access individually on each DB instance.
   - For applications running on Amazon EC2, you can use profile credentials specific to your EC2 instance to access your database instead of a password, for greater security
-- Encryption at rest is supported for all six flavors of DB for RDS. Encryption is done using the AWS KMS service. Once the RDS instance is encryption enabled, the data in the DB becomes encrypted as well as all backups (automated or snapshots) and read replicas.
+- Encryption at rest is supported for all six flavors of DB for RDS. Encryption is done using the AWS KMS service. Once the RDS instance has encryption enabled, the data in the DB becomes encrypted as well as all backups (automated or snapshots) and read replicas.
 - After your data is encrypted, Amazon RDS handles authentication of access and decryption of your data transparently with a minimal impact on performance. You don't need to modify your database client applications to use encryption. 
 - Amazon RDS encryption is currently available for all database engines and storage types. However, you need to ensure that the underlying instance type supports DB encryption.
 - You can only enable encryption for an Amazon RDS DB instance when you create it, not after the DB instance is created and 
