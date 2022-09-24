@@ -1210,7 +1210,7 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
 - With CIDR in general, a **/32** denotes a single IP address and **/0** refers to the entire network. The higher you go in CIDR, the more narrow the IP range will be.
 - The above information about IPs is in regards to both public and private IP addresses. 
 - Private IP addresses are not reachable over the Internet and instead are used for communication between the instances in your VPC. When you launch an instance into a VPC, a private IP address from the IPv4 address range of the subnet is assigned to the default network interface (eth0) of the instance.
-- This means that all instances within a VPC has a private IP, but only those selected to communicate with the external world have a public IP.
+- This means that all instances within a VPC have a private IP, but only those selected to communicate with the external world have a public IP.
 - When you launch an instance into a subnet that has public access via an Internet Gateway, both a public IP address and a private IP address are created. The public IP address is instead assigned to the primary network interface (eth0) that's created for the instance. Externally, the public IP address is mapped to the private IP address through network address translation (NAT). 
 - You can optionally associate an IPv6 CIDR block with your VPC and subnets, and assign IPv6 addresses from that block to the resources in your VPC.
 - VPCs are region specific and you can have up to five VPCs per region.
