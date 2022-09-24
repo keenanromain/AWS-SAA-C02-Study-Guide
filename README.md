@@ -1207,7 +1207,7 @@ VPC lets you provision a logically isolated section of the AWS cloud where you c
 -  When you create a VPC, you must assign it an IPv4 CIDR block. This CIDR block is a range of private IPv4 addresses that will be inherited by your instances when you create them.
 - The IP range of a default VPC is always **/16**.
 - When creating IP ranges for your subnets, the **/16** CIDR block is the largest range of IPs that can be used. This is because subnets must have just as many IPs or fewer IPs than the VPC it belongs to. A **/28** CIDR block is the smallest IP range available for subnets.
-- With CIDR in general, a **/32** denotes a single IP address and **/0** refers to the entire network The higher you go in CIDR, the more narrow the IP range will be.
+- With CIDR in general, a **/32** denotes a single IP address and **/0** refers to the entire network. The higher you go in CIDR, the more narrow the IP range will be.
 - The above information about IPs is in regards to both public and private IP addresses. 
 - Private IP addresses are not reachable over the Internet and instead are used for communication between the instances in your VPC. When you launch an instance into a VPC, a private IP address from the IPv4 address range of the subnet is assigned to the default network interface (eth0) of the instance.
 - This means that all instances within a VPC has a private IP, but only those selected to communicate with the external world have a public IP.
