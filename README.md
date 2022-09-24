@@ -263,7 +263,7 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 
   5.) transfer acceleration (an optional speed increase for moving objects via Cloudfront)
 
-  6.) cross region replication (more High Availability than offered by default)
+  6.) cross region replication (more HA than offered by default)
 
 - Bucket policies secure data at the bucket level while access control lists secure data at the more granular object level.
 - By default, all newly created buckets are private.
