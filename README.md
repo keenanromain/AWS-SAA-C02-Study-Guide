@@ -1049,7 +1049,7 @@ Amazon Route 53 is a highly available and scalable Domain Name System (DNS) serv
 - NS records, or Name Server records, are used by the Top Level Domain hosts (.org, .com, .uk, etc.) to direct traffic to the Content servers. The Content DNS servers contain the authoritative DNS records.
 - Browsers talk to the Top Level Domains whenever they are queried and encounter domain name that they do not recognize.
   1. Browsers will ask for the authoritative DNS records associated with the domain.
-  2. Because the Top Level Domain contains NS records, the TLD can in turn queries the Name Servers for their own SOA.
+  2. Because the Top Level Domain contains NS records, the TLD can in turn query the Name Servers for their own SOA.
   3. Within the SOA, there will be the requested information.
   4. Once this information is collected, it will then be returned all the way back to the original browser asking for it.
 - In summary: Browser -> TLD -> NS -> SOA -> DNS record. The pipeline reverses when the correct DNS record is found.
