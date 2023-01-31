@@ -214,11 +214,11 @@ IAM Policies are separated from the other entities above because they are not an
 - **Default Deny (or Implicit Deny)**: IAM identities start off with no resource access. Access instead must be granted.
 
 ### IAM Security Tools:
-   **IAM Access Advisor(user level)
+   **IAM Access Advisor(user level)**
 -  Acess advisor shows service permissions granted to a user and when those services were last accessed.
 -  You can use this information to revise your policies.
 
-  **IAM Credentials Report(account level)
+  **IAM Credentials Report(account level)**
 -   a report that list all your account users and the status of their various credentials.
 
 
