@@ -219,7 +219,7 @@ IAM Policies are separated from the other entities above because they are not an
 -  You can use this information to revise your policies.
 
   **IAM Credentials Report(account level)**
--   a report that lists all your account users and the status of their various credentials.
+-   a report that lists all of your account users and the status of their various credentials.
 
 
 ## Simple Storage Service (S3)
