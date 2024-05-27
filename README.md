@@ -219,7 +219,7 @@ IAM Policies are separated from the other entities above because they are not an
 -  You can use this information to revise your policies.
 
   **IAM Credentials Report(account level)**
--   a report that list all your account users and the status of their various credentials.
+-   a report that lists all of your account users and the status of their various credentials.
 
 
 ## Simple Storage Service (S3)
@@ -334,7 +334,7 @@ You can encrypt on the AWS supported server-side in the following ways:
 - Lifecycle rules can be applied to both current and previous versions of an object.
 
 ### S3 Cross Region Replication:
-- Cross region replication only work if versioning is enabled.
+- Cross region replication only works if versioning is enabled.
 - When cross region replication is enabled, no pre-existing data is transferred. Only new uploads into the original bucket are replicated. All subsequent updates are replicated.
 - When you replicate the contents of one bucket to another, you can actually change the ownership of the content if you want. You can also change the storage tier of the new bucket with the replicated content.
 - When files are deleted in the original bucket (via a delete marker as versioning prevents true deletions), those deletes are not replicated.
