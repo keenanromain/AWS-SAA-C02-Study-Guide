@@ -1,7 +1,7 @@
 # AWS SAA-C02 Study Guide
 This study guide will help you pass the AWS Certified Solutions Architect - Associate exam. Ideally, you should reference this guide while working through the following material:
 
-  1. Stephane Maarek's <a href="https://links.datacumulus.com/aws-certified-sa-associate-coupon">Ultimate AWS Certified Solutions Architect Associate 2025 course</a> (permanent discount available through this link)
+  1. Stephane Maarek's <a href="https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/?couponCode=JUL_25_GET_STARTED">Ultimate AWS Certified Solutions Architect Associate 2025 course</a> (permanent discount available through this link)
   2. The FAQs for the most critical services, included in the recommended reading list below
   3. Stephane Maarek's 6 <a href="https://www.udemy.com/course/practice-exams-aws-certified-solutions-architect-associate/?couponCode=JUL_25_GET_STARTED">Practice Exams | AWS Certified Solutions Architect Associate </a> (permanent discount available through this link)
   4. Andrew Brown's <a href="https://www.youtube.com/watch?v=c3Cn4xYfxJY">AWS Solutions Architect Associate Certification (SAA-C03) – Full Course to PASS the Exam</a> 
