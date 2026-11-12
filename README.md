@@ -5,6 +5,7 @@ This study guide will help you pass the AWS Certified Solutions Architect - Asso
   2. The FAQs for the most critical services, included in the recommended reading list below
   3. Stephane Maarek's 6 <a href="https://www.udemy.com/course/practice-exams-aws-certified-solutions-architect-associate/?couponCode=JUL_25_GET_STARTED">Practice Exams | AWS Certified Solutions Architect Associate </a> (permanent discount available through this link)
   4. Andrew Brown's <a href="https://www.youtube.com/watch?v=c3Cn4xYfxJY">AWS Solutions Architect Associate Certification (SAA-C03) – Full Course to PASS the Exam</a> 
+  5. ExamCrest's <a href="https://examcrest.com/exam/aws-saa-c03/free-questions?utm_source=github&utm_campaign=keenanromain-saa">free SAA-C03 sample questions</a> (no signup, every option explained; full mock tests are paid)
 
 *Notes*:
 If at any point you find yourself feeling uncertain of your progress and in need of more time, you can postpone your AWS exam date. Be sure to also keep up with the ongoing discussions in <a href="https://reddit.com/r/AWSCertifications/">r/AWSCertifications</a> as you will find relevant exam tips, studying material, and advice from other exam takers. Before experimenting with AWS, it's very important to be sure that you know what is <a href="https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc">free</a> and what isn't. Relevant Free Tier FAQs can be found <a href="https://aws.amazon.com/free/free-tier-faqs/">here</a>. 
@@ -85,9 +86,11 @@ If at any point you find yourself feeling uncertain of your progress and in need
 
 ## Introduction
 
-<a href="https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate-Exam-Guide_v1.1_2019_08_27_FINAL.pdf">**The official AWS Solutions Architect - Associate (SAA-C02) exam guide**</a>
+<a href="https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html">**The official AWS Solutions Architect - Associate (SAA-C03) exam guide**</a>
 
 ### Exam Content Breakdown:
+SAA-C03 domains: Design Secure Architectures (30%), Design Resilient Architectures (26%), Design High-Performing Architectures (24%), Design Cost-Optimized Architectures (20%). The screenshot below shows the older SAA-C02 breakdown.
+
 ![Screen Shot 2020-06-05 at 2 49 08 PM](https://user-images.githubusercontent.com/13093517/83912374-c2b87900-a73b-11ea-9691-b38383b43ff9.png)
 
 *Domain 1: Design Resilient Architectures*
