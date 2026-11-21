@@ -278,7 +278,7 @@ Data uploaded into S3 is spread across multiple files and facilities. The files 
 
   1.) For programmatic access only, use IAM & Bucket Policies to share entire buckets
 
-  2.) For programmatic access only, use ACLs & Bucket Policies to share objects
+  2.)  For programmatic access, use IAM & Object ACLs to grant access to individual objects (legacy approach)
 
   3.) For access via the console & the terminal, use cross-account IAM roles
 
